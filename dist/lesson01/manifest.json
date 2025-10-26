@@ -1,0 +1,65 @@
+{
+    "name": "Afghan Pathways Program - Web Level 1",
+    "short_name": "Afghan Pathways",
+    "description": "Offline educational video platform for web development learning",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#f9fafb",
+    "theme_color": "#7f1d1d",
+    "orientation": "portrait-primary",
+    "scope": "/",
+    "lang": "en",
+    "categories": ["education", "books", "learning"],
+    "icons": [
+        {
+            "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'%3E%3Crect width='192' height='192' fill='%237f1d1d' rx='24'/%3E%3Ctext x='96' y='130' text-anchor='middle' fill='white' font-size='100' font-family='sans-serif'%3E📚%3C/text%3E%3Ctext x='96' y='165' text-anchor='middle' fill='%23fca5a5' font-size='16' font-weight='bold' font-family='sans-serif'%3EAfghan Pathways%3C/text%3E%3C/svg%3E",
+            "sizes": "192x192",
+            "type": "image/svg+xml",
+            "purpose": "any"
+        },
+        {
+            "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' fill='%237f1d1d' rx='64'/%3E%3Ctext x='256' y='330' text-anchor='middle' fill='white' font-size='280' font-family='sans-serif'%3E📚%3C/text%3E%3Ctext x='256' y='420' text-anchor='middle' fill='%23fca5a5' font-size='42' font-weight='bold' font-family='sans-serif'%3EAfghan Pathways%3C/text%3E%3C/svg%3E",
+            "sizes": "512x512",
+            "type": "image/svg+xml",
+            "purpose": "any"
+        },
+        {
+            "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'%3E%3Crect width='192' height='192' fill='%237f1d1d' rx='24'/%3E%3Ctext x='96' y='130' text-anchor='middle' fill='white' font-size='100' font-family='sans-serif'%3E📚%3C/text%3E%3C/svg%3E",
+            "sizes": "192x192",
+            "type": "image/svg+xml",
+            "purpose": "maskable"
+        }
+    ],
+    "screenshots": [
+        {
+            "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 390 844'%3E%3Crect width='390' height='844' fill='%23f9fafb'/%3E%3Crect x='0' y='0' width='390' height='120' fill='%237f1d1d'/%3E%3Ctext x='195' y='50' text-anchor='middle' fill='white' font-size='18' font-weight='bold'%3EAfghan Pathways Program%3C/text%3E%3Ctext x='195' y='75' text-anchor='middle' fill='%23fca5a5' font-size='14'%3EWeb Development Level 1%3C/text%3E%3Crect x='20' y='140' width='350' height='200' fill='%23000000' rx='8'/%3E%3Ctext x='195' y='250' text-anchor='middle' fill='white' font-size='20'%3E📹 Lesson Video%3C/text%3E%3Crect x='20' y='360' width='350' height='100' fill='white' stroke='%23e5e7eb' rx='8'/%3E%3Ctext x='40' y='385' fill='%23374151' font-size='16' font-weight='bold'%3EIntroduction to Web Development%3C/text%3E%3Ctext x='40' y='405' fill='%236b7280' font-size='12'%3ELearn HTML, CSS, and web fundamentals%3C/text%3E%3Crect x='40' y='420' width='310' height='4' fill='%23e5e7eb' rx='2'/%3E%3Crect x='40' y='420' width='120' height='4' fill='%237f1d1d' rx='2'/%3E%3C/svg%3E",
+            "sizes": "390x844",
+            "type": "image/svg+xml",
+            "form_factor": "narrow",
+            "label": "Video Learning Interface"
+        }
+    ],
+    "shortcuts": [
+        {
+            "name": "Lesson 1",
+            "short_name": "Lesson 1",
+            "description": "Start Web Development Lesson 1",
+            "url": "/",
+            "icons": [
+                {
+                    "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'%3E%3Crect width='96' height='96' fill='%237f1d1d' rx='12'/%3E%3Ctext x='48' y='65' text-anchor='middle' fill='white' font-size='50' font-family='sans-serif'%3E1%3C/text%3E%3C/svg%3E",
+                    "sizes": "96x96",
+                    "type": "image/svg+xml"
+                }
+            ]
+        }
+    ],
+    "prefer_related_applications": false,
+    "related_applications": [],
+    "features": [
+        "offline-support",
+        "video-playback",
+        "progress-tracking",
+        "mobile-optimized"
+    ]
+}
