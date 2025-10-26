@@ -1,0 +1,70 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom styles for Afghan Pathways Program */
+
+/* Video player enhancements */
+.video-container {
+  position: relative;
+  background: #000;
+}
+
+/* Progress bar animations */
+@keyframes progress-grow {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+.progress-bar {
+  transform-origin: left;
+  animation: progress-grow 0.3s ease-out;
+}
+
+/* Loading spinner */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+/* Custom focus styles for accessibility */
+.focus-ring:focus {
+  @apply outline-none ring-2 ring-red-900 ring-offset-2;
+}
+
+/* Mobile-specific optimizations */
+@media (max-width: 640px) {
+  .mobile-padding {
+    @apply px-3 py-2;
+  }
+
+  .mobile-text {
+    @apply text-sm;
+  }
+}
+
+/* Offline indicator pulse */
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+.offline-pulse {
+  animation: pulse 2s infinite;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .bg-red-900 {
+    @apply bg-black;
+  }
+
+  .text-red-900 {
+    @apply text-black;
+  }
+}

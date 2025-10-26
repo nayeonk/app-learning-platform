@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Afghan Pathways Program - Web Level 1 - Lesson 1</title>
+
+    <!-- Local Tailwind CSS -->
+    <link rel="stylesheet" href="css/tailwind.css">
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#7f1d1d">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Afghan Pathways">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📚</text></svg>">
+</head>
+<body class="bg-gray-50 min-h-screen" x-data="videoApp()">
+
+    <!-- Header -->
+    <header class="bg-red-900 text-white shadow-lg">
+        <div class="max-w-4xl mx-auto px-4 py-6">
+            <h1 class="text-xl md:text-2xl font-bold text-center">
+                Afghan Pathways Program
+            </h1>
+            <p class="text-red-100 text-center mt-2 text-sm md:text-base">
+                Web Development Level 1 - Lesson 1
+            </p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-4xl mx-auto px-4 py-6">
+
+        <!-- Loading State -->
+        <div x-show="!contentLoaded" class="bg-white rounded-lg shadow-md p-4 md:p-6 mb-6">
+            <div class="text-center">
+                <div class="flex items-center justify-center mb-3">
+                    <div class="animate-spin rounded-full h-6 w-6 border-b-2 border-red-900 mr-3"></div>
+                    <span class="text-gray-600">Loading lesson content...</span>
+                </div>
+                <div class="text-xs text-gray-500">
+                    <p>📡 Trying to load from JSON file...</p>
+                    <p>🔄 If this takes too long, fallback content will load automatically</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Lesson Progress Bar -->
+        <div x-show="contentLoaded" class="bg-white rounded-lg shadow-md p-4 md:p-6 mb-6">
+            <div class="flex items-center justify-between mb-4">
+                <h2 class="text-lg font-semibold text-gray-800" x-text="currentPart ? currentPart.title : ''"></h2>
+                <span class="text-sm text-gray-500" x-text="`Part ${currentPartIndex + 1} of ${lessonParts.length}`"></span>
+            </div>
+
+            <!-- Progress Steps -->
+            <div class="flex items-center space-x-2 mb-4">
+                <template x-for="(part, index) in lessonParts" :key="index">
+                    <div class="flex items-center">
+                        <button
+                            @click="navigateToPart(index)"
+                            class="flex items-center justify-center w-8 h-8 rounded-full text-sm font-medium transition-colors"
+                            :class="index === currentPartIndex
+                                ? 'bg-red-900 text-white'
+                                : isQuizPassedCorrectly(index)
+                                    ? 'bg-green-600 text-white cursor-pointer hover:bg-green-700'
+                                    : canNavigateToPart(index)
+                                        ? 'bg-blue-600 text-white cursor-pointer hover:bg-blue-700'
+                                        : 'bg-gray-300 text-gray-500 cursor-not-allowed'"
+                            :disabled="!canNavigateToPart(index)"
+                            :title="canNavigateToPart(index)
+                                ? (isQuizPassedCorrectly(index) ? 'Completed' : 'Available')
+                                : 'Complete previous part first'"
+                        >
+                            <span x-show="isQuizPassedCorrectly(index)">✓</span>
+                            <span x-show="!isQuizPassedCorrectly(index)" x-text="index + 1"></span>
+                        </button>
+                        <div x-show="index < lessonParts.length - 1" class="w-8 h-0.5 mx-1"
+                             :class="isQuizPassedCorrectly(index) ? 'bg-green-600' : 'bg-gray-200'">
+                        </div>
+                    </div>
+                </template>
+            </div>
+
+            <!-- Navigation Buttons -->
+            <div class="flex justify-between">
+                <button
+                    @click="navigateToPart(currentPartIndex - 1)"
+                    :disabled="currentPartIndex === 0"
+                    class="px-4 py-2 text-sm font-medium rounded-lg transition-colors"
+                    :class="currentPartIndex === 0
+                        ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
+                        : 'bg-gray-200 text-gray-700 hover:bg-gray-300'"
+                >
+                    ← Previous
+                </button>
+                <button
+                    @click="navigateToPart(currentPartIndex + 1)"
+                    :disabled="currentPartIndex === lessonParts.length - 1 || !canNavigateToPart(currentPartIndex + 1)"
+                    class="px-4 py-2 text-sm font-medium rounded-lg transition-colors"
+                    :class="currentPartIndex === lessonParts.length - 1 || !canNavigateToPart(currentPartIndex + 1)
+                        ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
+                        : 'bg-red-900 text-white hover:bg-red-800'"
+                >
+                    Next →
+                </button>
+            </div>
+        </div>
+
+        <!-- Video Section -->
+        <div x-show="contentLoaded" class="bg-white rounded-lg shadow-md overflow-hidden mb-6">
+            <div class="aspect-video bg-black relative">
+                <video
+                    x-ref="videoPlayer"
+                    class="w-full h-full"
+                    controls
+                    preload="metadata"
+                    :src="currentPart ? currentPart.videoSrc : 'videos/lesson1.mp4'"
+                    @loadedmetadata="onVideoLoaded()"
+                    @timeupdate="onTimeUpdate()"
+                    @ended="onVideoEnded()"
+                    poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 450'%3E%3Crect width='800' height='450' fill='%23374151'/%3E%3Ctext x='400' y='225' text-anchor='middle' fill='white' font-size='24' font-family='sans-serif'%3ELesson 1 Video%3C/text%3E%3C/svg%3E"
+                >
+                    <p class="text-center text-gray-600 p-8">
+                        Your browser doesn't support video playback. Please update your browser or try a different device.
+                    </p>
+                </video>
+
+                <!-- Loading Overlay -->
+                <div x-show="loading" class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+                    <div class="text-white text-center">
+                        <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-white mx-auto mb-2"></div>
+                        <p>Loading video...</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Video Info -->
+            <div class="p-4 md:p-6">
+                <h2 class="text-lg md:text-xl font-semibold text-gray-800 mb-2" x-text="`Lesson 1 | ${currentPart.title}`">
+                </h2>
+                <p class="text-gray-600 text-sm md:text-base mb-4" x-text="currentPart.description">
+                </p>
+
+                <!-- Key Concepts -->
+                <div class="mb-6">
+                    <h3 class="text-base font-semibold text-gray-800 mb-3">Key Concepts</h3>
+                    <ul class="space-y-2 text-gray-700">
+                        <template x-for="concept in currentPart.keyConcepts" :key="concept">
+                            <li class="flex items-start">
+                                <span class="text-red-900 mr-2 mt-1 text-sm">•</span>
+                                <span class="text-xs md:text-sm" x-text="concept"></span>
+                            </li>
+                        </template>
+                    </ul>
+                </div>
+
+                <!-- Video Stats -->
+                <div class="flex justify-between text-xs md:text-sm text-gray-500">
+                    <span x-text="currentTimeFormatted + ' / ' + durationFormatted"></span>
+                    <span x-show="videoLoaded" class="text-green-600">✓ Video loaded</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Completion Screen -->
+        <div x-show="contentLoaded && allPartsCompleted()" class="bg-gradient-to-br from-green-50 to-blue-50 rounded-lg shadow-lg p-6 md:p-8 mb-6 text-center border-2 border-green-200">
+            <div class="mb-6">
+                <div class="text-6xl md:text-7xl mb-4">🎉</div>
+                <h2 class="text-2xl md:text-3xl font-bold text-green-800 mb-2">
+                    Congratulations!
+                </h2>
+                <p class="text-lg md:text-xl text-green-700 mb-4">
+                    You've successfully completed all parts of Lesson 1!
+                </p>
+                <div class="bg-white rounded-lg p-4 mb-6 inline-block shadow-md">
+                    <div class="flex items-center justify-center space-x-4 text-green-600">
+                        <div class="text-center">
+                            <div class="text-2xl font-bold" x-text="lessonParts.length"></div>
+                            <div class="text-xs">Parts</div>
+                        </div>
+                        <div class="text-2xl">✓</div>
+                        <div class="text-center">
+                            <div class="text-2xl font-bold" x-text="Object.keys(progressData.quizzesCompleted).length"></div>
+                            <div class="text-xs">Quizzes</div>
+                        </div>
+                        <div class="text-2xl">✓</div>
+                        <div class="text-center">
+                            <div class="text-2xl font-bold">100%</div>
+                            <div class="text-xs">Complete</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="space-y-4">
+                <div class="bg-white rounded-lg p-4 shadow-md">
+                    <h3 class="font-semibold text-gray-800 mb-2">🏆 What You've Mastered</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-sm">
+                        <div class="flex items-center justify-center p-2 bg-green-100 rounded-lg">
+                            <span class="text-green-700">✓ HTML Fundamentals</span>
+                        </div>
+                        <div class="flex items-center justify-center p-2 bg-blue-100 rounded-lg">
+                            <span class="text-blue-700">✓ Document Structure</span>
+                        </div>
+                        <div class="flex items-center justify-center p-2 bg-purple-100 rounded-lg">
+                            <span class="text-purple-700">✓ Web Page Creation</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex flex-col sm:flex-row gap-3 justify-center">
+                    <button
+                        @click="restartLesson()"
+                        class="px-6 py-3 bg-red-900 text-white rounded-lg hover:bg-red-800 transition-colors font-medium">
+                        🔄 Start Over
+                    </button>
+                    <a
+                        href="Assignment 01.pdf"
+                        target="_blank"
+                        class="px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-medium inline-block text-center">
+                        📚 Open Assignment 1
+                    </a>
+                </div>
+
+                <p class="text-sm text-gray-600 mt-4">
+                    Use the navigation above to review any part of this lesson
+                </p>
+            </div>
+        </div>
+
+        <!-- Quiz Section -->
+        <div x-show="contentLoaded && showQuiz" x-transition class="bg-white rounded-lg shadow-md p-4 md:p-6 mt-6">
+            <h3 class="text-lg font-semibold text-gray-800 mb-4">📝 Knowledge Check</h3>
+            <p class="text-gray-600 text-sm mb-6">Test your understanding of the concepts covered in this lesson.</p>
+
+            <form @submit.prevent="checkAnswers()">
+                <!-- Question 1 -->
+                <div class="mb-6">
+                    <h4 class="font-medium text-gray-800 mb-3" x-text="`1. ${currentPart.quiz.question1.text}`"></h4>
+                    <div class="space-y-2">
+                        <template x-for="option in currentPart.quiz.question1.options" :key="option.value">
+                            <label class="flex items-start cursor-pointer"
+                                   :class="question1Result === 'correct' && answers.question1 === option.value && option.value === currentPart.quiz.question1.correct
+                                        ? 'text-green-600 font-medium'
+                                        : question1Result === 'wrong' && answers.question1 === option.value
+                                            ? 'text-red-600' : ''">
+                                <input type="radio" name="question1" :value="option.value" x-model="answers.question1" class="mt-1 mr-3 text-red-900 focus:ring-red-900">
+                                <span class="text-sm">
+                                    <code x-show="option.text.includes('<')" class="bg-gray-100 px-1 rounded" x-text="option.text"></code>
+                                    <span x-show="!option.text.includes('<')" x-text="option.text"></span>
+                                </span>
+                            </label>
+                        </template>
+                    </div>
+                    <div x-show="question1Result" class="mt-2">
+                        <span x-show="question1Result === 'correct'" class="text-green-600 text-sm font-medium">✓ Correct!</span>
+                        <span x-show="question1Result === 'wrong'" class="text-red-600 text-sm font-medium">✗ Incorrect. Try again!</span>
+                    </div>
+                </div>
+
+                <!-- Question 2 -->
+                <div class="mb-6">
+                    <h4 class="font-medium text-gray-800 mb-3" x-text="`2. ${currentPart.quiz.question2.text}`"></h4>
+                    <div class="space-y-2">
+                        <template x-for="option in currentPart.quiz.question2.options" :key="option.value">
+                            <label class="flex items-start cursor-pointer"
+                                   :class="question2Result === 'correct' && answers.question2 === option.value && option.value === currentPart.quiz.question2.correct
+                                        ? 'text-green-600 font-medium'
+                                        : question2Result === 'wrong' && answers.question2 === option.value
+                                            ? 'text-red-600' : ''">
+                                <input type="radio" name="question2" :value="option.value" x-model="answers.question2" class="mt-1 mr-3 text-red-900 focus:ring-red-900">
+                                <span class="text-sm">
+                                    <code x-show="option.text.includes('<')" class="bg-gray-100 px-1 rounded" x-text="option.text"></code>
+                                    <span x-show="!option.text.includes('<')" x-text="option.text"></span>
+                                </span>
+                            </label>
+                        </template>
+                    </div>
+                    <div x-show="question2Result" class="mt-2">
+                        <span x-show="question2Result === 'correct'" class="text-green-600 text-sm font-medium">✓ Correct!</span>
+                        <span x-show="question2Result === 'wrong'" class="text-red-600 text-sm font-medium">✗ Incorrect. Try again!</span>
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="flex justify-between items-center">
+                    <button type="submit" class="bg-red-900 text-white px-6 py-2 rounded-lg hover:bg-red-800 transition-colors text-sm font-medium">
+                        Check Answers
+                    </button>
+                    <div x-show="quizCompleted && allCorrect" class="text-green-600 text-sm font-medium">
+                        🎉 Great job! You got both questions right!
+                    </div>
+                </div>
+            </form>
+
+            <!-- Next Lesson Button -->
+            <div x-show="quizCompleted && allCorrect" x-transition class="mt-6 p-4 bg-green-50 border border-green-200 rounded-lg">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h4 class="font-medium text-green-800 mb-1">Ready for the next part!</h4>
+                        <p class="text-green-600 text-sm">You've mastered the basics. Continue to Part 2.</p>
+                    </div>
+                    <button @click="goToNextLesson()" class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors text-sm font-medium">
+                        Next: Part 2 →
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Online Status -->
+        <div x-show="contentLoaded" class="mt-4 bg-white rounded-lg shadow-md p-4 md:p-6">
+
+            <!-- Offline Status -->
+            <div class="p-3 rounded-lg" :class="isOnline ? 'bg-green-50 border border-green-200' : 'bg-yellow-50 border border-yellow-200'">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <span x-show="isOnline" class="text-green-600">🟢</span>
+                        <span x-show="!isOnline" class="text-yellow-600">🟡</span>
+                    </div>
+                    <div class="ml-3">
+                        <p class="text-sm font-medium" :class="isOnline ? 'text-green-800' : 'text-yellow-800'">
+                            <span x-show="isOnline">Online</span>
+                            <span x-show="!isOnline">Offline Mode</span>
+                        </p>
+                        <p class="text-xs" :class="isOnline ? 'text-green-600' : 'text-yellow-600'">
+                            <span x-show="isOnline">Content is cached for offline use</span>
+                            <span x-show="!isOnline">You can continue learning without internet</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white mt-12">
+        <div class="max-w-4xl mx-auto px-4 py-6 text-center">
+            <p class="text-sm text-gray-300">
+                © 2025 Afghan Pathways Program - Empowering through Education
+            </p>
+            <p class="text-xs text-gray-400 mt-1">
+                This application works offline to support learning anywhere
+            </p>
+        </div>
+    </footer>
+
+    <!-- Local Alpine.js -->
+    <script src="js/alpine.min.js" defer></script>
+
+    <script>
+        // Alpine.js component
+        function videoApp() {
+            return {
+                loading: true,
+                videoLoaded: false,
+                progress: 0,
+                currentTime: 0,
+                duration: 0,
+                isOnline: navigator.onLine,
+
+                // Content loaded from JSON
+                lessonInfo: null,
+                lessonParts: [],
+                currentPartIndex: 0,
+                contentLoaded: false,
+
+                // Progress tracking
+                progressData: {
+                    videosWatched: {}, // { partIndex: true/false }
+                    quizzesCompleted: {}, // { partIndex: { completed: true, answers: {...}, results: {...} } }
+                },
+
+                // Quiz functionality
+                showQuiz: false,
+                quizCompleted: false,
+                allCorrect: false,
+                answers: {
+                    question1: '',
+                    question2: ''
+                },
+                question1Result: null,
+                question2Result: null,
+
+                // Computed property for current part
+                get currentPart() {
+                    return this.lessonParts[this.currentPartIndex] || null;
+                },
+
+                get currentTimeFormatted() {
+                    return this.formatTime(this.currentTime);
+                },
+
+                get durationFormatted() {
+                    return this.formatTime(this.duration);
+                },
+
+                formatTime(seconds) {
+                    const mins = Math.floor(seconds / 60);
+                    const secs = Math.floor(seconds % 60);
+                    return `${mins}:${secs.toString().padStart(2, '0')}`;
+                },
+
+                onVideoLoaded() {
+                    this.loading = false;
+                    this.videoLoaded = true;
+                    this.duration = this.$refs.videoPlayer.duration || 0;
+                },
+
+                onTimeUpdate() {
+                    const video = this.$refs.videoPlayer;
+                    this.currentTime = video.currentTime;
+                    if (this.duration > 0) {
+                        this.progress = (this.currentTime / this.duration) * 100;
+                    }
+
+                    // Mark video as watched when user reaches 80% or more
+                    if (this.progress >= 80 && !this.isVideoWatched(this.currentPartIndex)) {
+                        this.markVideoWatched(this.currentPartIndex);
+                    }
+                },
+
+                onVideoEnded() {
+                    this.progress = 100;
+                    // Mark video as watched and show quiz
+                    this.markVideoWatched(this.currentPartIndex);
+                },
+
+                // Content loading
+                async loadLessonContent() {
+                    try {
+                        const response = await fetch('./lesson-content.json');
+
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! status: ${response.status}`);
+                        }
+
+                        const data = await response.json();
+
+                        this.lessonInfo = data.lessonInfo;
+                        this.lessonParts = data.parts;
+                        this.contentLoaded = true;
+
+                        // Initialize video after content is loaded
+                        this.$nextTick(() => {
+                            this.loading = false;
+                        });
+                    } catch (error) {
+                        console.error('Failed to load lesson content:', error);
+                        console.log('Loading fallback content...');
+
+                        // Fallback to embedded content for file:// protocol
+                        this.loadFallbackContent();
+                    }
+                },
+
+                // Fallback content when JSON loading fails (e.g., file:// protocol)
+                loadFallbackContent() {
+                    this.lessonInfo = {
+                        "title": "Web Development Level 1 - Lesson 1",
+                        "totalParts": 3,
+                        "description": "Introduction to web development fundamentals"
+                    };
+
+                    this.lessonParts = [
+                        {
+                            "id": 1,
+                            "title": "Part 1 - Introduction to Web Development",
+                            "videoTitle": "Introduction to Web Development",
+                            "description": "Welcome to your first lesson in web development. In this video, you'll learn the fundamentals of HTML, CSS, and how websites work.",
+                            "videoSrc": "videos/lesson1.mp4",
+                            "keyConcepts": [
+                                "Understanding HTML structure and basic tags",
+                                "How web browsers interpret and display web pages",
+                                "Basic HTML elements: headings, paragraphs, and links",
+                                "Setting up your first HTML document"
+                            ],
+                            "quiz": {
+                                "question1": {
+                                    "text": "Which of the following is a closing tag?",
+                                    "options": [
+                                        { "value": "a", "text": "<html>" },
+                                        { "value": "b", "text": "</html>" },
+                                        { "value": "c", "text": "<body/>" },
+                                        { "value": "d", "text": "</>" }
+                                    ],
+                                    "correct": "b"
+                                },
+                                "question2": {
+                                    "text": "Which of the following is not a browser?",
+                                    "options": [
+                                        { "value": "a", "text": "Chrome" },
+                                        { "value": "b", "text": "Edge" },
+                                        { "value": "c", "text": "Safari" },
+                                        { "value": "d", "text": "VS Code" }
+                                    ],
+                                    "correct": "d"
+                                }
+                            }
+                        },
+                        {
+                            "id": 2,
+                            "title": "Part 2 - HTML Document Structure",
+                            "videoTitle": "Understanding HTML Document Structure",
+                            "description": "Learn about the essential structure of HTML documents including DOCTYPE, head, and body elements.",
+                            "videoSrc": "videos/lesson1.mp4",
+                            "keyConcepts": [
+                                "DOCTYPE declaration and its importance",
+                                "Head section and meta information",
+                                "Body section and visible content",
+                                "Proper HTML document hierarchy"
+                            ],
+                            "quiz": {
+                                "question1": {
+                                    "text": "What is the purpose of the DOCTYPE declaration?",
+                                    "options": [
+                                        { "value": "a", "text": "To style the page" },
+                                        { "value": "b", "text": "To tell the browser which HTML version to use" },
+                                        { "value": "c", "text": "To add JavaScript" },
+                                        { "value": "d", "text": "To create links" }
+                                    ],
+                                    "correct": "b"
+                                },
+                                "question2": {
+                                    "text": "Which section contains the visible content of a webpage?",
+                                    "options": [
+                                        { "value": "a", "text": "<head>" },
+                                        { "value": "b", "text": "<html>" },
+                                        { "value": "c", "text": "<body>" },
+                                        { "value": "d", "text": "<title>" }
+                                    ],
+                                    "correct": "c"
+                                }
+                            }
+                        },
+                        {
+                            "id": 3,
+                            "title": "Part 3 - Creating Your First Webpage",
+                            "videoTitle": "Building Your First HTML Page",
+                            "description": "Put your knowledge into practice by creating a complete HTML webpage from scratch.",
+                            "videoSrc": "videos/lesson1.mp4",
+                            "keyConcepts": [
+                                "Planning your webpage content and structure",
+                                "Writing semantic HTML markup",
+                                "Testing your webpage in the browser",
+                                "Best practices for HTML coding"
+                            ],
+                            "quiz": {
+                                "question1": {
+                                    "text": "What should you do before writing HTML code?",
+                                    "options": [
+                                        { "value": "a", "text": "Start typing immediately" },
+                                        { "value": "b", "text": "Plan your content and structure" },
+                                        { "value": "c", "text": "Add CSS first" },
+                                        { "value": "d", "text": "Test in the browser" }
+                                    ],
+                                    "correct": "b"
+                                },
+                                "question2": {
+                                    "text": "What is semantic HTML?",
+                                    "options": [
+                                        { "value": "a", "text": "HTML with colors" },
+                                        { "value": "b", "text": "HTML that describes the meaning of content" },
+                                        { "value": "c", "text": "HTML with animations" },
+                                        { "value": "d", "text": "HTML with images" }
+                                    ],
+                                    "correct": "b"
+                                }
+                            }
+                        }
+                    ];
+
+                    this.contentLoaded = true;
+
+                    // Initialize video after content is loaded
+                    this.$nextTick(() => {
+                        this.loading = false;
+                    });
+
+                    console.log('Fallback content loaded successfully');
+                },
+
+                // Local Storage Management
+                saveProgressData() {
+                    try {
+                        localStorage.setItem('afghan-pathways-progress', JSON.stringify(this.progressData));
+                        console.log('Progress saved:', this.progressData);
+                    } catch (error) {
+                        console.error('Failed to save progress:', error);
+                    }
+                },
+
+                loadProgressData() {
+                    try {
+                        const saved = localStorage.getItem('afghan-pathways-progress');
+                        if (saved) {
+                            this.progressData = JSON.parse(saved);
+                            console.log('Progress loaded:', this.progressData);
+                        }
+                    } catch (error) {
+                        console.error('Failed to load progress:', error);
+                        // Reset to default if corrupted
+                        this.progressData = {
+                            videosWatched: {},
+                            quizzesCompleted: {}
+                        };
+                    }
+                },
+
+                // Progress tracking methods
+                markVideoWatched(partIndex) {
+                    this.progressData.videosWatched[partIndex] = true;
+                    this.saveProgressData();
+
+                    // Show quiz if video has been watched
+                    if (partIndex === this.currentPartIndex) {
+                        this.showQuiz = true;
+                    }
+                },
+
+                isVideoWatched(partIndex) {
+                    return this.progressData.videosWatched[partIndex] === true;
+                },
+
+                markQuizCompleted(partIndex, answers, results, allCorrect) {
+                    this.progressData.quizzesCompleted[partIndex] = {
+                        completed: true,
+                        allCorrect: allCorrect,
+                        answers: { ...answers },
+                        results: { ...results },
+                        completedAt: new Date().toISOString()
+                    };
+                    this.saveProgressData();
+                },
+
+                isQuizCompleted(partIndex) {
+                    return this.progressData.quizzesCompleted[partIndex]?.completed === true;
+                },
+
+                isQuizPassedCorrectly(partIndex) {
+                    return this.progressData.quizzesCompleted[partIndex]?.allCorrect === true;
+                },
+
+                getQuizResults(partIndex) {
+                    return this.progressData.quizzesCompleted[partIndex];
+                },
+
+                // Find the next incomplete part
+                getNextIncompletePart() {
+                    for (let i = 0; i < this.lessonParts.length; i++) {
+                        if (!this.isQuizCompleted(i)) {
+                            return i;
+                        }
+                    }
+                    return 0; // If all completed, return first part
+                },
+
+                // Check if user can navigate to a specific part
+                canNavigateToPart(partIndex) {
+                    // Can always go to part 0
+                    if (partIndex === 0) return true;
+
+                    // Can navigate to part if previous part's quiz is completed
+                    return this.isQuizPassedCorrectly(partIndex - 1);
+                },
+
+                // Completion methods
+                allPartsCompleted() {
+                    if (!this.contentLoaded || this.lessonParts.length === 0) {
+                        return false;
+                    }
+
+                    // Check if all parts have completed quizzes
+                    for (let i = 0; i < this.lessonParts.length; i++) {
+                        if (!this.isQuizPassedCorrectly(i)) {
+                            return false;
+                        }
+                    }
+                    return true;
+                },
+
+                restartLesson() {
+                    // Confirm restart
+                    if (confirm('Are you sure you want to restart the lesson? This will reset all your progress.')) {
+                        // Clear all progress data
+                        this.progressData = {
+                            videosWatched: {},
+                            quizzesCompleted: {}
+                        };
+
+                        // Save cleared progress
+                        this.saveProgressData();
+
+                        // Reset to first part
+                        this.navigateToPart(0);
+
+                        console.log('Lesson restarted - all progress cleared');
+                    }
+                },
+
+                // Quiz methods
+                checkAnswers() {
+                    if (!this.currentPart || !this.currentPart.quiz) return;
+
+                    const currentQuiz = this.currentPart.quiz;
+
+                    // Check question 1
+                    this.question1Result = this.answers.question1 === currentQuiz.question1.correct ? 'correct' : 'wrong';
+
+                    // Check question 2
+                    this.question2Result = this.answers.question2 === currentQuiz.question2.correct ? 'correct' : 'wrong';
+
+                    // Mark quiz as completed
+                    this.quizCompleted = true;
+
+                    // Check if all answers are correct
+                    this.allCorrect = this.question1Result === 'correct' && this.question2Result === 'correct';
+
+                    // Save quiz results to local storage
+                    const results = {
+                        question1Result: this.question1Result,
+                        question2Result: this.question2Result
+                    };
+
+                    this.markQuizCompleted(
+                        this.currentPartIndex,
+                        this.answers,
+                        results,
+                        this.allCorrect
+                    );
+                },
+
+                // Load previous quiz state for current part
+                loadQuizState() {
+                    const quizResults = this.getQuizResults(this.currentPartIndex);
+
+                    if (quizResults) {
+                        // Restore previous quiz state
+                        this.answers = { ...quizResults.answers };
+                        this.question1Result = quizResults.results.question1Result;
+                        this.question2Result = quizResults.results.question2Result;
+                        this.quizCompleted = quizResults.completed;
+                        this.allCorrect = quizResults.allCorrect;
+                    } else {
+                        // Reset quiz state
+                        this.answers = { question1: '', question2: '' };
+                        this.question1Result = null;
+                        this.question2Result = null;
+                        this.quizCompleted = false;
+                        this.allCorrect = false;
+                    }
+
+                    // Show quiz if video was watched or quiz was already completed
+                    this.showQuiz = this.isVideoWatched(this.currentPartIndex) || this.isQuizCompleted(this.currentPartIndex);
+                },
+
+                // Navigation methods
+                navigateToPart(partIndex) {
+                    if (!this.contentLoaded || partIndex < 0 || partIndex >= this.lessonParts.length) {
+                        return;
+                    }
+
+                    // Check if user can navigate to this part
+                    if (!this.canNavigateToPart(partIndex)) {
+                        alert(`Complete the quiz in Part ${partIndex === 0 ? 1 : partIndex} first to unlock this part.`);
+                        return;
+                    }
+
+                    // Reset video state
+                    this.currentPartIndex = partIndex;
+                    this.progress = 0;
+                    this.currentTime = 0;
+                    this.loading = true;
+                    this.videoLoaded = false;
+
+                    // Load quiz state for this part (includes showing quiz if appropriate)
+                    this.loadQuizState();
+
+                    // Force video to reload with new source
+                    this.$nextTick(() => {
+                        if (this.$refs.videoPlayer) {
+                            this.$refs.videoPlayer.load();
+                        }
+                    });
+                },
+
+                goToNextLesson() {
+                    if (this.currentPartIndex < this.lessonParts.length - 1) {
+                        this.navigateToPart(this.currentPartIndex + 1);
+                    } else {
+                        alert('Congratulations! You\'ve completed all parts of Lesson 1. You\'re ready for the next lesson!');
+                    }
+                },
+
+                async init() {
+                    // Load lesson content first
+                    await this.loadLessonContent();
+
+                    // Load progress data from local storage
+                    this.loadProgressData();
+
+                    // Navigate to the next incomplete part
+                    this.currentPartIndex = this.getNextIncompletePart();
+
+                    // Load quiz state for the current part
+                    this.loadQuizState();
+
+                    console.log(`Starting at part ${this.currentPartIndex + 1}`);
+
+                    // Listen for online/offline events
+                    window.addEventListener('online', () => {
+                        this.isOnline = true;
+                    });
+
+                    window.addEventListener('offline', () => {
+                        this.isOnline = false;
+                    });
+
+                    // Register service worker
+                    if ('serviceWorker' in navigator) {
+                        window.addEventListener('load', () => {
+                            navigator.serviceWorker.register('/sw.js')
+                                .then((registration) => {
+                                    console.log('SW registered: ', registration);
+                                })
+                                .catch((registrationError) => {
+                                    console.log('SW registration failed: ', registrationError);
+                                });
+                        });
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>
