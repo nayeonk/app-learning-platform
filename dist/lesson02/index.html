@@ -589,7 +589,7 @@
                 // Local Storage Management
                 saveProgressData() {
                     try {
-                        localStorage.setItem('afghan-pathways-progress', JSON.stringify(this.progressData));
+                        localStorage.setItem('afghan-pathways-progress-lesson02', JSON.stringify(this.progressData));
                         console.log('Progress saved:', this.progressData);
                     } catch (error) {
                         console.error('Failed to save progress:', error);
@@ -598,7 +598,7 @@
 
                 loadProgressData() {
                     try {
-                        const saved = localStorage.getItem('afghan-pathways-progress');
+                        const saved = localStorage.getItem('afghan-pathways-progress-lesson02');
                         if (saved) {
                             this.progressData = JSON.parse(saved);
                             console.log('Progress loaded:', this.progressData);
