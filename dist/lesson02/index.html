@@ -304,10 +304,9 @@
                 <div class="flex items-center justify-between">
                     <div>
                         <h4 class="font-medium text-green-800 mb-1">Ready for the next part!</h4>
-                        <p class="text-green-600 text-sm">You've mastered the basics. Continue to Part 2.</p>
+                        <p class="text-green-600 text-sm" x-text="`You've mastered the basics. Continue to Part ${currentPartIndex + 2}.`"></p>
                     </div>
-                    <button @click="goToNextLesson()" class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors text-sm font-medium">
-                        Next: Part 2 →
+                    <button @click="goToNextLesson()" class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors text-sm font-medium" x-text="`Next: Part ${currentPartIndex + 2} →`">
                     </button>
                 </div>
             </div>
