@@ -84,41 +84,34 @@
     },
     {
       "id": 3,
-      "title": "Part 3 - User Output and comments",
-      "videoTitle": "User Output and comments",
-      "description": "In this video, you will learn how to print text and add comments in Python.",
+      "title": "Part 3 - VS Code & File Management",
+      "videoTitle": "VS Code & File Management",
+      "description": "In this video, you will learn how to install VS Code and set up your folders and files for this class.",
       "videoSrc": "videos/part03.mp4",
       "keyConcepts": [
-        "Printing statements",
-        "Commenting code for your eyes only"
+        "Install and Download VS Code",
+        "Setup folders and files for this class"
       ],
       "quiz": {
         "question1": {
-          "text": "What is NOT true about Comments in Python?",
+          "text": "Which of the following statements are TRUE about VS Code?",
           "options": [
-            { "value": "a", "text": "Comments start with the # symbol in Python" },
-            { "value": "b", "text": "Python runs comments as part of the program" },
-            { "value": "c", "text": "Comments help document code" }
+            { "value": "a", "text": "VS Code is a tool where you can write code." },
+            { "value": "b", "text": "VS Code is free." },
+            { "value": "c", "text": "You can change the VS Code theme to different colors." },
+            { "value": "d", "text": "All of the above." }
           ],
-          "correct": "b"
+          "correct": "d"
         },
         "question2": {
-          "text": "What is an Escape character in Python?",
+          "text": "How do you submit Assignment 1?",
           "options": [
-            { "value": "a", "text": "A function that prints text" },
-            { "value": "b", "text": "A special symbol used to represent characters that can't be typed directly" },
-            { "value": "c", "text": "A key used to stop the program" }
+            { "value": "a", "text": "Send the screenshot to everyone on WhatsApp" },
+            { "value": "b", "text": "Send the screenshot to my WhatsApp subgroup" },
+            { "value": "c", "text": "Email the screenshot to the instructor" },
+            { "value": "d", "text": "DM the screenshot to a Learning Assistant" }
           ],
           "correct": "b"
-        },
-        "question3": {
-          "text": "What does \\n do in a Python string?",
-          "options": [
-            { "value": "a", "text": "Moves the text to a new line" },
-            { "value": "b", "text": "Adds extra space" },
-            { "value": "c", "text": "Prints a slash and letter n" }
-          ],
-          "correct": "a"
         }
       }
     }
