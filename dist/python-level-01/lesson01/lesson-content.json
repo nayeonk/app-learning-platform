@@ -10,7 +10,7 @@
       "title": "Part 1 - Introduction to Python",
       "videoTitle": "Introduction to Python Programming",
       "description": "Welcome to your first lesson in Python programming. In this video, you'll learn the fundamentals of Python.",
-      "videoSrc": "videos/lesson01.mp4",
+      "videoSrc": "videos/part01.mp4",
       "keyConcepts": [
         "Understanding Python syntax and basic structure"
       ],
@@ -50,7 +50,7 @@
       "title": "Part 2 - Tool Setup (PyCharm)",
       "videoTitle": "Tool Setup (PyCharm)",
       "description": "Learn about PyCharm, the tool used to work with Python.",
-      "videoSrc": "videos/lesson02.mp4",
+      "videoSrc": "videos/part02.mp4",
       "keyConcepts": [
         "Installing and getting familiar with Pycharm"
       ],
@@ -88,7 +88,7 @@
       "title": "Part 3 - User Output and comments",
       "videoTitle": "User Output and comments",
       "description": "In this video, you will learn how to print text and add comments in Python.",
-      "videoSrc": "videos/lesson03.mp4",
+      "videoSrc": "videos/part03.mp4",
       "keyConcepts": [
         "Printing statements",
         "Commenting code for your eyes only"
