@@ -144,7 +144,7 @@
             <div class="p-4 md:p-6">
                 <h2 class="text-lg md:text-xl font-semibold text-gray-800 mb-2" x-text="`Lesson 1 | ${currentPart.title}`">
                 </h2>
-                <p class="text-gray-600 text-sm md:text-base mb-4" x-text="currentPart.description">
+                <p class="text-gray-600 text-sm md:text-base mb-4" x-html="currentPart.description">
                 </p>
 
                 <!-- Key Concepts -->
@@ -486,7 +486,7 @@
                             "id": 2,
                             "title": "Part 2 - Tool Setup (PyCharm)",
                             "videoTitle": "Tool Setup (PyCharm)",
-                            "description": "Learn about PyCharm, the tool used to work with Python.",
+                            "description": "Learn about PyCharm, the tool used to work with Python. <a href='Python_PyCharm_Installation.pdf' target='_blank' class='text-red-900 underline hover:text-red-700'>Download installation guide</a>",
                             "videoSrc": "videos/part02.mp4",
                             "keyConcepts": [
                                 "Installing and getting familiar with Pycharm"

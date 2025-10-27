@@ -49,7 +49,7 @@
       "id": 2,
       "title": "Part 2 - Tool Setup (PyCharm)",
       "videoTitle": "Tool Setup (PyCharm)",
-      "description": "Learn about PyCharm, the tool used to work with Python.",
+      "description": "Learn about PyCharm, the tool used to work with Python. <a href='Python_PyCharm_Installation.pdf' target='_blank' class='text-red-900 underline hover:text-red-700'>Download installation guide</a>",
       "videoSrc": "videos/part02.mp4",
       "keyConcepts": [
         "Installing and getting familiar with Pycharm"
