@@ -40,39 +40,45 @@
     },
     {
       "id": 2,
-      "title": "Part 2 - Tool Setup (PyCharm)",
-      "videoTitle": "Tool Setup (PyCharm)",
-      "description": "Learn about PyCharm, the tool used to work with Python. <a href='Python_PyCharm_Installation.pdf' target='_blank' class='text-red-900 underline hover:text-red-700'>Download installation guide</a>",
+      "title": "Part 2 - How the Internet Works",
+      "videoTitle": "How the Internet Works",
+      "description": "Learn about how the Internet works, including clients, servers, and the difference between frontend and backend web development.",
       "videoSrc": "videos/part02.mp4",
       "keyConcepts": [
-        "Installing and getting familiar with Pycharm"
+        "The Internet",
+        "Clients and Servers",
+        "Frontend and Backend web development"
       ],
       "quiz": {
         "question1": {
-          "text": "What is printing in Programming?",
+          "text": "Which machine is connected directly to the Internet and waits for a request?",
           "options": [
-            { "value": "a", "text": "Printing code on a paper" },
-            { "value": "b", "text": "Deleting text from the screen" },
-            { "value": "c", "text": "Displaying text on the screen to the user" }
+            { "value": "a", "text": "client" },
+            { "value": "b", "text": "server" },
+            { "value": "c", "text": "laptop" },
+            { "value": "d", "text": "TV" }
           ],
-          "correct": "c"
+          "correct": "b"
         },
         "question2": {
-          "text": "What does this print:\n    print()",
+          "text": "Which of the following can make HTTP requests and read HTML code?",
           "options": [
-            { "value": "a", "text": "Doesn't run (that is, it gives an error)" },
-            { "value": "b", "text": "Prints the word print" },
-            { "value": "c", "text": "Prints a blank new line" }
+            { "value": "a", "text": "VS Code" },
+            { "value": "b", "text": "Microsoft Word" },
+            { "value": "c", "text": "browser" },
+            { "value": "d", "text": "CSS" }
           ],
           "correct": "c"
         },
         "question3": {
-          "text": "This is invalid:\n    print\"Hello\"",
+          "text": "Which HTTP status code means the resource requested could not be found?",
           "options": [
-            { "value": "a", "text": "True" },
-            { "value": "b", "text": "False" }
+            { "value": "a", "text": "200" },
+            { "value": "b", "text": "403" },
+            { "value": "c", "text": "404" },
+            { "value": "d", "text": "500" }
           ],
-          "correct": "a"
+          "correct": "c"
         }
       }
     },
