@@ -9,104 +9,117 @@
       "id": 1,
       "title": "Part 1 - Introduction to Python",
       "videoTitle": "Introduction to Python Programming",
-      "description": "Welcome to your first lesson in Python programming. In this video, you'll learn the fundamentals of Python syntax and how to write your first program.",
-      "videoSrc": "videos/lesson1.mp4",
+      "description": "Welcome to your first lesson in Python programming. In this video, you'll learn the fundamentals of Python.",
+      "videoSrc": "videos/lesson01.mp4",
       "keyConcepts": [
-        "Understanding Python syntax and basic structure",
-        "Variables and data types in Python",
-        "Basic Python statements: print, input, and comments",
-        "Setting up your first Python program"
+        "Understanding Python syntax and basic structure"
       ],
       "quiz": {
         "question1": {
-          "text": "Which of the following is a closing tag?",
+          "text": "Which of these is NOT a software application?",
           "options": [
-            { "value": "a", "text": "<html>" },
-            { "value": "b", "text": "</html>" },
-            { "value": "c", "text": "<body/>" },
-            { "value": "d", "text": "</>" }
+            { "value": "a", "text": "Excel sheet" },
+            { "value": "b", "text": "Windows" },
+            { "value": "c", "text": "WhatsApp" },
+            { "value": "d", "text": "Youtube" }
           ],
           "correct": "b"
         },
         "question2": {
-          "text": "Which of the following is not a browser?",
+          "text": "What is NOT true about Python?",
           "options": [
-            { "value": "a", "text": "Chrome" },
-            { "value": "b", "text": "Edge" },
-            { "value": "c", "text": "Safari" },
-            { "value": "d", "text": "VS Code" }
+            { "value": "a", "text": "Python is a high level programming language" },
+            { "value": "b", "text": "Python can be directly understood by the computer" },
+            { "value": "c", "text": "Python program can run using an IDE" }
           ],
-          "correct": "d"
+          "correct": "b"
+        },
+        "question3": {
+          "text": "What is an IDE?",
+          "options": [
+            { "value": "a", "text": "It is a computer program to help you write and run your own computer programs" },
+            { "value": "b", "text": "It is a type of an operating system" },
+            { "value": "c", "text": "It is a type of hardware" }
+          ],
+          "correct": "a"
         }
       }
     },
     {
       "id": 2,
-      "title": "Part 2 - Python Variables and Operations",
-      "videoTitle": "Understanding Variables and Basic Operations",
-      "description": "Learn about Python variables, naming conventions, and basic arithmetic operations.",
-      "videoSrc": "videos/lesson1.mp4",
+      "title": "Part 2 - Tool Setup (PyCharm)",
+      "videoTitle": "Tool Setup (PyCharm)",
+      "description": "Learn about PyCharm, the tool used to work with Python.",
+      "videoSrc": "videos/lesson02.mp4",
       "keyConcepts": [
-        "Variable naming rules and best practices",
-        "Arithmetic operators (+, -, *, /, //, %, **)",
-        "String concatenation and formatting",
-        "Type conversion in Python"
+        "Installing and getting familiar with Pycharm"
       ],
       "quiz": {
         "question1": {
-          "text": "What is the purpose of the DOCTYPE declaration?",
+          "text": "What is printing in Programming?",
           "options": [
-            { "value": "a", "text": "To style the page" },
-            { "value": "b", "text": "To tell the browser which HTML version to use" },
-            { "value": "c", "text": "To add JavaScript" },
-            { "value": "d", "text": "To create links" }
-          ],
-          "correct": "b"
-        },
-        "question2": {
-          "text": "Which section contains the visible content of a webpage?",
-          "options": [
-            { "value": "a", "text": "<head>" },
-            { "value": "b", "text": "<html>" },
-            { "value": "c", "text": "<body>" },
-            { "value": "d", "text": "<title>" }
+            { "value": "a", "text": "Printing code on a paper" },
+            { "value": "b", "text": "Deleting text from the screen" },
+            { "value": "c", "text": "Displaying text on the screen to the user" }
           ],
           "correct": "c"
+        },
+        "question2": {
+          "text": "What does this print:\n    print()",
+          "options": [
+            { "value": "a", "text": "Doesn't run (that is, it gives an error)" },
+            { "value": "b", "text": "Prints the word print" },
+            { "value": "c", "text": "Prints a blank new line" }
+          ],
+          "correct": "c"
+        },
+        "question3": {
+          "text": "This is invalid:\n    print\"Hello\"",
+          "options": [
+            { "value": "a", "text": "True" },
+            { "value": "b", "text": "False" }
+          ],
+          "correct": "a"
         }
       }
     },
     {
       "id": 3,
-      "title": "Part 3 - Creating Your First Python Program",
-      "videoTitle": "Building Your First Python Application",
-      "description": "Put your knowledge into practice by creating a complete Python program from scratch.",
-      "videoSrc": "videos/lesson1.mp4",
+      "title": "Part 3 - User Output and comments",
+      "videoTitle": "User Output and comments",
+      "description": "In this video, you will learn how to print text and add comments in Python.",
+      "videoSrc": "videos/lesson03.mp4",
       "keyConcepts": [
-        "Planning your program's logic and flow",
-        "Writing clean and readable Python code",
-        "Running and testing your Python program",
-        "Best practices for Python coding"
+        "Printing statements",
+        "Commenting code for your eyes only"
       ],
       "quiz": {
         "question1": {
-          "text": "What should you do before writing HTML code?",
+          "text": "What is NOT true about Comments in Python?",
           "options": [
-            { "value": "a", "text": "Start typing immediately" },
-            { "value": "b", "text": "Plan your content and structure" },
-            { "value": "c", "text": "Add CSS first" },
-            { "value": "d", "text": "Test in the browser" }
+            { "value": "a", "text": "Comments start with the # symbol in Python" },
+            { "value": "b", "text": "Python runs comments as part of the program" },
+            { "value": "c", "text": "Comments help document code" }
           ],
           "correct": "b"
         },
         "question2": {
-          "text": "What is semantic HTML?",
+          "text": "What is an Escape character in Python?",
           "options": [
-            { "value": "a", "text": "HTML with colors" },
-            { "value": "b", "text": "HTML that describes the meaning of content" },
-            { "value": "c", "text": "HTML with animations" },
-            { "value": "d", "text": "HTML with images" }
+            { "value": "a", "text": "A function that prints text" },
+            { "value": "b", "text": "A special symbol used to represent characters that can't be typed directly" },
+            { "value": "c", "text": "A key used to stop the program" }
           ],
           "correct": "b"
+        },
+        "question3": {
+          "text": "What does \\n do in a Python string?",
+          "options": [
+            { "value": "a", "text": "Moves the text to a new line" },
+            { "value": "b", "text": "Adds extra space" },
+            { "value": "c", "text": "Prints a slash and letter n" }
+          ],
+          "correct": "a"
         }
       }
     }
