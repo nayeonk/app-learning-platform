@@ -1,6 +1,6 @@
-# Afghan Pathways Program - Web Level 1
+# Afghan Pathways Program - Learning Platform
 
-A mobile-first, offline-capable web application designed for students with limited internet access to learn web development fundamentals.
+A mobile-first, offline-capable web application designed for students with limited internet access to learn programming and web development fundamentals.
 
 ## Features
 
@@ -14,21 +14,24 @@ A mobile-first, offline-capable web application designed for students with limit
 
 ## Recent Improvements
 
+- Organized lessons into course-based folders (web-level-01, python-level-01)
 - Fixed localStorage collision between lessons (each lesson now uses isolated storage)
 - Fixed hardcoded text in quiz completion sections
-- Organized lessons into distributable weekly folders for easy sharing
+- Structured for multiple courses with distributable weekly folders
 
 ## Distribution Model
 
-The project is organized for easy lesson distribution:
+The project is organized for easy course and lesson distribution:
 
-- **Self-contained packages**: Each lesson in `dist/` includes everything needed to run independently
+- **Course-based organization**: Courses are organized in parent folders (e.g., `web-level-01`, `python-level-01`)
+- **Self-contained packages**: Each lesson includes everything needed to run independently
 - **No internet required**: Students can copy a lesson folder to their device and use it offline
 - **Easy sharing**: Transfer via USB, email, or any file-sharing method
 - **Isolated storage**: Each lesson maintains separate progress tracking
 - **Consistent structure**: All lessons follow the same folder layout for familiarity
+- **Multiple courses**: Support for different programming languages and topics
 
-This design allows instructors to distribute one lesson at a time, making it ideal for environments with limited connectivity.
+This design allows instructors to distribute one course or lesson at a time, making it ideal for environments with limited connectivity.
 
 ## File Structure
 
@@ -44,27 +47,26 @@ This design allows instructors to distribute one lesson at a time, making it ide
 ├── videos/
 │   └── lesson1.mp4         # Development video files
 ├── dist/                   # Distribution packages
-│   ├── lesson01/           # Week 1 - Self-contained lesson package
-│   │   ├── index.html
-│   │   ├── css/
-│   │   │   └── tailwind.css
-│   │   ├── js/
-│   │   │   └── alpine.min.js
-│   │   ├── videos/
-│   │   │   └── lesson1.mp4
-│   │   ├── lesson-content.json
-│   │   ├── manifest.json
-│   │   ├── sw.js
-│   │   └── Assignment 01.pdf
-│   └── lesson02/           # Week 2 - Self-contained lesson package
-│       ├── index.html
-│       ├── css/
-│       ├── js/
-│       ├── videos/
-│       ├── lesson-content.json
-│       ├── manifest.json
-│       ├── sw.js
-│       └── Assignment 02.pdf
+│   ├── web-level-01/       # Web Development Level 1 course
+│   │   ├── lesson01/       # Week 1 - Self-contained lesson package
+│   │   │   ├── index.html
+│   │   │   ├── css/
+│   │   │   │   └── tailwind.css
+│   │   │   ├── js/
+│   │   │   │   └── alpine.min.js
+│   │   │   ├── videos/
+│   │   │   │   └── lesson1.mp4
+│   │   │   ├── lesson-content.json
+│   │   │   ├── manifest.json
+│   │   │   ├── sw.js
+│   │   │   └── Assignment 01.pdf
+│   │   └── lesson02/       # Week 2 - Self-contained lesson package
+│   │       └── [same structure as lesson01]
+│   └── python-level-01/    # Python Programming Level 1 course
+│       ├── lesson01/       # Week 1 - Self-contained lesson package
+│       │   └── [same structure as web lessons]
+│       └── lesson02/       # Week 2 - Self-contained lesson package
+│           └── [same structure as web lessons]
 ├── sw.js                   # Service worker for offline functionality
 ├── manifest.json           # PWA manifest
 ├── lesson-content.json     # Lesson metadata
@@ -109,10 +111,10 @@ This design allows instructors to distribute one lesson at a time, making it ide
 
 ### For Distribution
 
-Each lesson in the `dist/` folder is a complete, self-contained package:
+Courses are organized in the `dist/` folder, with each lesson as a complete, self-contained package:
 
-1. **Share a lesson folder**:
-   - Copy entire `dist/lesson01/` folder to a USB drive or share via any method
+1. **Share a course or lesson**:
+   - Copy entire course folder (e.g., `dist/web-level-01/`) or individual lesson (e.g., `dist/web-level-01/lesson01/`)
    - Students can open `index.html` directly in a browser (no server needed for basic functionality)
    - For full offline/PWA features, serve via HTTP (students can use Python: `python3 -m http.server`)
 
@@ -120,6 +122,10 @@ Each lesson in the `dist/` folder is a complete, self-contained package:
    - Place video files in the lesson's `videos/` folder
    - Update `lesson-content.json` with video metadata
    - MP4 format recommended for best compatibility
+
+3. **Available courses**:
+   - **web-level-01**: Web Development Level 1 (HTML, CSS fundamentals)
+   - **python-level-01**: Python Programming Level 1 (Python basics and control flow)
 
 ## Offline Functionality
 
@@ -161,14 +167,23 @@ On supported browsers (Chrome, Safari, Firefox), users can:
 
 ## Customization
 
+### Creating a New Course
+
+To create a new course:
+
+1. **Create course folder**: Add a new folder in `dist/` (e.g., `dist/javascript-level-01/`)
+2. **Copy lesson template**: Use an existing lesson from another course as a template
+3. **Update course content**: Modify JSON files, HTML titles, and lesson content for the new subject
+4. **Maintain structure**: Keep the same folder structure for consistency
+
 ### Creating a New Lesson
 
-To create a new lesson package:
+To create a new lesson package within a course:
 
-1. **Copy an existing lesson folder** from `dist/` as a template
+1. **Copy an existing lesson folder** from the same course as a template
 2. **Update the HTML**: Modify `index.html` with new lesson title and number
 3. **Add video content**: Replace video files in the `videos/` folder
-4. **Update lesson data**: Edit `lesson-content.json` with new lesson metadata
+4. **Update lesson data**: Edit `lesson-content.json` with new lesson metadata (titles, descriptions, key concepts)
 5. **Update manifest**: Modify `manifest.json` with lesson-specific details
 6. **Add assignment**: Include the lesson's assignment PDF
 7. **Rebuild CSS** (if making style changes): Run `npm run build` in the root, then copy to lesson folder
@@ -176,7 +191,7 @@ To create a new lesson package:
 ### Modifying Existing Lessons
 
 - Each lesson is isolated with its own localStorage keys (no collision)
-- Update `lesson-content.json` for lesson metadata (title, parts, videos)
+- Update `lesson-content.json` for lesson metadata (title, parts, videos, quiz questions)
 - Styles are in `css/tailwind.css` (rebuild from root if adding new Tailwind classes)
 
 ## Contributing
