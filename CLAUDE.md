@@ -1,9 +1,9 @@
 # Claude Code Instructions for Afghan Pathways Project
 
 ## Project Overview
-This is a mobile-first, offline-capable web application for the Afghan Pathways Program. It's designed for students with limited internet access to learn web development fundamentals.
+This is a mobile-first, offline-capable web application for the Afghan Pathways Program. It's designed for students with limited internet access to learn programming and web development fundamentals.
 
-**Distribution Model**: Lessons are organized into self-contained weekly packages in the `dist/` folder. Each lesson includes all necessary files and can be distributed independently via USB, email, or any file-sharing method.
+**Distribution Model**: Courses are organized into parent folders (e.g., `web-level-01`, `python-level-01`) within the `dist/` directory. Each lesson is a self-contained weekly package that includes all necessary files and can be distributed independently via USB, email, or any file-sharing method.
 
 ## Build Commands
 
@@ -38,17 +38,23 @@ python3 -m http.server 8000
    js/alpine.min.js        # Local Alpine.js (44KB)
    videos/lesson1.mp4      # Development video files
    dist/                   # Distribution packages (share these with students!)
-      lesson01/            # Week 1 - Complete, self-contained lesson package
-         index.html
-         css/tailwind.css
-         js/alpine.min.js
-         videos/lesson1.mp4
-         lesson-content.json
-         manifest.json
-         sw.js
-         Assignment 01.pdf
-      lesson02/            # Week 2 - Complete, self-contained lesson package
-         [same structure]
+      web-level-01/        # Web Development Level 1 course
+         lesson01/         # Week 1 - Complete, self-contained lesson package
+            index.html
+            css/tailwind.css
+            js/alpine.min.js
+            videos/lesson1.mp4
+            lesson-content.json
+            manifest.json
+            sw.js
+            Assignment 01.pdf
+         lesson02/         # Week 2 - Complete, self-contained lesson package
+            [same structure]
+      python-level-01/     # Python Programming Level 1 course
+         lesson01/         # Week 1 - Complete, self-contained lesson package
+            [same structure as web lessons]
+         lesson02/         # Week 2 - Complete, self-contained lesson package
+            [same structure as web lessons]
    sw.js                   # Service worker for offline
    manifest.json           # PWA manifest
    lesson-content.json     # Lesson metadata
@@ -65,9 +71,10 @@ python3 -m http.server 8000
 - 📦 Distributable lesson packages (self-contained weekly folders)
 
 ## Recent Improvements
+- Organized lessons into course-based folders (web-level-01, python-level-01)
 - Fixed localStorage collision between lessons (each lesson uses isolated storage keys)
 - Fixed hardcoded text in quiz completion sections
-- Organized lessons into distributable weekly folders for easy sharing
+- Structured for multiple courses with distributable weekly folders
 
 ## Development Workflow
 
@@ -95,8 +102,16 @@ python3 -m http.server 8000
 2. If new Tailwind classes added, run `npm run build`
 3. Update video files in `/videos/` folder as needed
 
+### Creating a new course
+1. Create a new folder in `dist/` with course name (e.g., `dist/javascript-level-01/`)
+2. Copy an existing lesson from another course as a template
+3. Update `index.html` titles to reflect the new course and subject
+4. Update `lesson-content.json` with course-appropriate content (titles, descriptions, key concepts)
+5. Keep quiz questions as placeholders or update them for the new subject
+6. Maintain the same folder structure for consistency
+
 ### Creating a new lesson package
-1. Copy an existing lesson folder from `dist/` as a template
+1. Copy an existing lesson folder from the same course as a template
 2. Update `index.html` with new lesson title and number
 3. Replace video files in the `videos/` folder
 4. Update `lesson-content.json` with new lesson metadata
@@ -104,11 +119,15 @@ python3 -m http.server 8000
 6. Add the assignment PDF for that week
 7. If you made style changes, rebuild CSS in root and copy to the lesson folder
 
-### Distributing a lesson
-- Simply copy the entire `dist/lesson##/` folder to a USB drive
+### Distributing a course or lesson
+- Copy entire course folder (e.g., `dist/web-level-01/`) or individual lesson (e.g., `dist/web-level-01/lesson01/`)
 - Students can open `index.html` directly in their browser
 - For full offline/PWA features, they should serve via HTTP (`python3 -m http.server`)
 - Each lesson is completely self-contained and independent
+
+### Available courses
+- **web-level-01**: Web Development Level 1 (HTML, CSS fundamentals)
+- **python-level-01**: Python Programming Level 1 (Python basics and control flow)
 
 ### Debugging offline functionality
 - Requires HTTP server (not file:// protocol)

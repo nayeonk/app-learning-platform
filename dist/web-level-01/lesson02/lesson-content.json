@@ -1,0 +1,114 @@
+{
+  "lessonInfo": {
+    "title": "Web Development Level 1 - Lesson 2",
+    "totalParts": 3,
+    "description": "Introduction to web development fundamentals"
+  },
+  "parts": [
+    {
+      "id": 1,
+      "title": "Part 1 - Introduction to Web Development",
+      "videoTitle": "Introduction to Web Development",
+      "description": "Welcome to your first lesson in web development. In this video, you'll learn the fundamentals of HTML, CSS, and how websites work.",
+      "videoSrc": "videos/lesson2.mp4",
+      "keyConcepts": [
+        "Understanding HTML structure and basic tags",
+        "How web browsers interpret and display web pages",
+        "Basic HTML elements: headings, paragraphs, and links",
+        "Setting up your first HTML document"
+      ],
+      "quiz": {
+        "question1": {
+          "text": "Which of the following is a closing tag?",
+          "options": [
+            { "value": "a", "text": "<html>" },
+            { "value": "b", "text": "</html>" },
+            { "value": "c", "text": "<body/>" },
+            { "value": "d", "text": "</>" }
+          ],
+          "correct": "b"
+        },
+        "question2": {
+          "text": "Which of the following is not a browser?",
+          "options": [
+            { "value": "a", "text": "Chrome" },
+            { "value": "b", "text": "Edge" },
+            { "value": "c", "text": "Safari" },
+            { "value": "d", "text": "VS Code" }
+          ],
+          "correct": "d"
+        }
+      }
+    },
+    {
+      "id": 2,
+      "title": "Part 2 - HTML Document Structure",
+      "videoTitle": "Understanding HTML Document Structure",
+      "description": "Learn about the essential structure of HTML documents including DOCTYPE, head, and body elements.",
+      "videoSrc": "videos/lesson2.mp4",
+      "keyConcepts": [
+        "DOCTYPE declaration and its importance",
+        "Head section and meta information",
+        "Body section and visible content",
+        "Proper HTML document hierarchy"
+      ],
+      "quiz": {
+        "question1": {
+          "text": "What is the purpose of the DOCTYPE declaration?",
+          "options": [
+            { "value": "a", "text": "To style the page" },
+            { "value": "b", "text": "To tell the browser which HTML version to use" },
+            { "value": "c", "text": "To add JavaScript" },
+            { "value": "d", "text": "To create links" }
+          ],
+          "correct": "b"
+        },
+        "question2": {
+          "text": "Which section contains the visible content of a webpage?",
+          "options": [
+            { "value": "a", "text": "<head>" },
+            { "value": "b", "text": "<html>" },
+            { "value": "c", "text": "<body>" },
+            { "value": "d", "text": "<title>" }
+          ],
+          "correct": "c"
+        }
+      }
+    },
+    {
+      "id": 3,
+      "title": "Part 3 - Creating Your First Webpage",
+      "videoTitle": "Building Your First HTML Page",
+      "description": "Put your knowledge into practice by creating a complete HTML webpage from scratch.",
+      "videoSrc": "videos/lesson2.mp4",
+      "keyConcepts": [
+        "Planning your webpage content and structure",
+        "Writing semantic HTML markup",
+        "Testing your webpage in the browser",
+        "Best practices for HTML coding"
+      ],
+      "quiz": {
+        "question1": {
+          "text": "What should you do before writing HTML code?",
+          "options": [
+            { "value": "a", "text": "Start typing immediately" },
+            { "value": "b", "text": "Plan your content and structure" },
+            { "value": "c", "text": "Add CSS first" },
+            { "value": "d", "text": "Test in the browser" }
+          ],
+          "correct": "b"
+        },
+        "question2": {
+          "text": "What is semantic HTML?",
+          "options": [
+            { "value": "a", "text": "HTML with colors" },
+            { "value": "b", "text": "HTML that describes the meaning of content" },
+            { "value": "c", "text": "HTML with animations" },
+            { "value": "d", "text": "HTML with images" }
+          ],
+          "correct": "b"
+        }
+      }
+    }
+  ]
+}
