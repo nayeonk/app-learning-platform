@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Afghan Pathways Program - Web Level 1 - Lesson 1</title>
+    <title>Afghan Pathways Program - Web Development Level 1 - Lesson 1</title>
 
     <!-- Local Tailwind CSS -->
     <link rel="stylesheet" href="css/tailwind.css">
@@ -144,7 +144,7 @@
             <div class="p-4 md:p-6">
                 <h2 class="text-lg md:text-xl font-semibold text-gray-800 mb-2" x-text="`Lesson 1 | ${currentPart.title}`">
                 </h2>
-                <p class="text-gray-600 text-sm md:text-base mb-4" x-text="currentPart.description">
+                <p class="text-gray-600 text-sm md:text-base mb-4" x-html="currentPart.description">
                 </p>
 
                 <!-- Key Concepts -->
@@ -203,13 +203,13 @@
                     <h3 class="font-semibold text-gray-800 mb-2">🏆 What You've Mastered</h3>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-sm">
                         <div class="flex items-center justify-center p-2 bg-green-100 rounded-lg">
-                            <span class="text-green-700">✓ HTML Fundamentals</span>
+                            <span class="text-green-700">✓ Course Overview</span>
                         </div>
                         <div class="flex items-center justify-center p-2 bg-blue-100 rounded-lg">
-                            <span class="text-blue-700">✓ Document Structure</span>
+                            <span class="text-blue-700">✓ How the Internet Works</span>
                         </div>
                         <div class="flex items-center justify-center p-2 bg-purple-100 rounded-lg">
-                            <span class="text-purple-700">✓ Web Page Creation</span>
+                            <span class="text-purple-700">✓ VS Code Fundamentals</span>
                         </div>
                     </div>
                 </div>
@@ -221,10 +221,10 @@
                         🔄 Start Over
                     </button>
                     <a
-                        href="Assignment 01.pdf"
+                        href="assignment01.pdf"
                         target="_blank"
                         class="px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-medium inline-block text-center">
-                        📚 Open Assignment 1
+                        📚 Start Assignment #1
                     </a>
                 </div>
 
@@ -240,53 +240,31 @@
             <p class="text-gray-600 text-sm mb-6">Test your understanding of the concepts covered in this lesson.</p>
 
             <form @submit.prevent="checkAnswers()">
-                <!-- Question 1 -->
-                <div class="mb-6">
-                    <h4 class="font-medium text-gray-800 mb-3" x-text="`1. ${currentPart.quiz.question1.text}`"></h4>
-                    <div class="space-y-2">
-                        <template x-for="option in currentPart.quiz.question1.options" :key="option.value">
-                            <label class="flex items-start cursor-pointer"
-                                   :class="question1Result === 'correct' && answers.question1 === option.value && option.value === currentPart.quiz.question1.correct
-                                        ? 'text-green-600 font-medium'
-                                        : question1Result === 'wrong' && answers.question1 === option.value
-                                            ? 'text-red-600' : ''">
-                                <input type="radio" name="question1" :value="option.value" x-model="answers.question1" class="mt-1 mr-3 text-red-900 focus:ring-red-900">
-                                <span class="text-sm">
-                                    <code x-show="option.text.includes('<')" class="bg-gray-100 px-1 rounded" x-text="option.text"></code>
-                                    <span x-show="!option.text.includes('<')" x-text="option.text"></span>
-                                </span>
-                            </label>
-                        </template>
+                <!-- Dynamic Questions -->
+                <template x-for="(question, questionKey) in currentPart.quiz" :key="questionKey">
+                    <div class="mb-6">
+                        <h4 class="font-medium text-gray-800 mb-3" x-text="`${Object.keys(currentPart.quiz).indexOf(questionKey) + 1}. ${question.text}`"></h4>
+                        <div class="space-y-2">
+                            <template x-for="option in question.options" :key="option.value">
+                                <label class="flex items-start cursor-pointer"
+                                       :class="questionResults[questionKey] === 'correct' && answers[questionKey] === option.value && option.value === question.correct
+                                            ? 'text-green-600 font-medium'
+                                            : questionResults[questionKey] === 'wrong' && answers[questionKey] === option.value
+                                                ? 'text-red-600' : ''">
+                                    <input type="radio" :name="questionKey" :value="option.value" x-model="answers[questionKey]" class="mt-1 mr-3 text-red-900 focus:ring-red-900">
+                                    <span class="text-sm">
+                                        <code x-show="option.text.includes('<')" class="bg-gray-100 px-1 rounded" x-text="option.text"></code>
+                                        <span x-show="!option.text.includes('<')" x-text="option.text"></span>
+                                    </span>
+                                </label>
+                            </template>
+                        </div>
+                        <div x-show="questionResults[questionKey]" class="mt-2">
+                            <span x-show="questionResults[questionKey] === 'correct'" class="text-green-600 text-sm font-medium">✓ Correct!</span>
+                            <span x-show="questionResults[questionKey] === 'wrong'" class="text-red-600 text-sm font-medium">✗ Incorrect. Try again!</span>
+                        </div>
                     </div>
-                    <div x-show="question1Result" class="mt-2">
-                        <span x-show="question1Result === 'correct'" class="text-green-600 text-sm font-medium">✓ Correct!</span>
-                        <span x-show="question1Result === 'wrong'" class="text-red-600 text-sm font-medium">✗ Incorrect. Try again!</span>
-                    </div>
-                </div>
-
-                <!-- Question 2 -->
-                <div class="mb-6">
-                    <h4 class="font-medium text-gray-800 mb-3" x-text="`2. ${currentPart.quiz.question2.text}`"></h4>
-                    <div class="space-y-2">
-                        <template x-for="option in currentPart.quiz.question2.options" :key="option.value">
-                            <label class="flex items-start cursor-pointer"
-                                   :class="question2Result === 'correct' && answers.question2 === option.value && option.value === currentPart.quiz.question2.correct
-                                        ? 'text-green-600 font-medium'
-                                        : question2Result === 'wrong' && answers.question2 === option.value
-                                            ? 'text-red-600' : ''">
-                                <input type="radio" name="question2" :value="option.value" x-model="answers.question2" class="mt-1 mr-3 text-red-900 focus:ring-red-900">
-                                <span class="text-sm">
-                                    <code x-show="option.text.includes('<')" class="bg-gray-100 px-1 rounded" x-text="option.text"></code>
-                                    <span x-show="!option.text.includes('<')" x-text="option.text"></span>
-                                </span>
-                            </label>
-                        </template>
-                    </div>
-                    <div x-show="question2Result" class="mt-2">
-                        <span x-show="question2Result === 'correct'" class="text-green-600 text-sm font-medium">✓ Correct!</span>
-                        <span x-show="question2Result === 'wrong'" class="text-red-600 text-sm font-medium">✗ Incorrect. Try again!</span>
-                    </div>
-                </div>
+                </template>
 
                 <!-- Submit Button -->
                 <div class="flex justify-between items-center">
@@ -294,7 +272,7 @@
                         Check Answers
                     </button>
                     <div x-show="quizCompleted && allCorrect" class="text-green-600 text-sm font-medium">
-                        🎉 Great job! You got both questions right!
+                        <span x-text="`🎉 Great job! You got all ${Object.keys(currentPart.quiz).length} questions right!`"></span>
                     </div>
                 </div>
             </form>
@@ -380,12 +358,8 @@
                 showQuiz: false,
                 quizCompleted: false,
                 allCorrect: false,
-                answers: {
-                    question1: '',
-                    question2: ''
-                },
-                question1Result: null,
-                question2Result: null,
+                answers: {},
+                questionResults: {},
 
                 // Computed property for current part
                 get currentPart() {
@@ -470,34 +444,32 @@
                     this.lessonParts = [
                         {
                             "id": 1,
-                            "title": "Part 1 - Introduction to Web Development",
-                            "videoTitle": "Introduction to Web Development",
-                            "description": "Welcome to your first lesson in web development. In this video, you'll learn the fundamentals of HTML, CSS, and how websites work.",
-                            "videoSrc": "videos/lesson1.mp4",
+                            "title": "Part 1 - Course Introduction",
+                            "videoTitle": "Course Introduction",
+                            "description": "Welcome to your first lesson in web development. In this video, you'll meet your professor and learn what to expect in this course.",
+                            "videoSrc": "videos/part01.mp4",
                             "keyConcepts": [
-                                "Understanding HTML structure and basic tags",
-                                "How web browsers interpret and display web pages",
-                                "Basic HTML elements: headings, paragraphs, and links",
-                                "Setting up your first HTML document"
+                                "Meet your professor",
+                                "What to expect in this course"
                             ],
                             "quiz": {
                                 "question1": {
-                                    "text": "Which of the following is a closing tag?",
+                                    "text": "What is your professor's name?",
                                     "options": [
-                                        { "value": "a", "text": "<html>" },
-                                        { "value": "b", "text": "</html>" },
-                                        { "value": "c", "text": "<body/>" },
-                                        { "value": "d", "text": "</>" }
+                                        { "value": "a", "text": "Kendra Walther" },
+                                        { "value": "b", "text": "Trina Gregory" },
+                                        { "value": "c", "text": "Afifa Zaman" },
+                                        { "value": "d", "text": "Nayeon Kim" }
                                     ],
-                                    "correct": "b"
+                                    "correct": "d"
                                 },
                                 "question2": {
-                                    "text": "Which of the following is not a browser?",
+                                    "text": "Which of the following is true about learning how to code?",
                                     "options": [
-                                        { "value": "a", "text": "Chrome" },
-                                        { "value": "b", "text": "Edge" },
-                                        { "value": "c", "text": "Safari" },
-                                        { "value": "d", "text": "VS Code" }
+                                        { "value": "a", "text": "Coding is very easy." },
+                                        { "value": "b", "text": "You can learn how to code only by watching videos." },
+                                        { "value": "c", "text": "You have to write perfect code every time." },
+                                        { "value": "d", "text": "Learning how to code takes lots of practice and you will make many mistakes along the way." }
                                     ],
                                     "correct": "d"
                                 }
@@ -505,34 +477,43 @@
                         },
                         {
                             "id": 2,
-                            "title": "Part 2 - HTML Document Structure",
-                            "videoTitle": "Understanding HTML Document Structure",
-                            "description": "Learn about the essential structure of HTML documents including DOCTYPE, head, and body elements.",
-                            "videoSrc": "videos/lesson1.mp4",
+                            "title": "Part 2 - How the Internet Works",
+                            "videoTitle": "How the Internet Works",
+                            "description": "Learn about how the Internet works, including clients, servers, and the difference between frontend and backend web development.",
+                            "videoSrc": "videos/part02.mp4",
                             "keyConcepts": [
-                                "DOCTYPE declaration and its importance",
-                                "Head section and meta information",
-                                "Body section and visible content",
-                                "Proper HTML document hierarchy"
+                                "The Internet",
+                                "Clients and Servers",
+                                "Frontend and Backend web development"
                             ],
                             "quiz": {
                                 "question1": {
-                                    "text": "What is the purpose of the DOCTYPE declaration?",
+                                    "text": "Which machine is connected directly to the Internet and waits for a request?",
                                     "options": [
-                                        { "value": "a", "text": "To style the page" },
-                                        { "value": "b", "text": "To tell the browser which HTML version to use" },
-                                        { "value": "c", "text": "To add JavaScript" },
-                                        { "value": "d", "text": "To create links" }
+                                        { "value": "a", "text": "client" },
+                                        { "value": "b", "text": "server" },
+                                        { "value": "c", "text": "laptop" },
+                                        { "value": "d", "text": "TV" }
                                     ],
                                     "correct": "b"
                                 },
                                 "question2": {
-                                    "text": "Which section contains the visible content of a webpage?",
+                                    "text": "Which of the following can make HTTP requests and read HTML code?",
                                     "options": [
-                                        { "value": "a", "text": "<head>" },
-                                        { "value": "b", "text": "<html>" },
-                                        { "value": "c", "text": "<body>" },
-                                        { "value": "d", "text": "<title>" }
+                                        { "value": "a", "text": "VS Code" },
+                                        { "value": "b", "text": "Microsoft Word" },
+                                        { "value": "c", "text": "browser" },
+                                        { "value": "d", "text": "CSS" }
+                                    ],
+                                    "correct": "c"
+                                },
+                                "question3": {
+                                    "text": "Which HTTP status code means the resource requested could not be found?",
+                                    "options": [
+                                        { "value": "a", "text": "200" },
+                                        { "value": "b", "text": "403" },
+                                        { "value": "c", "text": "404" },
+                                        { "value": "d", "text": "500" }
                                     ],
                                     "correct": "c"
                                 }
@@ -540,34 +521,32 @@
                         },
                         {
                             "id": 3,
-                            "title": "Part 3 - Creating Your First Webpage",
-                            "videoTitle": "Building Your First HTML Page",
-                            "description": "Put your knowledge into practice by creating a complete HTML webpage from scratch.",
-                            "videoSrc": "videos/lesson1.mp4",
+                            "title": "Part 3 - VS Code & File Management",
+                            "videoTitle": "VS Code & File Management",
+                            "description": "In this video, you will learn how to install VS Code and set up your folders and files for this class.",
+                            "videoSrc": "videos/part03.mp4",
                             "keyConcepts": [
-                                "Planning your webpage content and structure",
-                                "Writing semantic HTML markup",
-                                "Testing your webpage in the browser",
-                                "Best practices for HTML coding"
+                                "Install and Download VS Code",
+                                "Setup folders and files for this class"
                             ],
                             "quiz": {
                                 "question1": {
-                                    "text": "What should you do before writing HTML code?",
+                                    "text": "Which of the following statements are TRUE about VS Code?",
                                     "options": [
-                                        { "value": "a", "text": "Start typing immediately" },
-                                        { "value": "b", "text": "Plan your content and structure" },
-                                        { "value": "c", "text": "Add CSS first" },
-                                        { "value": "d", "text": "Test in the browser" }
+                                        { "value": "a", "text": "VS Code is a tool where you can write code." },
+                                        { "value": "b", "text": "VS Code is free." },
+                                        { "value": "c", "text": "You can change the VS Code theme to different colors." },
+                                        { "value": "d", "text": "All of the above." }
                                     ],
-                                    "correct": "b"
+                                    "correct": "d"
                                 },
                                 "question2": {
-                                    "text": "What is semantic HTML?",
+                                    "text": "How do you submit Assignment 1?",
                                     "options": [
-                                        { "value": "a", "text": "HTML with colors" },
-                                        { "value": "b", "text": "HTML that describes the meaning of content" },
-                                        { "value": "c", "text": "HTML with animations" },
-                                        { "value": "d", "text": "HTML with images" }
+                                        { "value": "a", "text": "Send the screenshot to everyone on WhatsApp" },
+                                        { "value": "b", "text": "Send the screenshot to my WhatsApp subgroup" },
+                                        { "value": "c", "text": "Email the screenshot to the instructor" },
+                                        { "value": "d", "text": "DM the screenshot to a Learning Assistant" }
                                     ],
                                     "correct": "b"
                                 }
@@ -708,29 +687,30 @@
                     if (!this.currentPart || !this.currentPart.quiz) return;
 
                     const currentQuiz = this.currentPart.quiz;
+                    let allAnswersCorrect = true;
 
-                    // Check question 1
-                    this.question1Result = this.answers.question1 === currentQuiz.question1.correct ? 'correct' : 'wrong';
+                    // Check all questions dynamically
+                    Object.keys(currentQuiz).forEach(questionKey => {
+                        const question = currentQuiz[questionKey];
+                        const isCorrect = this.answers[questionKey] === question.correct;
+                        this.questionResults[questionKey] = isCorrect ? 'correct' : 'wrong';
 
-                    // Check question 2
-                    this.question2Result = this.answers.question2 === currentQuiz.question2.correct ? 'correct' : 'wrong';
+                        if (!isCorrect) {
+                            allAnswersCorrect = false;
+                        }
+                    });
 
                     // Mark quiz as completed
                     this.quizCompleted = true;
 
                     // Check if all answers are correct
-                    this.allCorrect = this.question1Result === 'correct' && this.question2Result === 'correct';
+                    this.allCorrect = allAnswersCorrect;
 
                     // Save quiz results to local storage
-                    const results = {
-                        question1Result: this.question1Result,
-                        question2Result: this.question2Result
-                    };
-
                     this.markQuizCompleted(
                         this.currentPartIndex,
                         this.answers,
-                        results,
+                        this.questionResults,
                         this.allCorrect
                     );
                 },
@@ -742,15 +722,19 @@
                     if (quizResults) {
                         // Restore previous quiz state
                         this.answers = { ...quizResults.answers };
-                        this.question1Result = quizResults.results.question1Result;
-                        this.question2Result = quizResults.results.question2Result;
+                        this.questionResults = { ...quizResults.results };
                         this.quizCompleted = quizResults.completed;
                         this.allCorrect = quizResults.allCorrect;
                     } else {
-                        // Reset quiz state
-                        this.answers = { question1: '', question2: '' };
-                        this.question1Result = null;
-                        this.question2Result = null;
+                        // Reset quiz state - initialize answers for all questions
+                        this.answers = {};
+                        this.questionResults = {};
+                        if (this.currentPart && this.currentPart.quiz) {
+                            Object.keys(this.currentPart.quiz).forEach(questionKey => {
+                                this.answers[questionKey] = '';
+                                this.questionResults[questionKey] = null;
+                            });
+                        }
                         this.quizCompleted = false;
                         this.allCorrect = false;
                     }
