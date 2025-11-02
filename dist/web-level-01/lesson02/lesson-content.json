@@ -10,7 +10,7 @@
       "title": "Part 1 - Introduction to Web Development",
       "videoTitle": "Introduction to Web Development",
       "description": "Welcome to your first lesson in web development. In this video, you'll learn the fundamentals of HTML, CSS, and how websites work.",
-      "videoSrc": "videos/lesson2.mp4",
+      "videoSrc": "videos/lesson02-part01.mp4",
       "keyConcepts": [
         "Understanding HTML structure and basic tags",
         "How web browsers interpret and display web pages",
@@ -87,34 +87,45 @@
     },
     {
       "id": 3,
-      "title": "Part 3 - Creating Your First Webpage",
-      "videoTitle": "Building Your First HTML Page",
-      "description": "Put your knowledge into practice by creating a complete HTML webpage from scratch.",
-      "videoSrc": "videos/lesson2.mp4",
+      "title": "Part 3 - HTML Lists and Elements",
+      "videoTitle": "Creating Lists and Understanding HTML Elements",
+      "description": "Learn how to create bullet point lists and numbered lists using UL and OL tags. Understand the concept of HTML elements and nesting tags.",
+      "videoSrc": "videos/lesson02-part03.mp4",
       "keyConcepts": [
-        "Planning your webpage content and structure",
-        "Writing semantic HTML markup",
-        "Testing your webpage in the browser",
-        "Best practices for HTML coding"
+        "Unordered lists (UL) for bullet points",
+        "Ordered lists (OL) for numbered lists",
+        "List items (LI) used within UL and OL",
+        "Understanding HTML elements (opening tag + content + closing tag)",
+        "Nesting tags - putting tags inside other tags"
       ],
       "quiz": {
         "question1": {
-          "text": "What should you do before writing HTML code?",
+          "text": "What is the difference between <ul> and <ol> tags?",
           "options": [
-            { "value": "a", "text": "Start typing immediately" },
-            { "value": "b", "text": "Plan your content and structure" },
-            { "value": "c", "text": "Add CSS first" },
-            { "value": "d", "text": "Test in the browser" }
+            { "value": "a", "text": "<ul> creates numbered lists, <ol> creates bullet points" },
+            { "value": "b", "text": "<ul> creates bullet points (unordered), <ol> creates numbered lists (ordered)" },
+            { "value": "c", "text": "They are exactly the same" },
+            { "value": "d", "text": "<ul> is for paragraphs, <ol> is for headings" }
           ],
           "correct": "b"
         },
         "question2": {
-          "text": "What is semantic HTML?",
+          "text": "Which tag do you use for individual items inside a list?",
           "options": [
-            { "value": "a", "text": "HTML with colors" },
-            { "value": "b", "text": "HTML that describes the meaning of content" },
-            { "value": "c", "text": "HTML with animations" },
-            { "value": "d", "text": "HTML with images" }
+            { "value": "a", "text": "<item>" },
+            { "value": "b", "text": "<list>" },
+            { "value": "c", "text": "<li>" },
+            { "value": "d", "text": "<bullet>" }
+          ],
+          "correct": "c"
+        },
+        "question3": {
+          "text": "What is 'nesting' in HTML?",
+          "options": [
+            { "value": "a", "text": "Making text bold" },
+            { "value": "b", "text": "Putting tags inside other tags" },
+            { "value": "c", "text": "Creating line breaks" },
+            { "value": "d", "text": "Adding colors to text" }
           ],
           "correct": "b"
         }
