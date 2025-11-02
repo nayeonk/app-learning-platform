@@ -237,53 +237,31 @@
             <p class="text-gray-600 text-sm mb-6">Test your understanding of the concepts covered in this lesson.</p>
 
             <form @submit.prevent="checkAnswers()">
-                <!-- Question 1 -->
-                <div class="mb-6">
-                    <h4 class="font-medium text-gray-800 mb-3" x-text="`1. ${currentPart.quiz.question1.text}`"></h4>
-                    <div class="space-y-2">
-                        <template x-for="option in currentPart.quiz.question1.options" :key="option.value">
-                            <label class="flex items-start cursor-pointer"
-                                   :class="question1Result === 'correct' && answers.question1 === option.value && option.value === currentPart.quiz.question1.correct
-                                        ? 'text-green-600 font-medium'
-                                        : question1Result === 'wrong' && answers.question1 === option.value
-                                            ? 'text-red-600' : ''">
-                                <input type="radio" name="question1" :value="option.value" x-model="answers.question1" class="mt-1 mr-3 text-red-900 focus:ring-red-900">
-                                <span class="text-sm">
-                                    <code x-show="option.text.includes('<')" class="bg-gray-100 px-1 rounded" x-text="option.text"></code>
-                                    <span x-show="!option.text.includes('<')" x-text="option.text"></span>
-                                </span>
-                            </label>
-                        </template>
+                <!-- Dynamic Questions -->
+                <template x-for="(question, questionKey) in currentPart.quiz" :key="questionKey">
+                    <div class="mb-6">
+                        <h4 class="font-medium text-gray-800 mb-3" x-text="`${Object.keys(currentPart.quiz).indexOf(questionKey) + 1}. ${question.text}`"></h4>
+                        <div class="space-y-2">
+                            <template x-for="option in question.options" :key="option.value">
+                                <label class="flex items-start cursor-pointer"
+                                       :class="questionResults[questionKey] === 'correct' && answers[questionKey] === option.value && option.value === question.correct
+                                            ? 'text-green-600 font-medium'
+                                            : questionResults[questionKey] === 'wrong' && answers[questionKey] === option.value
+                                                ? 'text-red-600' : ''">
+                                    <input type="radio" :name="questionKey" :value="option.value" x-model="answers[questionKey]" class="mt-1 mr-3 text-red-900 focus:ring-red-900">
+                                    <span class="text-sm">
+                                        <code x-show="option.text.includes('<')" class="bg-gray-100 px-1 rounded" x-text="option.text"></code>
+                                        <span x-show="!option.text.includes('<')" x-text="option.text"></span>
+                                    </span>
+                                </label>
+                            </template>
+                        </div>
+                        <div x-show="questionResults[questionKey]" class="mt-2">
+                            <span x-show="questionResults[questionKey] === 'correct'" class="text-green-600 text-sm font-medium">✓ Correct!</span>
+                            <span x-show="questionResults[questionKey] === 'wrong'" class="text-red-600 text-sm font-medium">✗ Incorrect. Try again!</span>
+                        </div>
                     </div>
-                    <div x-show="question1Result" class="mt-2">
-                        <span x-show="question1Result === 'correct'" class="text-green-600 text-sm font-medium">✓ Correct!</span>
-                        <span x-show="question1Result === 'wrong'" class="text-red-600 text-sm font-medium">✗ Incorrect. Try again!</span>
-                    </div>
-                </div>
-
-                <!-- Question 2 -->
-                <div class="mb-6">
-                    <h4 class="font-medium text-gray-800 mb-3" x-text="`2. ${currentPart.quiz.question2.text}`"></h4>
-                    <div class="space-y-2">
-                        <template x-for="option in currentPart.quiz.question2.options" :key="option.value">
-                            <label class="flex items-start cursor-pointer"
-                                   :class="question2Result === 'correct' && answers.question2 === option.value && option.value === currentPart.quiz.question2.correct
-                                        ? 'text-green-600 font-medium'
-                                        : question2Result === 'wrong' && answers.question2 === option.value
-                                            ? 'text-red-600' : ''">
-                                <input type="radio" name="question2" :value="option.value" x-model="answers.question2" class="mt-1 mr-3 text-red-900 focus:ring-red-900">
-                                <span class="text-sm">
-                                    <code x-show="option.text.includes('<')" class="bg-gray-100 px-1 rounded" x-text="option.text"></code>
-                                    <span x-show="!option.text.includes('<')" x-text="option.text"></span>
-                                </span>
-                            </label>
-                        </template>
-                    </div>
-                    <div x-show="question2Result" class="mt-2">
-                        <span x-show="question2Result === 'correct'" class="text-green-600 text-sm font-medium">✓ Correct!</span>
-                        <span x-show="question2Result === 'wrong'" class="text-red-600 text-sm font-medium">✗ Incorrect. Try again!</span>
-                    </div>
-                </div>
+                </template>
 
                 <!-- Submit Button -->
                 <div class="flex justify-between items-center">
@@ -291,7 +269,7 @@
                         Check Answers
                     </button>
                     <div x-show="quizCompleted && allCorrect" class="text-green-600 text-sm font-medium">
-                        🎉 Great job! You got both questions right!
+                        <span x-text="`🎉 Great job! You got all ${Object.keys(currentPart.quiz).length} questions right!`"></span>
                     </div>
                 </div>
             </form>
@@ -377,12 +355,8 @@
                 showQuiz: false,
                 quizCompleted: false,
                 allCorrect: false,
-                answers: {
-                    question1: '',
-                    question2: ''
-                },
-                question1Result: null,
-                question2Result: null,
+                answers: {},
+                questionResults: {},
 
                 // Computed property for current part
                 get currentPart() {
@@ -502,34 +476,44 @@
                         },
                         {
                             "id": 2,
-                            "title": "Part 2 - HTML Document Structure",
-                            "videoTitle": "Understanding HTML Document Structure",
-                            "description": "Learn about the essential structure of HTML documents including DOCTYPE, head, and body elements.",
+                            "title": "Part 2 - HTML Text Formatting Tags",
+                            "videoTitle": "HTML Text Formatting and Common Tags",
+                            "description": "Learn about essential HTML tags for formatting text including headings, paragraphs, bold, italics, and underline. Practice writing clean HTML code with proper tag structure.",
                             "videoSrc": "videos/lesson2.mp4",
                             "keyConcepts": [
-                                "DOCTYPE declaration and its importance",
-                                "Head section and meta information",
-                                "Body section and visible content",
-                                "Proper HTML document hierarchy"
+                                "Heading tags (H1-H6) and text hierarchy",
+                                "Paragraph tags for text blocks and line breaks",
+                                "Text formatting tags: strong (bold), em (italic), and u (underline)",
+                                "Importance of properly closing HTML tags"
                             ],
                             "quiz": {
                                 "question1": {
-                                    "text": "What is the purpose of the DOCTYPE declaration?",
+                                    "text": "What is the difference between H1 and H6 tags?",
                                     "options": [
-                                        { "value": "a", "text": "To style the page" },
-                                        { "value": "b", "text": "To tell the browser which HTML version to use" },
-                                        { "value": "c", "text": "To add JavaScript" },
-                                        { "value": "d", "text": "To create links" }
+                                        { "value": "a", "text": "H1 is for images, H6 is for text" },
+                                        { "value": "b", "text": "H1 is the most important/largest heading, H6 is the least important/smallest" },
+                                        { "value": "c", "text": "They are exactly the same" },
+                                        { "value": "d", "text": "H6 is more important than H1" }
                                     ],
                                     "correct": "b"
                                 },
                                 "question2": {
-                                    "text": "Which section contains the visible content of a webpage?",
+                                    "text": "What is the purpose of the <p> (paragraph) tag?",
                                     "options": [
-                                        { "value": "a", "text": "<head>" },
-                                        { "value": "b", "text": "<html>" },
-                                        { "value": "c", "text": "<body>" },
-                                        { "value": "d", "text": "<title>" }
+                                        { "value": "a", "text": "To make text bold" },
+                                        { "value": "b", "text": "To create line breaks and separate text into paragraphs" },
+                                        { "value": "c", "text": "To add colors to text" },
+                                        { "value": "d", "text": "To create headings" }
+                                    ],
+                                    "correct": "b"
+                                },
+                                "question3": {
+                                    "text": "What happens if you forget to close an HTML tag (like forgetting </strong>)?",
+                                    "options": [
+                                        { "value": "a", "text": "Nothing, HTML doesn't need closing tags" },
+                                        { "value": "b", "text": "The browser will show an error message" },
+                                        { "value": "c", "text": "The formatting will continue for all text after it until the end" },
+                                        { "value": "d", "text": "The page will not load at all" }
                                     ],
                                     "correct": "c"
                                 }
@@ -705,29 +689,30 @@
                     if (!this.currentPart || !this.currentPart.quiz) return;
 
                     const currentQuiz = this.currentPart.quiz;
+                    let allAnswersCorrect = true;
 
-                    // Check question 1
-                    this.question1Result = this.answers.question1 === currentQuiz.question1.correct ? 'correct' : 'wrong';
+                    // Check all questions dynamically
+                    Object.keys(currentQuiz).forEach(questionKey => {
+                        const question = currentQuiz[questionKey];
+                        const isCorrect = this.answers[questionKey] === question.correct;
+                        this.questionResults[questionKey] = isCorrect ? 'correct' : 'wrong';
 
-                    // Check question 2
-                    this.question2Result = this.answers.question2 === currentQuiz.question2.correct ? 'correct' : 'wrong';
+                        if (!isCorrect) {
+                            allAnswersCorrect = false;
+                        }
+                    });
 
                     // Mark quiz as completed
                     this.quizCompleted = true;
 
                     // Check if all answers are correct
-                    this.allCorrect = this.question1Result === 'correct' && this.question2Result === 'correct';
+                    this.allCorrect = allAnswersCorrect;
 
                     // Save quiz results to local storage
-                    const results = {
-                        question1Result: this.question1Result,
-                        question2Result: this.question2Result
-                    };
-
                     this.markQuizCompleted(
                         this.currentPartIndex,
                         this.answers,
-                        results,
+                        this.questionResults,
                         this.allCorrect
                     );
                 },
@@ -739,15 +724,19 @@
                     if (quizResults) {
                         // Restore previous quiz state
                         this.answers = { ...quizResults.answers };
-                        this.question1Result = quizResults.results.question1Result;
-                        this.question2Result = quizResults.results.question2Result;
+                        this.questionResults = { ...quizResults.results };
                         this.quizCompleted = quizResults.completed;
                         this.allCorrect = quizResults.allCorrect;
                     } else {
-                        // Reset quiz state
-                        this.answers = { question1: '', question2: '' };
-                        this.question1Result = null;
-                        this.question2Result = null;
+                        // Reset quiz state - initialize answers for all questions
+                        this.answers = {};
+                        this.questionResults = {};
+                        if (this.currentPart && this.currentPart.quiz) {
+                            Object.keys(this.currentPart.quiz).forEach(questionKey => {
+                                this.answers[questionKey] = '';
+                                this.questionResults[questionKey] = null;
+                            });
+                        }
                         this.quizCompleted = false;
                         this.allCorrect = false;
                     }

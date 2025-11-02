@@ -42,34 +42,44 @@
     },
     {
       "id": 2,
-      "title": "Part 2 - HTML Document Structure",
-      "videoTitle": "Understanding HTML Document Structure",
-      "description": "Learn about the essential structure of HTML documents including DOCTYPE, head, and body elements.",
+      "title": "Part 2 - HTML Text Formatting Tags",
+      "videoTitle": "HTML Text Formatting and Common Tags",
+      "description": "Learn about essential HTML tags for formatting text including headings, paragraphs, bold, italics, and underline. Practice writing clean HTML code with proper tag structure.",
       "videoSrc": "videos/lesson2.mp4",
       "keyConcepts": [
-        "DOCTYPE declaration and its importance",
-        "Head section and meta information",
-        "Body section and visible content",
-        "Proper HTML document hierarchy"
+        "Heading tags (H1-H6) and text hierarchy",
+        "Paragraph tags for text blocks and line breaks",
+        "Text formatting tags: strong (bold), em (italic), and u (underline)",
+        "Importance of properly closing HTML tags"
       ],
       "quiz": {
         "question1": {
-          "text": "What is the purpose of the DOCTYPE declaration?",
+          "text": "What is the difference between H1 and H6 tags?",
           "options": [
-            { "value": "a", "text": "To style the page" },
-            { "value": "b", "text": "To tell the browser which HTML version to use" },
-            { "value": "c", "text": "To add JavaScript" },
-            { "value": "d", "text": "To create links" }
+            { "value": "a", "text": "H1 is for images, H6 is for text" },
+            { "value": "b", "text": "H1 is the most important/largest heading, H6 is the least important/smallest" },
+            { "value": "c", "text": "They are exactly the same" },
+            { "value": "d", "text": "H6 is more important than H1" }
           ],
           "correct": "b"
         },
         "question2": {
-          "text": "Which section contains the visible content of a webpage?",
+          "text": "What is the purpose of the <p> (paragraph) tag?",
           "options": [
-            { "value": "a", "text": "<head>" },
-            { "value": "b", "text": "<html>" },
-            { "value": "c", "text": "<body>" },
-            { "value": "d", "text": "<title>" }
+            { "value": "a", "text": "To make text bold" },
+            { "value": "b", "text": "To create line breaks and separate text into paragraphs" },
+            { "value": "c", "text": "To add colors to text" },
+            { "value": "d", "text": "To create headings" }
+          ],
+          "correct": "b"
+        },
+        "question3": {
+          "text": "What happens if you forget to close an HTML tag (like forgetting </strong>)?",
+          "options": [
+            { "value": "a", "text": "Nothing, HTML doesn't need closing tags" },
+            { "value": "b", "text": "The browser will show an error message" },
+            { "value": "c", "text": "The formatting will continue for all text after it until the end" },
+            { "value": "d", "text": "The page will not load at all" }
           ],
           "correct": "c"
         }
