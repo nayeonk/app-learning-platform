@@ -2,111 +2,143 @@
   "lessonInfo": {
     "title": "Python Programming Level 1 - Lesson 2",
     "totalParts": 3,
-    "description": "Control flow and conditional statements in Python"
+    "description": "Variables and Basic Operations",
+    "masteryTopics": [
+      "Variables and Data Types",
+      "Printing and Display",
+      "Operators and Concatenation"
+    ]
   },
   "parts": [
     {
       "id": 1,
-      "title": "Part 1 - If Statements and Conditionals",
-      "videoTitle": "Introduction to If Statements",
-      "description": "Learn how to make decisions in your Python programs using if, elif, and else statements.",
-      "videoSrc": "videos/lesson2.mp4",
+      "title": "Part 1 - Variables",
+      "videoTitle": "Variables",
+      "description": "In this video you will learn about creating variable in Python to hold some information.",
+      "videoSrc": "videos/lesson02-part01.mp4",
       "keyConcepts": [
-        "Boolean expressions and comparison operators",
-        "If, elif, and else statements",
-        "Nested conditional statements",
-        "Logical operators (and, or, not)"
+        "Variables",
+        "Creating Variables",
+        "Types of variables"
       ],
       "quiz": {
         "question1": {
-          "text": "Which of the following is a closing tag?",
+          "text": "Which one of these variable names is valid?",
           "options": [
-            { "value": "a", "text": "<html>" },
-            { "value": "b", "text": "</html>" },
-            { "value": "c", "text": "<body/>" },
-            { "value": "d", "text": "</>" }
+            { "value": "a", "text": "my age" },
+            { "value": "b", "text": "isRaining?" },
+            { "value": "c", "text": "myGrade" },
+            { "value": "d", "text": "2ndPlace" }
           ],
-          "correct": "b"
+          "correct": "c"
         },
         "question2": {
-          "text": "Which of the following is not a browser?",
+          "text": "What variable type is the variable \"country\" in the following line of code?\n    country = \"Afghanistan\"",
           "options": [
-            { "value": "a", "text": "Chrome" },
-            { "value": "b", "text": "Edge" },
-            { "value": "c", "text": "Safari" },
-            { "value": "d", "text": "VS Code" }
+            { "value": "a", "text": "Bool" },
+            { "value": "b", "text": "Int" },
+            { "value": "c", "text": "Float" },
+            { "value": "d", "text": "String" }
           ],
           "correct": "d"
+        },
+        "question3": {
+          "text": "Which of these is a valid bool type variable?",
+          "options": [
+            { "value": "a", "text": "isCool = True" },
+            { "value": "b", "text": "isCool = \"True\"" },
+            { "value": "c", "text": "isCool = true" },
+            { "value": "d", "text": "None of the above" }
+          ],
+          "correct": "a"
         }
       }
     },
     {
       "id": 2,
-      "title": "Part 2 - Loops in Python",
-      "videoTitle": "Understanding For and While Loops",
-      "description": "Learn how to repeat actions in your programs using for loops and while loops.",
-      "videoSrc": "videos/lesson2.mp4",
+      "title": "Part 2 - Printing Variables",
+      "videoTitle": "Printing Variables",
+      "description": "In this video you will learn about displaying information stored in a variable using the print() function and its different input options.",
+      "videoSrc": "videos/lesson02-part02.mp4",
       "keyConcepts": [
-        "For loops and iterating over sequences",
-        "While loops and loop conditions",
-        "Break and continue statements",
-        "Range function and loop control"
+        "Print multiple items",
+        "Printing Variables",
+        "Print options"
       ],
       "quiz": {
         "question1": {
-          "text": "What is the purpose of the DOCTYPE declaration?",
+          "text": "What does this code print?\nname = \"Alice\"\nprint(name)",
           "options": [
-            { "value": "a", "text": "To style the page" },
-            { "value": "b", "text": "To tell the browser which HTML version to use" },
-            { "value": "c", "text": "To add JavaScript" },
-            { "value": "d", "text": "To create links" }
-          ],
-          "correct": "b"
-        },
-        "question2": {
-          "text": "Which section contains the visible content of a webpage?",
-          "options": [
-            { "value": "a", "text": "<head>" },
-            { "value": "b", "text": "<html>" },
-            { "value": "c", "text": "<body>" },
-            { "value": "d", "text": "<title>" }
+            { "value": "a", "text": "Name" },
+            { "value": "b", "text": "\"Name\"" },
+            { "value": "c", "text": "Alice" },
+            { "value": "d", "text": "Gives an error" }
           ],
           "correct": "c"
+        },
+        "question2": {
+          "text": "What happens when you separate multiple items with commas inside print()?",
+          "options": [
+            { "value": "a", "text": "The items are printed on separate lines" },
+            { "value": "b", "text": "Python gives an error" },
+            { "value": "c", "text": "The items are joined together without spaces and displayed on the screen." },
+            { "value": "d", "text": "The items are displayed on the screen with a space automatically added between the items." }
+          ],
+          "correct": "d"
+        },
+        "question3": {
+          "text": "What is the default behavior of the end input in print()?",
+          "options": [
+            { "value": "a", "text": "It ends with a new line" },
+            { "value": "b", "text": "It ends with a space" },
+            { "value": "c", "text": "It ends with a period" },
+            { "value": "d", "text": "It ends with nothing" }
+          ],
+          "correct": "a"
         }
       }
     },
     {
       "id": 3,
-      "title": "Part 3 - Combining Conditionals and Loops",
-      "videoTitle": "Building Complex Programs with Control Flow",
-      "description": "Put your knowledge into practice by combining conditional statements and loops in real programs.",
-      "videoSrc": "videos/lesson2.mp4",
+      "title": "Part 3 - Basic Operators",
+      "videoTitle": "Basic Operators",
+      "description": "In this video you will learn about simple math operators for numbers and how we can add strings together - string concatenation.",
+      "videoSrc": "videos/lesson02-part03.mp4",
       "keyConcepts": [
-        "Using conditionals inside loops",
-        "Nested loops and complex patterns",
-        "Common loop patterns and algorithms",
-        "Debugging control flow issues"
+        "Simple Math Operators for Numbers",
+        "String Concatenation",
+        "Converting integer to strings"
       ],
       "quiz": {
         "question1": {
-          "text": "What should you do before writing HTML code?",
+          "text": "What does string concatenation mean?",
           "options": [
-            { "value": "a", "text": "Start typing immediately" },
-            { "value": "b", "text": "Plan your content and structure" },
-            { "value": "c", "text": "Add CSS first" },
-            { "value": "d", "text": "Test in the browser" }
+            { "value": "a", "text": "Adding two numbers" },
+            { "value": "b", "text": "Combining two strings together" },
+            { "value": "c", "text": "Multiplying strings" },
+            { "value": "d", "text": "Changing a number to a string" }
           ],
           "correct": "b"
         },
         "question2": {
-          "text": "What is semantic HTML?",
+          "text": "Which of the following is invalid and will give an error in Python?\n    num1 = 4",
           "options": [
-            { "value": "a", "text": "HTML with colors" },
-            { "value": "b", "text": "HTML that describes the meaning of content" },
-            { "value": "c", "text": "HTML with animations" },
-            { "value": "d", "text": "HTML with images" }
+            { "value": "a", "text": "print(num1 + 5)" },
+            { "value": "b", "text": "print(\"Hello\" + \"World\")" },
+            { "value": "c", "text": "print(\"Hello \" + num1)" },
+            { "value": "d", "text": "All are valid" }
           ],
-          "correct": "b"
+          "correct": "c"
+        },
+        "question3": {
+          "text": "How can you fix the code below so it runs correctly?\nage = 25\nprint(\"Age: \" + age)",
+          "options": [
+            { "value": "a", "text": "Convert age to a string using str()" },
+            { "value": "b", "text": "Put age in quotes" },
+            { "value": "c", "text": "Remove the print statement" },
+            { "value": "d", "text": "It already runs correctly" }
+          ],
+          "correct": "a"
         }
       }
     }

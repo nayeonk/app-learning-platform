@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Afghan Pathways Program - Python Level 1 - Lesson 2</title>
+    <title>Afghan Pathways Program - Web Level 1 - Lesson 2</title>
 
     <!-- Local Tailwind CSS -->
     <link rel="stylesheet" href="css/tailwind.css">
@@ -26,7 +26,7 @@
                 Afghan Pathways Program
             </h1>
             <p class="text-red-100 text-center mt-2 text-sm md:text-base">
-                Python Programming Level 1 - Lesson 2
+                Web Development Level 1 - Lesson 2
             </p>
         </div>
     </header>
@@ -117,11 +117,11 @@
                     class="w-full h-full"
                     controls
                     preload="metadata"
-                    :src="currentPart ? currentPart.videoSrc : 'videos/lesson2.mp4'"
+                    :src="currentPart ? currentPart.videoSrc : 'videos/lesson02-part01.mp4'"
                     @loadedmetadata="onVideoLoaded()"
                     @timeupdate="onTimeUpdate()"
                     @ended="onVideoEnded()"
-                    poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 450'%3E%3Crect width='800' height='450' fill='%23374151'/%3E%3Ctext x='400' y='225' text-anchor='middle' fill='white' font-size='24' font-family='sans-serif'%3ELesson 2 Video%3C/text%3E%3C/svg%3E"
+                    poster="app-logo.jpg"
                 >
                     <p class="text-center text-gray-600 p-8">
                         Your browser doesn't support video playback. Please update your browser or try a different device.
@@ -145,7 +145,7 @@
                 </p>
 
                 <!-- Key Concepts -->
-                <div class="mb-6">
+                <div class="mb-6 pt-4 border-t border-gray-200">
                     <h3 class="text-base font-semibold text-gray-800 mb-3">Key Concepts</h3>
                     <ul class="space-y-2 text-gray-700">
                         <template x-for="concept in currentPart.keyConcepts" :key="concept">
@@ -155,6 +155,20 @@
                             </li>
                         </template>
                     </ul>
+                </div>
+
+                <!-- Course Materials -->
+                <div class="mb-6 pt-4 border-t border-gray-200">
+                    <h3 class="text-base font-semibold text-gray-800 mb-3">📚 Course Materials</h3>
+                    <div class="text-sm">
+                        <a href="lesson02-slides.pdf" target="_blank" class="text-blue-700 hover:text-blue-900 hover:underline">
+                            📄 Lesson 2 Slides (PDF)
+                        </a>
+                        <span class="mx-2 text-gray-400">|</span>
+                        <a href="assignment02.pdf" target="_blank" class="text-blue-700 hover:text-blue-900 hover:underline">
+                            📝 Assignment 2 (PDF)
+                        </a>
+                    </div>
                 </div>
 
                 <!-- Video Stats -->
@@ -199,15 +213,21 @@
                 <div class="bg-white rounded-lg p-4 shadow-md">
                     <h3 class="font-semibold text-gray-800 mb-2">🏆 What You've Mastered</h3>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-sm">
-                        <div class="flex items-center justify-center p-2 bg-green-100 rounded-lg">
-                            <span class="text-green-700">✓ HTML Fundamentals</span>
-                        </div>
-                        <div class="flex items-center justify-center p-2 bg-blue-100 rounded-lg">
-                            <span class="text-blue-700">✓ Document Structure</span>
-                        </div>
-                        <div class="flex items-center justify-center p-2 bg-purple-100 rounded-lg">
-                            <span class="text-purple-700">✓ Web Page Creation</span>
-                        </div>
+                        <template x-for="(topic, index) in lessonInfo.masteryTopics" :key="index">
+                            <div class="flex items-center justify-center p-2 rounded-lg"
+                                 :class="{
+                                     'bg-green-100': index === 0,
+                                     'bg-blue-100': index === 1,
+                                     'bg-purple-100': index === 2
+                                 }">
+                                <span :class="{
+                                          'text-green-700': index === 0,
+                                          'text-blue-700': index === 1,
+                                          'text-purple-700': index === 2
+                                      }"
+                                      x-text="`✓ ${topic}`"></span>
+                            </div>
+                        </template>
                     </div>
                 </div>
 
@@ -218,7 +238,7 @@
                         🔄 Start Over
                     </button>
                     <a
-                        href="Assignment 02.pdf"
+                        href="assignment02.pdf"
                         target="_blank"
                         class="px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-medium inline-block text-center">
                         📚 Open Assignment 2
@@ -237,53 +257,31 @@
             <p class="text-gray-600 text-sm mb-6">Test your understanding of the concepts covered in this lesson.</p>
 
             <form @submit.prevent="checkAnswers()">
-                <!-- Question 1 -->
-                <div class="mb-6">
-                    <h4 class="font-medium text-gray-800 mb-3" x-text="`1. ${currentPart.quiz.question1.text}`"></h4>
-                    <div class="space-y-2">
-                        <template x-for="option in currentPart.quiz.question1.options" :key="option.value">
-                            <label class="flex items-start cursor-pointer"
-                                   :class="question1Result === 'correct' && answers.question1 === option.value && option.value === currentPart.quiz.question1.correct
-                                        ? 'text-green-600 font-medium'
-                                        : question1Result === 'wrong' && answers.question1 === option.value
-                                            ? 'text-red-600' : ''">
-                                <input type="radio" name="question1" :value="option.value" x-model="answers.question1" class="mt-1 mr-3 text-red-900 focus:ring-red-900">
-                                <span class="text-sm">
-                                    <code x-show="option.text.includes('<')" class="bg-gray-100 px-1 rounded" x-text="option.text"></code>
-                                    <span x-show="!option.text.includes('<')" x-text="option.text"></span>
-                                </span>
-                            </label>
-                        </template>
+                <!-- Dynamic Questions -->
+                <template x-for="(question, questionKey) in currentPart.quiz" :key="questionKey">
+                    <div class="mb-6">
+                        <h4 class="font-medium text-gray-800 mb-3" x-text="`${Object.keys(currentPart.quiz).indexOf(questionKey) + 1}. ${question.text}`"></h4>
+                        <div class="space-y-2">
+                            <template x-for="option in question.options" :key="option.value">
+                                <label class="flex items-start cursor-pointer"
+                                       :class="questionResults[questionKey] === 'correct' && answers[questionKey] === option.value && option.value === question.correct
+                                            ? 'text-green-600 font-medium'
+                                            : questionResults[questionKey] === 'wrong' && answers[questionKey] === option.value
+                                                ? 'text-red-600' : ''">
+                                    <input type="radio" :name="questionKey" :value="option.value" x-model="answers[questionKey]" class="mt-1 mr-3 text-red-900 focus:ring-red-900">
+                                    <span class="text-sm">
+                                        <code x-show="option.text.includes('<')" class="bg-gray-100 px-1 rounded" x-text="option.text"></code>
+                                        <span x-show="!option.text.includes('<')" x-text="option.text"></span>
+                                    </span>
+                                </label>
+                            </template>
+                        </div>
+                        <div x-show="questionResults[questionKey]" class="mt-2">
+                            <span x-show="questionResults[questionKey] === 'correct'" class="text-green-600 text-sm font-medium">✓ Correct!</span>
+                            <span x-show="questionResults[questionKey] === 'wrong'" class="text-red-600 text-sm font-medium">✗ Incorrect. Try again!</span>
+                        </div>
                     </div>
-                    <div x-show="question1Result" class="mt-2">
-                        <span x-show="question1Result === 'correct'" class="text-green-600 text-sm font-medium">✓ Correct!</span>
-                        <span x-show="question1Result === 'wrong'" class="text-red-600 text-sm font-medium">✗ Incorrect. Try again!</span>
-                    </div>
-                </div>
-
-                <!-- Question 2 -->
-                <div class="mb-6">
-                    <h4 class="font-medium text-gray-800 mb-3" x-text="`2. ${currentPart.quiz.question2.text}`"></h4>
-                    <div class="space-y-2">
-                        <template x-for="option in currentPart.quiz.question2.options" :key="option.value">
-                            <label class="flex items-start cursor-pointer"
-                                   :class="question2Result === 'correct' && answers.question2 === option.value && option.value === currentPart.quiz.question2.correct
-                                        ? 'text-green-600 font-medium'
-                                        : question2Result === 'wrong' && answers.question2 === option.value
-                                            ? 'text-red-600' : ''">
-                                <input type="radio" name="question2" :value="option.value" x-model="answers.question2" class="mt-1 mr-3 text-red-900 focus:ring-red-900">
-                                <span class="text-sm">
-                                    <code x-show="option.text.includes('<')" class="bg-gray-100 px-1 rounded" x-text="option.text"></code>
-                                    <span x-show="!option.text.includes('<')" x-text="option.text"></span>
-                                </span>
-                            </label>
-                        </template>
-                    </div>
-                    <div x-show="question2Result" class="mt-2">
-                        <span x-show="question2Result === 'correct'" class="text-green-600 text-sm font-medium">✓ Correct!</span>
-                        <span x-show="question2Result === 'wrong'" class="text-red-600 text-sm font-medium">✗ Incorrect. Try again!</span>
-                    </div>
-                </div>
+                </template>
 
                 <!-- Submit Button -->
                 <div class="flex justify-between items-center">
@@ -291,7 +289,7 @@
                         Check Answers
                     </button>
                     <div x-show="quizCompleted && allCorrect" class="text-green-600 text-sm font-medium">
-                        🎉 Great job! You got both questions right!
+                        <span x-text="`🎉 Great job! You got all ${Object.keys(currentPart.quiz).length} questions right!`"></span>
                     </div>
                 </div>
             </form>
@@ -377,12 +375,8 @@
                 showQuiz: false,
                 quizCompleted: false,
                 allCorrect: false,
-                answers: {
-                    question1: '',
-                    question2: ''
-                },
-                question1Result: null,
-                question2Result: null,
+                answers: {},
+                questionResults: {},
 
                 // Computed property for current part
                 get currentPart() {
@@ -459,114 +453,146 @@
                 // Fallback content when JSON loading fails (e.g., file:// protocol)
                 loadFallbackContent() {
                     this.lessonInfo = {
-                        "title": "Web Development Level 1 - Lesson 2",
+                        "title": "Python Programming Level 1 - Lesson 2",
                         "totalParts": 3,
-                        "description": "Introduction to web development fundamentals"
+                        "description": "Variables and Basic Operations",
+                        "masteryTopics": [
+                            "Variables and Data Types",
+                            "Printing and Display",
+                            "Operators and Concatenation"
+                        ]
                     };
 
                     this.lessonParts = [
                         {
                             "id": 1,
-                            "title": "Part 1 - Introduction to Web Development",
-                            "videoTitle": "Introduction to Web Development",
-                            "description": "Welcome to your first lesson in web development. In this video, you'll learn the fundamentals of HTML, CSS, and how websites work.",
-                            "videoSrc": "videos/lesson2.mp4",
+                            "title": "Part 1 - Variables",
+                            "videoTitle": "Variables",
+                            "description": "In this video you will learn about creating variable in Python to hold some information.",
+                            "videoSrc": "videos/lesson02-part01.mp4",
                             "keyConcepts": [
-                                "Understanding HTML structure and basic tags",
-                                "How web browsers interpret and display web pages",
-                                "Basic HTML elements: headings, paragraphs, and links",
-                                "Setting up your first HTML document"
+                                "Variables",
+                                "Creating Variables",
+                                "Types of variables"
                             ],
                             "quiz": {
                                 "question1": {
-                                    "text": "Which of the following is a closing tag?",
+                                    "text": "Which one of these variable names is valid?",
                                     "options": [
-                                        { "value": "a", "text": "<html>" },
-                                        { "value": "b", "text": "</html>" },
-                                        { "value": "c", "text": "<body/>" },
-                                        { "value": "d", "text": "</>" }
+                                        { "value": "a", "text": "my age" },
+                                        { "value": "b", "text": "isRaining?" },
+                                        { "value": "c", "text": "myGrade" },
+                                        { "value": "d", "text": "2ndPlace" }
                                     ],
-                                    "correct": "b"
+                                    "correct": "c"
                                 },
                                 "question2": {
-                                    "text": "Which of the following is not a browser?",
+                                    "text": "What variable type is the variable \"country\" in the following line of code?\n    country = \"Afghanistan\"",
                                     "options": [
-                                        { "value": "a", "text": "Chrome" },
-                                        { "value": "b", "text": "Edge" },
-                                        { "value": "c", "text": "Safari" },
-                                        { "value": "d", "text": "VS Code" }
+                                        { "value": "a", "text": "Bool" },
+                                        { "value": "b", "text": "Int" },
+                                        { "value": "c", "text": "Float" },
+                                        { "value": "d", "text": "String" }
                                     ],
                                     "correct": "d"
+                                },
+                                "question3": {
+                                    "text": "Which of these is a valid bool type variable?",
+                                    "options": [
+                                        { "value": "a", "text": "isCool = True" },
+                                        { "value": "b", "text": "isCool = \"True\"" },
+                                        { "value": "c", "text": "isCool = true" },
+                                        { "value": "d", "text": "None of the above" }
+                                    ],
+                                    "correct": "a"
                                 }
                             }
                         },
                         {
                             "id": 2,
-                            "title": "Part 2 - HTML Document Structure",
-                            "videoTitle": "Understanding HTML Document Structure",
-                            "description": "Learn about the essential structure of HTML documents including DOCTYPE, head, and body elements.",
-                            "videoSrc": "videos/lesson2.mp4",
+                            "title": "Part 2 - Printing Variables",
+                            "videoTitle": "Printing Variables",
+                            "description": "In this video you will learn about displaying information stored in a variable using the print() function and its different input options.",
+                            "videoSrc": "videos/lesson02-part02.mp4",
                             "keyConcepts": [
-                                "DOCTYPE declaration and its importance",
-                                "Head section and meta information",
-                                "Body section and visible content",
-                                "Proper HTML document hierarchy"
+                                "Print multiple items",
+                                "Printing Variables",
+                                "Print options"
                             ],
                             "quiz": {
                                 "question1": {
-                                    "text": "What is the purpose of the DOCTYPE declaration?",
+                                    "text": "What does this code print?\nname = \"Alice\"\nprint(name)",
                                     "options": [
-                                        { "value": "a", "text": "To style the page" },
-                                        { "value": "b", "text": "To tell the browser which HTML version to use" },
-                                        { "value": "c", "text": "To add JavaScript" },
-                                        { "value": "d", "text": "To create links" }
-                                    ],
-                                    "correct": "b"
-                                },
-                                "question2": {
-                                    "text": "Which section contains the visible content of a webpage?",
-                                    "options": [
-                                        { "value": "a", "text": "<head>" },
-                                        { "value": "b", "text": "<html>" },
-                                        { "value": "c", "text": "<body>" },
-                                        { "value": "d", "text": "<title>" }
+                                        { "value": "a", "text": "Name" },
+                                        { "value": "b", "text": "\"Name\"" },
+                                        { "value": "c", "text": "Alice" },
+                                        { "value": "d", "text": "Gives an error" }
                                     ],
                                     "correct": "c"
+                                },
+                                "question2": {
+                                    "text": "What happens when you separate multiple items with commas inside print()?",
+                                    "options": [
+                                        { "value": "a", "text": "The items are printed on separate lines" },
+                                        { "value": "b", "text": "Python gives an error" },
+                                        { "value": "c", "text": "The items are joined together without spaces and displayed on the screen." },
+                                        { "value": "d", "text": "The items are displayed on the screen with a space automatically added between the items." }
+                                    ],
+                                    "correct": "d"
+                                },
+                                "question3": {
+                                    "text": "What is the default behavior of the end input in print()?",
+                                    "options": [
+                                        { "value": "a", "text": "It ends with a new line" },
+                                        { "value": "b", "text": "It ends with a space" },
+                                        { "value": "c", "text": "It ends with a period" },
+                                        { "value": "d", "text": "It ends with nothing" }
+                                    ],
+                                    "correct": "a"
                                 }
                             }
                         },
                         {
                             "id": 3,
-                            "title": "Part 3 - Creating Your First Webpage",
-                            "videoTitle": "Building Your First HTML Page",
-                            "description": "Put your knowledge into practice by creating a complete HTML webpage from scratch.",
-                            "videoSrc": "videos/lesson2.mp4",
+                            "title": "Part 3 - Basic Operators",
+                            "videoTitle": "Basic Operators",
+                            "description": "In this video you will learn about simple math operators for numbers and how we can add strings together - string concatenation.",
+                            "videoSrc": "videos/lesson02-part03.mp4",
                             "keyConcepts": [
-                                "Planning your webpage content and structure",
-                                "Writing semantic HTML markup",
-                                "Testing your webpage in the browser",
-                                "Best practices for HTML coding"
+                                "Simple Math Operators for Numbers",
+                                "String Concatenation",
+                                "Converting integer to strings"
                             ],
                             "quiz": {
                                 "question1": {
-                                    "text": "What should you do before writing HTML code?",
+                                    "text": "What does string concatenation mean?",
                                     "options": [
-                                        { "value": "a", "text": "Start typing immediately" },
-                                        { "value": "b", "text": "Plan your content and structure" },
-                                        { "value": "c", "text": "Add CSS first" },
-                                        { "value": "d", "text": "Test in the browser" }
+                                        { "value": "a", "text": "Adding two numbers" },
+                                        { "value": "b", "text": "Combining two strings together" },
+                                        { "value": "c", "text": "Multiplying strings" },
+                                        { "value": "d", "text": "Changing a number to a string" }
                                     ],
                                     "correct": "b"
                                 },
                                 "question2": {
-                                    "text": "What is semantic HTML?",
+                                    "text": "Which of the following is invalid and will give an error in Python?\n    num1 = 4",
                                     "options": [
-                                        { "value": "a", "text": "HTML with colors" },
-                                        { "value": "b", "text": "HTML that describes the meaning of content" },
-                                        { "value": "c", "text": "HTML with animations" },
-                                        { "value": "d", "text": "HTML with images" }
+                                        { "value": "a", "text": "print(num1 + 5)" },
+                                        { "value": "b", "text": "print(\"Hello\" + \"World\")" },
+                                        { "value": "c", "text": "print(\"Hello \" + num1)" },
+                                        { "value": "d", "text": "All are valid" }
                                     ],
-                                    "correct": "b"
+                                    "correct": "c"
+                                },
+                                "question3": {
+                                    "text": "How can you fix the code below so it runs correctly?\nage = 25\nprint(\"Age: \" + age)",
+                                    "options": [
+                                        { "value": "a", "text": "Convert age to a string using str()" },
+                                        { "value": "b", "text": "Put age in quotes" },
+                                        { "value": "c", "text": "Remove the print statement" },
+                                        { "value": "d", "text": "It already runs correctly" }
+                                    ],
+                                    "correct": "a"
                                 }
                             }
                         }
@@ -705,29 +731,30 @@
                     if (!this.currentPart || !this.currentPart.quiz) return;
 
                     const currentQuiz = this.currentPart.quiz;
+                    let allAnswersCorrect = true;
 
-                    // Check question 1
-                    this.question1Result = this.answers.question1 === currentQuiz.question1.correct ? 'correct' : 'wrong';
+                    // Check all questions dynamically
+                    Object.keys(currentQuiz).forEach(questionKey => {
+                        const question = currentQuiz[questionKey];
+                        const isCorrect = this.answers[questionKey] === question.correct;
+                        this.questionResults[questionKey] = isCorrect ? 'correct' : 'wrong';
 
-                    // Check question 2
-                    this.question2Result = this.answers.question2 === currentQuiz.question2.correct ? 'correct' : 'wrong';
+                        if (!isCorrect) {
+                            allAnswersCorrect = false;
+                        }
+                    });
 
                     // Mark quiz as completed
                     this.quizCompleted = true;
 
                     // Check if all answers are correct
-                    this.allCorrect = this.question1Result === 'correct' && this.question2Result === 'correct';
+                    this.allCorrect = allAnswersCorrect;
 
                     // Save quiz results to local storage
-                    const results = {
-                        question1Result: this.question1Result,
-                        question2Result: this.question2Result
-                    };
-
                     this.markQuizCompleted(
                         this.currentPartIndex,
                         this.answers,
-                        results,
+                        this.questionResults,
                         this.allCorrect
                     );
                 },
@@ -739,15 +766,19 @@
                     if (quizResults) {
                         // Restore previous quiz state
                         this.answers = { ...quizResults.answers };
-                        this.question1Result = quizResults.results.question1Result;
-                        this.question2Result = quizResults.results.question2Result;
+                        this.questionResults = { ...quizResults.results };
                         this.quizCompleted = quizResults.completed;
                         this.allCorrect = quizResults.allCorrect;
                     } else {
-                        // Reset quiz state
-                        this.answers = { question1: '', question2: '' };
-                        this.question1Result = null;
-                        this.question2Result = null;
+                        // Reset quiz state - initialize answers for all questions
+                        this.answers = {};
+                        this.questionResults = {};
+                        if (this.currentPart && this.currentPart.quiz) {
+                            Object.keys(this.currentPart.quiz).forEach(questionKey => {
+                                this.answers[questionKey] = '';
+                                this.questionResults[questionKey] = null;
+                            });
+                        }
                         this.quizCompleted = false;
                         this.allCorrect = false;
                     }
