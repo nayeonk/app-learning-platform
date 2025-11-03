@@ -213,15 +213,21 @@
                 <div class="bg-white rounded-lg p-4 shadow-md">
                     <h3 class="font-semibold text-gray-800 mb-2">🏆 What You've Mastered</h3>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-sm">
-                        <div class="flex items-center justify-center p-2 bg-green-100 rounded-lg">
-                            <span class="text-green-700">✓ HTML Fundamentals</span>
-                        </div>
-                        <div class="flex items-center justify-center p-2 bg-blue-100 rounded-lg">
-                            <span class="text-blue-700">✓ Document Structure</span>
-                        </div>
-                        <div class="flex items-center justify-center p-2 bg-purple-100 rounded-lg">
-                            <span class="text-purple-700">✓ Web Page Creation</span>
-                        </div>
+                        <template x-for="(topic, index) in lessonInfo.masteryTopics" :key="index">
+                            <div class="flex items-center justify-center p-2 rounded-lg"
+                                 :class="{
+                                     'bg-green-100': index === 0,
+                                     'bg-blue-100': index === 1,
+                                     'bg-purple-100': index === 2
+                                 }">
+                                <span :class="{
+                                          'text-green-700': index === 0,
+                                          'text-blue-700': index === 1,
+                                          'text-purple-700': index === 2
+                                      }"
+                                      x-text="`✓ ${topic}`"></span>
+                            </div>
+                        </template>
                     </div>
                 </div>
 
@@ -449,7 +455,12 @@
                     this.lessonInfo = {
                         "title": "Web Development Level 1 - Lesson 2",
                         "totalParts": 3,
-                        "description": "Introduction to HTML"
+                        "description": "Introduction to HTML",
+                        "masteryTopics": [
+                            "HTML Document Structure",
+                            "Text Formatting Tags",
+                            "Lists and Nesting"
+                        ]
                     };
 
                     this.lessonParts = [
