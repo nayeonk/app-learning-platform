@@ -449,20 +449,18 @@
                     this.lessonInfo = {
                         "title": "Web Development Level 1 - Lesson 2",
                         "totalParts": 3,
-                        "description": "Introduction to web development fundamentals"
+                        "description": "Introduction to HTML"
                     };
 
                     this.lessonParts = [
                         {
                             "id": 1,
-                            "title": "Part 1 - Introduction to Web Development",
-                            "videoTitle": "Introduction to Web Development",
-                            "description": "Welcome to your first lesson in web development. In this video, you'll learn the fundamentals of HTML, CSS, and how websites work.",
+                            "title": "Part 1 - Introduction to HTML",
+                            "videoTitle": "Introduction to HTML",
+                            "description": "Welcome back! In this video, you will learn the fundamentals of HTML",
                             "videoSrc": "videos/lesson02-part01.mp4",
                             "keyConcepts": [
-                                "Understanding HTML structure and basic tags",
-                                "How web browsers interpret and display web pages",
-                                "Basic HTML elements: headings, paragraphs, and links",
+                                "Understanding HTML Skeleton and basic tags",
                                 "Setting up your first HTML document"
                             ],
                             "quiz": {
@@ -477,14 +475,24 @@
                                     "correct": "b"
                                 },
                                 "question2": {
-                                    "text": "Which of the following is not a browser?",
+                                    "text": "Which of the following is NOT a required tag in the HTML skeleton?",
                                     "options": [
-                                        { "value": "a", "text": "Chrome" },
-                                        { "value": "b", "text": "Edge" },
-                                        { "value": "c", "text": "Safari" },
-                                        { "value": "d", "text": "VS Code" }
+                                        { "value": "a", "text": "<!DOCTYPE html>" },
+                                        { "value": "b", "text": "<head>" },
+                                        { "value": "c", "text": "</body>" },
+                                        { "value": "d", "text": "<doc>" }
                                     ],
                                     "correct": "d"
+                                },
+                                "question3": {
+                                    "text": "Which tag represents all visible content in a browser?",
+                                    "options": [
+                                        { "value": "a", "text": "<head>" },
+                                        { "value": "b", "text": "<body>" },
+                                        { "value": "c", "text": "<html>" },
+                                        { "value": "d", "text": "<!DOCTYPE html>" }
+                                    ],
+                                    "correct": "b"
                                 }
                             }
                         },
