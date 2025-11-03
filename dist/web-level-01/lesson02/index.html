@@ -145,7 +145,7 @@
                 </p>
 
                 <!-- Key Concepts -->
-                <div class="mb-6">
+                <div class="mb-6 pt-4 border-t border-gray-200">
                     <h3 class="text-base font-semibold text-gray-800 mb-3">Key Concepts</h3>
                     <ul class="space-y-2 text-gray-700">
                         <template x-for="concept in currentPart.keyConcepts" :key="concept">
@@ -155,6 +155,20 @@
                             </li>
                         </template>
                     </ul>
+                </div>
+
+                <!-- Course Materials -->
+                <div class="mb-6 pt-4 border-t border-gray-200">
+                    <h3 class="text-base font-semibold text-gray-800 mb-3">📚 Course Materials</h3>
+                    <div class="text-sm">
+                        <a href="lesson02-slides.pdf" target="_blank" class="text-blue-700 hover:text-blue-900 hover:underline">
+                            📄 Lesson 2 Slides (PDF)
+                        </a>
+                        <span class="mx-2 text-gray-400">|</span>
+                        <a href="assignment02.pdf" target="_blank" class="text-blue-700 hover:text-blue-900 hover:underline">
+                            📝 Assignment 2 (PDF)
+                        </a>
+                    </div>
                 </div>
 
                 <!-- Video Stats -->
@@ -218,7 +232,7 @@
                         🔄 Start Over
                     </button>
                     <a
-                        href="Assignment 02.pdf"
+                        href="assignment02.pdf"
                         target="_blank"
                         class="px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-medium inline-block text-center">
                         📚 Open Assignment 2
