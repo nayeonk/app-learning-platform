@@ -270,8 +270,8 @@
                                                 ? 'text-red-600' : ''">
                                     <input type="radio" :name="questionKey" :value="option.value" x-model="answers[questionKey]" class="mt-1 mr-3 text-red-900 focus:ring-red-900">
                                     <span class="text-sm">
-                                        <code x-show="option.text.includes('<')" class="bg-gray-100 px-1 rounded" x-text="option.text"></code>
-                                        <span x-show="!option.text.includes('<')" x-text="option.text"></span>
+                                        <code x-show="option.text.includes('`')" class="bg-gray-100 px-1 rounded" x-text="option.text"></code>
+                                        <span x-show="!option.text.includes('`')" x-text="option.text"></span>
                                     </span>
                                 </label>
                             </template>
@@ -479,7 +479,7 @@
                                 "question1": {
                                     "text": "Which one of these variable names is valid?",
                                     "options": [
-                                        { "value": "a", "text": "my age" },
+                                        { "value": "a", "text": "`my age`" },
                                         { "value": "b", "text": "isRaining?" },
                                         { "value": "c", "text": "myGrade" },
                                         { "value": "d", "text": "2ndPlace" }
