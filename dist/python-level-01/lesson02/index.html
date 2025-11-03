@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Afghan Pathways Program - Web Level 1 - Lesson 2</title>
+    <title>Afghan Pathways Program - Python Level 1 - Lesson 2</title>
 
     <!-- Local Tailwind CSS -->
     <link rel="stylesheet" href="css/tailwind.css">
@@ -26,7 +26,7 @@
                 Afghan Pathways Program
             </h1>
             <p class="text-red-100 text-center mt-2 text-sm md:text-base">
-                Web Development Level 1 - Lesson 2
+                Python Level 1 - Lesson 2
             </p>
         </div>
     </header>
@@ -270,8 +270,8 @@
                                                 ? 'text-red-600' : ''">
                                     <input type="radio" :name="questionKey" :value="option.value" x-model="answers[questionKey]" class="mt-1 mr-3 text-red-900 focus:ring-red-900">
                                     <span class="text-sm">
-                                        <code x-show="option.text.includes('`')" class="bg-gray-100 px-1 rounded" x-text="option.text"></code>
-                                        <span x-show="!option.text.includes('`')" x-text="option.text"></span>
+                                        <code x-show="option.text.includes('<')" class="bg-gray-100 px-1 rounded" x-text="option.text"></code>
+                                        <span x-show="!option.text.includes('<')" x-text="option.text"></span>
                                     </span>
                                 </label>
                             </template>
@@ -479,7 +479,7 @@
                                 "question1": {
                                     "text": "Which one of these variable names is valid?",
                                     "options": [
-                                        { "value": "a", "text": "`my age`" },
+                                        { "value": "a", "text": "my age" },
                                         { "value": "b", "text": "isRaining?" },
                                         { "value": "c", "text": "myGrade" },
                                         { "value": "d", "text": "2ndPlace" }
