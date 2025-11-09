@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Afghan Pathways Program - Python Level 1 - Lesson 2</title>
+    <title>Afghan Pathways Program - Python Level 1 - Lesson 3</title>
 
     <!-- Local Tailwind CSS -->
     <link rel="stylesheet" href="css/tailwind.css">
@@ -26,7 +26,7 @@
                 Afghan Pathways Program
             </h1>
             <p class="text-red-100 text-center mt-2 text-sm md:text-base">
-                Python Level 1 - Lesson 2
+                Python Level 1 - Lesson 3
             </p>
         </div>
     </header>
@@ -117,7 +117,7 @@
                     class="w-full h-full"
                     controls
                     preload="metadata"
-                    :src="currentPart ? currentPart.videoSrc : 'videos/lesson02-part01.mp4'"
+                    :src="currentPart ? currentPart.videoSrc : 'videos/lesson03-part01.mp4'"
                     @loadedmetadata="onVideoLoaded()"
                     @timeupdate="onTimeUpdate()"
                     @ended="onVideoEnded()"
@@ -139,7 +139,7 @@
 
             <!-- Video Info -->
             <div class="p-4 md:p-6">
-                <h2 class="text-lg md:text-xl font-semibold text-gray-800 mb-2" x-text="`Lesson 2 | ${currentPart.title}`">
+                <h2 class="text-lg md:text-xl font-semibold text-gray-800 mb-2" x-text="`Lesson 3 | ${currentPart.title}`">
                 </h2>
                 <p class="text-gray-600 text-sm md:text-base mb-4" x-text="currentPart.description">
                 </p>
@@ -161,12 +161,12 @@
                 <div class="mb-6 pt-4 border-t border-gray-200">
                     <h3 class="text-base font-semibold text-gray-800 mb-3">📚 Course Materials</h3>
                     <div class="text-sm">
-                        <a href="lesson02-slides.pdf" target="_blank" class="text-blue-700 hover:text-blue-900 hover:underline">
-                            📄 Lesson 2 Slides (PDF)
+                        <a href="lesson03-slides.pdf" target="_blank" class="text-blue-700 hover:text-blue-900 hover:underline">
+                            📄 Lesson 3 Slides (PDF)
                         </a>
                         <span class="mx-2 text-gray-400">|</span>
-                        <a href="assignment02.pdf" target="_blank" class="text-blue-700 hover:text-blue-900 hover:underline">
-                            📝 Assignment 2 (PDF)
+                        <a href="assignment03.pdf" target="_blank" class="text-blue-700 hover:text-blue-900 hover:underline">
+                            📝 Assignment 3 (PDF)
                         </a>
                     </div>
                 </div>
@@ -187,7 +187,7 @@
                     Congratulations!
                 </h2>
                 <p class="text-lg md:text-xl text-green-700 mb-4">
-                    You've successfully completed all parts of Lesson 2!
+                    You've successfully completed all parts of Lesson 3!
                 </p>
                 <div class="bg-white rounded-lg p-4 mb-6 inline-block shadow-md">
                     <div class="flex items-center justify-center space-x-4 text-green-600">
@@ -238,10 +238,10 @@
                         🔄 Start Over
                     </button>
                     <a
-                        href="assignment02.pdf"
+                        href="assignment03.pdf"
                         target="_blank"
                         class="px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-medium inline-block text-center">
-                        📚 Open Assignment 2
+                        📚 Open Assignment 3
                     </a>
                 </div>
 
@@ -819,7 +819,7 @@
                     if (this.currentPartIndex < this.lessonParts.length - 1) {
                         this.navigateToPart(this.currentPartIndex + 1);
                     } else {
-                        alert('Congratulations! You\'ve completed all parts of Lesson 2. You\'re ready for the next lesson!');
+                        alert('Congratulations! You\'ve completed all parts of Lesson 3. You\'re ready for the next lesson!');
                     }
                 },
 
