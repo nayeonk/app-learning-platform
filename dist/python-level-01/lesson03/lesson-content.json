@@ -1,0 +1,145 @@
+{
+  "lessonInfo": {
+    "title": "Python Programming Level 1 - Lesson 3",
+    "totalParts": 3,
+    "description": "User Input and Control Flow",
+    "masteryTopics": [
+      "User Input",
+      "Conditional Statements",
+      "Program Flow Control"
+    ]
+  },
+  "parts": [
+    {
+      "id": 1,
+      "title": "Part 1 - User Input",
+      "videoTitle": "User Input",
+      "description": "In this video you will learn about getting some information from the user of your program and storing it in a variable to use later.",
+      "videoSrc": "videos/lesson03-part01.mp4",
+      "keyConcepts": [
+        "input() function",
+        "Syntax for using input() function"
+      ],
+      "quiz": {
+        "question1": {
+          "text": "What does the input() function do in Python?",
+          "options": [
+            { "value": "a", "text": "Displays text on the screen" },
+            { "value": "b", "text": "Gets information from the user" },
+            { "value": "c", "text": "Adds two numbers together" },
+            { "value": "d", "text": "Stops the program" }
+          ],
+          "correct": "b"
+        },
+        "question2": {
+          "text": "Which of these is the correct way to ask the user for their name and store it?",
+          "options": [
+            { "value": "a", "text": "name = input(\"Enter your name:\")" },
+            { "value": "b", "text": "input = name(\"Enter your name:\")" },
+            { "value": "c", "text": "name = print(\"Enter your name:\")" },
+            { "value": "d", "text": "input(\"Enter your name:\") = name" }
+          ],
+          "correct": "a"
+        },
+        "question3": {
+          "text": "What happens if you use commas inside input() instead of a single string?",
+          "options": [
+            { "value": "a", "text": "It still works the same way" },
+            { "value": "b", "text": "It prints commas on the screen" },
+            { "value": "c", "text": "It joins everything automatically" },
+            { "value": "d", "text": "It gives an error" }
+          ],
+          "correct": "d"
+        }
+      }
+    },
+    {
+      "id": 2,
+      "title": "Part 2 - Printing Variables",
+      "videoTitle": "Printing Variables",
+      "description": "In this video you will learn about displaying information stored in a variable using the print() function and its different input options.",
+      "videoSrc": "videos/lesson02-part02.mp4",
+      "keyConcepts": [
+        "Print multiple items",
+        "Printing Variables",
+        "Print options"
+      ],
+      "quiz": {
+        "question1": {
+          "text": "What does this code print?\nname = \"Alice\"\nprint(name)",
+          "options": [
+            { "value": "a", "text": "Name" },
+            { "value": "b", "text": "\"Name\"" },
+            { "value": "c", "text": "Alice" },
+            { "value": "d", "text": "Gives an error" }
+          ],
+          "correct": "c"
+        },
+        "question2": {
+          "text": "What happens when you separate multiple items with commas inside print()?",
+          "options": [
+            { "value": "a", "text": "The items are printed on separate lines" },
+            { "value": "b", "text": "Python gives an error" },
+            { "value": "c", "text": "The items are joined together without spaces and displayed on the screen." },
+            { "value": "d", "text": "The items are displayed on the screen with a space automatically added between the items." }
+          ],
+          "correct": "d"
+        },
+        "question3": {
+          "text": "What is the default behavior of the end input in print()?",
+          "options": [
+            { "value": "a", "text": "It ends with a new line" },
+            { "value": "b", "text": "It ends with a space" },
+            { "value": "c", "text": "It ends with a period" },
+            { "value": "d", "text": "It ends with nothing" }
+          ],
+          "correct": "a"
+        }
+      }
+    },
+    {
+      "id": 3,
+      "title": "Part 3 - Basic Operators",
+      "videoTitle": "Basic Operators",
+      "description": "In this video you will learn about simple math operators for numbers and how we can add strings together - string concatenation.",
+      "videoSrc": "videos/lesson02-part03.mp4",
+      "keyConcepts": [
+        "Simple Math Operators for Numbers",
+        "String Concatenation",
+        "Converting integer to strings"
+      ],
+      "quiz": {
+        "question1": {
+          "text": "What does string concatenation mean?",
+          "options": [
+            { "value": "a", "text": "Adding two numbers" },
+            { "value": "b", "text": "Combining two strings together" },
+            { "value": "c", "text": "Multiplying strings" },
+            { "value": "d", "text": "Changing a number to a string" }
+          ],
+          "correct": "b"
+        },
+        "question2": {
+          "text": "Which of the following is invalid and will give an error in Python?\n    num1 = 4",
+          "options": [
+            { "value": "a", "text": "print(num1 + 5)" },
+            { "value": "b", "text": "print(\"Hello\" + \"World\")" },
+            { "value": "c", "text": "print(\"Hello \" + num1)" },
+            { "value": "d", "text": "All are valid" }
+          ],
+          "correct": "c"
+        },
+        "question3": {
+          "text": "How can you fix the code below so it runs correctly?\nage = 25\nprint(\"Age: \" + age)",
+          "options": [
+            { "value": "a", "text": "Convert age to a string using str()" },
+            { "value": "b", "text": "Put age in quotes" },
+            { "value": "c", "text": "Remove the print statement" },
+            { "value": "d", "text": "It already runs correctly" }
+          ],
+          "correct": "a"
+        }
+      }
+    }
+  ]
+}
