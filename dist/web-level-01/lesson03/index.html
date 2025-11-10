@@ -467,42 +467,43 @@
                     this.lessonParts = [
                         {
                             "id": 1,
-                            "title": "Part 1 - Introduction to HTML",
-                            "videoTitle": "Introduction to HTML",
-                            "description": "Welcome back! In this video, you will learn the fundamentals of HTML",
+                            "title": "Part 1 - Creating Links",
+                            "videoTitle": "Creating Links in HTML",
+                            "description": "Learn how to create hyperlinks using the anchor tag. Understand href and target attributes to link to other pages and control how links open.",
                             "videoSrc": "videos/lesson03-part01.mp4",
                             "keyConcepts": [
-                                "Understanding HTML Skeleton and basic tags",
-                                "Setting up your first HTML document"
+                                "Anchor tag (<a>) for creating links",
+                                "href attribute to specify link destination",
+                                "target attribute to open links in new tabs"
                             ],
                             "quiz": {
                                 "question1": {
-                                    "text": "Which of the following is a closing tag?",
+                                    "text": "Which tag is used to create a link in HTML?",
                                     "options": [
-                                        { "value": "a", "text": "<html>" },
-                                        { "value": "b", "text": "</html>" },
-                                        { "value": "c", "text": "<body/>" },
-                                        { "value": "d", "text": "</>" }
+                                        { "value": "a", "text": "<link>" },
+                                        { "value": "b", "text": "<a>" },
+                                        { "value": "c", "text": "<href>" },
+                                        { "value": "d", "text": "<url>" }
                                     ],
                                     "correct": "b"
                                 },
                                 "question2": {
-                                    "text": "Which of the following is NOT a required tag in the HTML skeleton?",
+                                    "text": "Which attribute specifies where the link should go?",
                                     "options": [
-                                        { "value": "a", "text": "<!DOCTYPE html>" },
-                                        { "value": "b", "text": "<head>" },
-                                        { "value": "c", "text": "</body>" },
-                                        { "value": "d", "text": "<doc>" }
+                                        { "value": "a", "text": "src" },
+                                        { "value": "b", "text": "link" },
+                                        { "value": "c", "text": "href" },
+                                        { "value": "d", "text": "url" }
                                     ],
-                                    "correct": "d"
+                                    "correct": "c"
                                 },
                                 "question3": {
-                                    "text": "Which tag represents all visible content in a browser?",
+                                    "text": "What value do you use for the target attribute to open a link in a new tab?",
                                     "options": [
-                                        { "value": "a", "text": "<head>" },
-                                        { "value": "b", "text": "<body>" },
-                                        { "value": "c", "text": "<html>" },
-                                        { "value": "d", "text": "<!DOCTYPE html>" }
+                                        { "value": "a", "text": "target=\"new\"" },
+                                        { "value": "b", "text": "target=\"_blank\"" },
+                                        { "value": "c", "text": "target=\"tab\"" },
+                                        { "value": "d", "text": "target=\"_new\"" }
                                     ],
                                     "correct": "b"
                                 }
@@ -510,44 +511,44 @@
                         },
                         {
                             "id": 2,
-                            "title": "Part 2 - HTML Text Formatting Tags",
-                            "videoTitle": "HTML Text Formatting and Common Tags",
-                            "description": "Learn about essential HTML tags for formatting text including headings, paragraphs, bold, italics, and underline. Practice writing clean HTML code with proper tag structure.",
+                            "title": "Part 2 - Adding Images",
+                            "videoTitle": "Adding Images to Your Webpage",
+                            "description": "Learn about different image file types (GIF, JPEG, PNG) and how to add images to your webpage using the img tag with src and alt attributes.",
                             "videoSrc": "videos/lesson03-part02.mp4",
                             "keyConcepts": [
-                                "Heading tags (H1-H6) and text hierarchy",
-                                "Paragraph tags for text blocks and line breaks",
-                                "Text formatting tags: strong (bold), em (italic), and u (underline)",
-                                "Importance of properly closing HTML tags"
+                                "Image file types: GIF, JPEG/JPG, PNG",
+                                "img tag for adding images",
+                                "src attribute to specify image location",
+                                "alt attribute for accessibility and descriptions"
                             ],
                             "quiz": {
                                 "question1": {
-                                    "text": "What is the difference between H1 and H6 tags?",
+                                    "text": "Which image file type is best for images that need transparency?",
                                     "options": [
-                                        { "value": "a", "text": "H1 is for images, H6 is for text" },
-                                        { "value": "b", "text": "H1 is the most important/largest heading, H6 is the least important/smallest" },
-                                        { "value": "c", "text": "They are exactly the same" },
-                                        { "value": "d", "text": "H6 is more important than H1" }
+                                        { "value": "a", "text": "JPEG" },
+                                        { "value": "b", "text": "PNG" },
+                                        { "value": "c", "text": "GIF" },
+                                        { "value": "d", "text": "All of them support transparency equally" }
                                     ],
                                     "correct": "b"
                                 },
                                 "question2": {
-                                    "text": "What is the purpose of the <p> (paragraph) tag?",
+                                    "text": "Which attribute specifies the path to the image file?",
                                     "options": [
-                                        { "value": "a", "text": "To make text bold" },
-                                        { "value": "b", "text": "To create line breaks and separate text into paragraphs" },
-                                        { "value": "c", "text": "To add colors to text" },
-                                        { "value": "d", "text": "To create headings" }
+                                        { "value": "a", "text": "href" },
+                                        { "value": "b", "text": "link" },
+                                        { "value": "c", "text": "src" },
+                                        { "value": "d", "text": "path" }
                                     ],
-                                    "correct": "b"
+                                    "correct": "c"
                                 },
                                 "question3": {
-                                    "text": "What happens if you forget to close an HTML tag (like forgetting </strong>)?",
+                                    "text": "What is the purpose of the alt attribute in an img tag?",
                                     "options": [
-                                        { "value": "a", "text": "Nothing, HTML doesn't need closing tags" },
-                                        { "value": "b", "text": "The browser will show an error message" },
-                                        { "value": "c", "text": "The formatting will continue for all text after it until the end" },
-                                        { "value": "d", "text": "The page will not load at all" }
+                                        { "value": "a", "text": "To resize the image" },
+                                        { "value": "b", "text": "To add a border to the image" },
+                                        { "value": "c", "text": "To provide alternative text description for accessibility" },
+                                        { "value": "d", "text": "To make the image clickable" }
                                     ],
                                     "correct": "c"
                                 }
@@ -555,47 +556,91 @@
                         },
                         {
                             "id": 3,
-                            "title": "Part 3 - HTML Lists and Elements",
-                            "videoTitle": "Creating Lists and Understanding HTML Elements",
-                            "description": "Learn how to create bullet point lists and numbered lists using UL and OL tags. Understand the concept of HTML elements and nesting tags.",
+                            "title": "Part 3 - Semantic HTML",
+                            "videoTitle": "Semantic HTML Tags",
+                            "description": "Learn about semantic HTML tags that give meaning to the structure of your webpage, including header, footer, nav, main, and section tags for better organization and accessibility.",
                             "videoSrc": "videos/lesson03-part03.mp4",
                             "keyConcepts": [
-                                "Unordered lists (UL) for bullet points",
-                                "Ordered lists (OL) for numbered lists",
-                                "List items (LI) used within UL and OL",
-                                "Understanding HTML elements (opening tag + content + closing tag)",
-                                "Nesting tags - putting tags inside other tags"
+                                "What semantic tags are and why they matter",
+                                "Structural tags: header, footer, nav, main, section",
+                                "Organizing page layout with semantic HTML",
+                                "Improving code readability and accessibility"
                             ],
                             "quiz": {
                                 "question1": {
-                                    "text": "What is the difference between <ul> and <ol> tags?",
+                                    "text": "What is the purpose of semantic HTML tags?",
                                     "options": [
-                                        { "value": "a", "text": "<ul> creates numbered lists, <ol> creates bullet points" },
-                                        { "value": "b", "text": "<ul> creates bullet points, <ol> creates numbered lists" },
-                                        { "value": "c", "text": "They are exactly the same" },
-                                        { "value": "d", "text": "<ul> is for paragraphs, <ol> is for headings" }
+                                        { "value": "a", "text": "To make text colorful" },
+                                        { "value": "b", "text": "To give meaning and structure to web content" },
+                                        { "value": "c", "text": "To add images" },
+                                        { "value": "d", "text": "To create animations" }
                                     ],
                                     "correct": "b"
                                 },
                                 "question2": {
-                                    "text": "Which tag do you use for individual items inside a list?",
+                                    "text": "Which semantic tag is typically used for the top section of a webpage?",
                                     "options": [
-                                        { "value": "a", "text": "<item>" },
-                                        { "value": "b", "text": "<list>" },
-                                        { "value": "c", "text": "<li>" },
-                                        { "value": "d", "text": "<bullet>" }
+                                        { "value": "a", "text": "<top>" },
+                                        { "value": "b", "text": "<header>" },
+                                        { "value": "c", "text": "<head>" },
+                                        { "value": "d", "text": "<section>" }
+                                    ],
+                                    "correct": "b"
+                                },
+                                "question3": {
+                                    "text": "Which semantic tag is best for navigation menu links?",
+                                    "options": [
+                                        { "value": "a", "text": "<menu>" },
+                                        { "value": "b", "text": "<links>" },
+                                        { "value": "c", "text": "<nav>" },
+                                        { "value": "d", "text": "<navigation>" }
+                                    ],
+                                    "correct": "c"
+                                }
+                            }
+                        },
+                        {
+                            "id": 4,
+                            "title": "Part 4 - Introduction to CSS",
+                            "videoTitle": "Getting Started with CSS",
+                            "description": "Get introduced to CSS (Cascading Style Sheets), the language used to style and beautify HTML elements. Learn how CSS works with HTML to create visually appealing webpages.",
+                            "videoSrc": "videos/lesson03-part04.mp4",
+                            "keyConcepts": [
+                                "What CSS is and its purpose",
+                                "How CSS works with HTML",
+                                "The relationship between HTML structure and CSS styling",
+                                "Basic concept of styling elements"
+                            ],
+                            "quiz": {
+                                "question1": {
+                                    "text": "What does CSS stand for?",
+                                    "options": [
+                                        { "value": "a", "text": "Computer Style Sheets" },
+                                        { "value": "b", "text": "Cascading Style Sheets" },
+                                        { "value": "c", "text": "Creative Style System" },
+                                        { "value": "d", "text": "Colorful Style Sheets" }
+                                    ],
+                                    "correct": "b"
+                                },
+                                "question2": {
+                                    "text": "What is the main purpose of CSS?",
+                                    "options": [
+                                        { "value": "a", "text": "To create the structure of a webpage" },
+                                        { "value": "b", "text": "To add interactivity to a webpage" },
+                                        { "value": "c", "text": "To style and format the appearance of HTML elements" },
+                                        { "value": "d", "text": "To store data in a database" }
                                     ],
                                     "correct": "c"
                                 },
                                 "question3": {
-                                    "text": "What is 'nesting' in HTML?",
+                                    "text": "How do HTML and CSS work together?",
                                     "options": [
-                                        { "value": "a", "text": "Making text bold" },
-                                        { "value": "b", "text": "Putting tags inside other tags" },
-                                        { "value": "c", "text": "Creating line breaks" },
-                                        { "value": "d", "text": "Adding colors to text" }
+                                        { "value": "a", "text": "HTML provides structure, CSS provides styling" },
+                                        { "value": "b", "text": "They don't work together" },
+                                        { "value": "c", "text": "CSS provides structure, HTML provides styling" },
+                                        { "value": "d", "text": "They are the same language" }
                                     ],
-                                    "correct": "b"
+                                    "correct": "a"
                                 }
                             }
                         }
