@@ -1,0 +1,144 @@
+{
+  "lessonInfo": {
+    "title": "Python Programming Level 1 - Lesson 3",
+    "totalParts": 3,
+    "description": "User Input and Math Operations",
+    "masteryTopics": [
+      "User Input",
+      "Type Conversion",
+      "Math Operations"
+    ]
+  },
+  "parts": [
+    {
+      "id": 1,
+      "title": "Part 1 - User Input",
+      "videoTitle": "User Input",
+      "description": "In this video you will learn about getting some information from the user of your program and storing it in a variable to use later.",
+      "videoSrc": "videos/lesson03-part01.mp4",
+      "keyConcepts": [
+        "input() function",
+        "Syntax for using input() function"
+      ],
+      "quiz": {
+        "question1": {
+          "text": "What does the input() function do in Python?",
+          "options": [
+            { "value": "a", "text": "Displays text on the screen" },
+            { "value": "b", "text": "Gets information from the user" },
+            { "value": "c", "text": "Adds two numbers together" },
+            { "value": "d", "text": "Stops the program" }
+          ],
+          "correct": "b"
+        },
+        "question2": {
+          "text": "Which of these is the correct way to ask the user for their name and store it?",
+          "options": [
+            { "value": "a", "text": "name = input(\"Enter your name:\")" },
+            { "value": "b", "text": "input = name(\"Enter your name:\")" },
+            { "value": "c", "text": "name = print(\"Enter your name:\")" },
+            { "value": "d", "text": "input(\"Enter your name:\") = name" }
+          ],
+          "correct": "a"
+        },
+        "question3": {
+          "text": "What happens if you use commas inside input() instead of a single string?",
+          "options": [
+            { "value": "a", "text": "It still works the same way" },
+            { "value": "b", "text": "It prints commas on the screen" },
+            { "value": "c", "text": "It joins everything automatically" },
+            { "value": "d", "text": "It gives an error" }
+          ],
+          "correct": "d"
+        }
+      }
+    },
+    {
+      "id": 2,
+      "title": "Part 2 - User Input for Numbers",
+      "videoTitle": "User Input for Numbers",
+      "description": "In this video you will learn about getting numerical information from the user of your program and how we can perform math operations on it.",
+      "videoSrc": "videos/lesson03-part02.mp4",
+      "keyConcepts": [
+        "Why input() doesn't give back numbers",
+        "Converting variable types"
+      ],
+      "quiz": {
+        "question1": {
+          "text": "What type of variable is user_var in this code?\nuser_var = input(\"Enter a number: \")",
+          "options": [
+            { "value": "a", "text": "Integer (int)" },
+            { "value": "b", "text": "Floating point number (float)" },
+            { "value": "c", "text": "Boolean (bool)" },
+            { "value": "d", "text": "String (str)" }
+          ],
+          "correct": "d"
+        },
+        "question2": {
+          "text": "What does the int() function do?",
+          "options": [
+            { "value": "a", "text": "Converts a number to text" },
+            { "value": "b", "text": "Converts text that looks like a number into an integer" },
+            { "value": "c", "text": "Takes input from the user" },
+            { "value": "d", "text": "Joins two strings" }
+          ],
+          "correct": "b"
+        },
+        "question3": {
+          "text": "Which one of these print() calls will NOT work for displaying the following sentence? (The number 7 is the value of an integer variable called time.)\n    I woke up today at 7.",
+          "options": [
+            { "value": "a", "text": "print(\"I woke up today at \" + time + \".\")" },
+            { "value": "b", "text": "print(\"I woke up today at \", time, \".\", sep=\"\")" },
+            { "value": "c", "text": "print(\"I woke up today at \" + str(time) + \".\")" },
+            { "value": "d", "text": "print(\"I woke up today at\", str(time) + \".\")" }
+          ],
+          "correct": "a"
+        }
+      }
+    },
+    {
+      "id": 3,
+      "title": "Part 3 - Math Operators",
+      "videoTitle": "Math Operators",
+      "description": "In this video you will learn more about some other math operators for numbers in Python.",
+      "videoSrc": "videos/lesson03-part03.mp4",
+      "keyConcepts": [
+        "Basic math operators",
+        "Types of division",
+        "Order of operations"
+      ],
+      "quiz": {
+        "question1": {
+          "text": "What is the data type of the result of 7 / 2?",
+          "options": [
+            { "value": "a", "text": "int" },
+            { "value": "b", "text": "float" },
+            { "value": "c", "text": "str" },
+            { "value": "d", "text": "bool" }
+          ],
+          "correct": "b"
+        },
+        "question2": {
+          "text": "What is the result of 10.0 % 3?",
+          "options": [
+            { "value": "a", "text": "1.0" },
+            { "value": "b", "text": "3" },
+            { "value": "c", "text": "1" },
+            { "value": "d", "text": "3.33" }
+          ],
+          "correct": "a"
+        },
+        "question3": {
+          "text": "What is the result of 10 // 3?",
+          "options": [
+            { "value": "a", "text": "1" },
+            { "value": "b", "text": "3.33" },
+            { "value": "c", "text": "3" },
+            { "value": "d", "text": "3.0" }
+          ],
+          "correct": "c"
+        }
+      }
+    }
+  ]
+}
