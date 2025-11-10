@@ -1,0 +1,194 @@
+{
+  "lessonInfo": {
+    "title": "Web Development Level 1 - Lesson 3",
+    "totalParts": 4,
+    "description": "Links, Images, and Introduction to CSS",
+    "masteryTopics": [
+      "Creating Hyperlinks",
+      "Adding Images",
+      "Semantic HTML",
+      "Introduction to CSS"
+    ]
+  },
+  "parts": [
+    {
+      "id": 1,
+      "title": "Part 1 - Creating Links",
+      "videoTitle": "Creating Links in HTML",
+      "description": "Learn how to create hyperlinks using the anchor tag. Understand href and target attributes to link to other pages and control how links open.",
+      "videoSrc": "videos/lesson03-part01.mp4",
+      "keyConcepts": [
+        "Anchor tag (<a>) for creating links",
+        "href attribute to specify link destination",
+        "target attribute to open links in new tabs"
+      ],
+      "quiz": {
+        "question1": {
+          "text": "Which tag is used to create a link in HTML?",
+          "options": [
+            { "value": "a", "text": "<link>" },
+            { "value": "b", "text": "<a>" },
+            { "value": "c", "text": "<href>" },
+            { "value": "d", "text": "<url>" }
+          ],
+          "correct": "b"
+        },
+        "question2": {
+          "text": "Which attribute specifies where the link should go?",
+          "options": [
+            { "value": "a", "text": "src" },
+            { "value": "b", "text": "link" },
+            { "value": "c", "text": "href" },
+            { "value": "d", "text": "url" }
+          ],
+          "correct": "c"
+        },
+        "question3": {
+          "text": "What value do you use for the target attribute to open a link in a new tab?",
+          "options": [
+            { "value": "a", "text": "target=\"new\"" },
+            { "value": "b", "text": "target=\"_blank\"" },
+            { "value": "c", "text": "target=\"tab\"" },
+            { "value": "d", "text": "target=\"_new\"" }
+          ],
+          "correct": "b"
+        }
+      }
+    },
+    {
+      "id": 2,
+      "title": "Part 2 - Adding Images",
+      "videoTitle": "Adding Images to Your Webpage",
+      "description": "Learn about different image file types (GIF, JPEG, PNG) and how to add images to your webpage using the img tag with src and alt attributes.",
+      "videoSrc": "videos/lesson03-part02.mp4",
+      "keyConcepts": [
+        "Image file types: GIF, JPEG/JPG, PNG",
+        "img tag for adding images",
+        "src attribute to specify image location",
+        "alt attribute for accessibility and descriptions"
+      ],
+      "quiz": {
+        "question1": {
+          "text": "Which image file type is best for images that need transparency?",
+          "options": [
+            { "value": "a", "text": "JPEG" },
+            { "value": "b", "text": "PNG" },
+            { "value": "c", "text": "GIF" },
+            { "value": "d", "text": "All of them support transparency equally" }
+          ],
+          "correct": "b"
+        },
+        "question2": {
+          "text": "Which attribute specifies the path to the image file?",
+          "options": [
+            { "value": "a", "text": "href" },
+            { "value": "b", "text": "link" },
+            { "value": "c", "text": "src" },
+            { "value": "d", "text": "path" }
+          ],
+          "correct": "c"
+        },
+        "question3": {
+          "text": "What is the purpose of the alt attribute in an img tag?",
+          "options": [
+            { "value": "a", "text": "To resize the image" },
+            { "value": "b", "text": "To add a border to the image" },
+            { "value": "c", "text": "To provide alternative text description for accessibility" },
+            { "value": "d", "text": "To make the image clickable" }
+          ],
+          "correct": "c"
+        }
+      }
+    },
+    {
+      "id": 3,
+      "title": "Part 3 - Semantic HTML",
+      "videoTitle": "Semantic HTML Tags",
+      "description": "Learn about semantic HTML tags that give meaning to the structure of your webpage, including header, footer, nav, main, and section tags for better organization and accessibility.",
+      "videoSrc": "videos/lesson03-part03.mp4",
+      "keyConcepts": [
+        "What semantic tags are and why they matter",
+        "Structural tags: header, footer, nav, main, section",
+        "Organizing page layout with semantic HTML",
+        "Improving code readability and accessibility"
+      ],
+      "quiz": {
+        "question1": {
+          "text": "What is the purpose of semantic HTML tags?",
+          "options": [
+            { "value": "a", "text": "To make text colorful" },
+            { "value": "b", "text": "To give meaning and structure to web content" },
+            { "value": "c", "text": "To add images" },
+            { "value": "d", "text": "To create animations" }
+          ],
+          "correct": "b"
+        },
+        "question2": {
+          "text": "Which semantic tag is typically used for the top section of a webpage?",
+          "options": [
+            { "value": "a", "text": "<top>" },
+            { "value": "b", "text": "<header>" },
+            { "value": "c", "text": "<head>" },
+            { "value": "d", "text": "<section>" }
+          ],
+          "correct": "b"
+        },
+        "question3": {
+          "text": "Which semantic tag is best for navigation menu links?",
+          "options": [
+            { "value": "a", "text": "<menu>" },
+            { "value": "b", "text": "<links>" },
+            { "value": "c", "text": "<nav>" },
+            { "value": "d", "text": "<navigation>" }
+          ],
+          "correct": "c"
+        }
+      }
+    },
+    {
+      "id": 4,
+      "title": "Part 4 - Introduction to CSS",
+      "videoTitle": "Getting Started with CSS",
+      "description": "Get introduced to CSS (Cascading Style Sheets), the language used to style and beautify HTML elements. Learn how CSS works with HTML to create visually appealing webpages.",
+      "videoSrc": "videos/lesson03-part04.mp4",
+      "keyConcepts": [
+        "What CSS is and its purpose",
+        "How CSS works with HTML",
+        "The relationship between HTML structure and CSS styling",
+        "Basic concept of styling elements"
+      ],
+      "quiz": {
+        "question1": {
+          "text": "What does CSS stand for?",
+          "options": [
+            { "value": "a", "text": "Computer Style Sheets" },
+            { "value": "b", "text": "Cascading Style Sheets" },
+            { "value": "c", "text": "Creative Style System" },
+            { "value": "d", "text": "Colorful Style Sheets" }
+          ],
+          "correct": "b"
+        },
+        "question2": {
+          "text": "What is the main purpose of CSS?",
+          "options": [
+            { "value": "a", "text": "To create the structure of a webpage" },
+            { "value": "b", "text": "To add interactivity to a webpage" },
+            { "value": "c", "text": "To style and format the appearance of HTML elements" },
+            { "value": "d", "text": "To store data in a database" }
+          ],
+          "correct": "c"
+        },
+        "question3": {
+          "text": "How do HTML and CSS work together?",
+          "options": [
+            { "value": "a", "text": "HTML provides structure, CSS provides styling" },
+            { "value": "b", "text": "They don't work together" },
+            { "value": "c", "text": "CSS provides structure, HTML provides styling" },
+            { "value": "d", "text": "They are the same language" }
+          ],
+          "correct": "a"
+        }
+      }
+    }
+  ]
+}
