@@ -1,0 +1,143 @@
+{
+  "lessonInfo": {
+    "title": "Python Programming Level 1 - Lesson 4",
+    "totalParts": 3,
+    "description": "Branching and Boolean Logic",
+    "masteryTopics": [
+      "Flow of Control",
+      "Boolean Logic",
+      "Conditional Statements"
+    ]
+  },
+  "parts": [
+    {
+      "id": 1,
+      "title": "Part 1 - Branching",
+      "videoTitle": "Branching",
+      "description": "In this video you will learn about flow of control and branching which is a fundamental concept in programming",
+      "videoSrc": "videos/lesson04-part01.mp4",
+      "keyConcepts": [
+        "Flow of Control",
+        "Branching with conditions",
+        "Python syntax for branching"
+      ],
+      "quiz": {
+        "question1": {
+          "text": "What does branching in programming allow us to do?",
+          "options": [
+            { "value": "a", "text": "Repeat a block of code multiple times" },
+            { "value": "b", "text": "Store data in variables" },
+            { "value": "c", "text": "Choose between multiple paths of code execution" },
+            { "value": "d", "text": "Print text to the screen" }
+          ],
+          "correct": "c"
+        },
+        "question2": {
+          "text": "What happens to the indented lines under an if statement if the condition is False?",
+          "options": [
+            { "value": "a", "text": "They are executed anyway" },
+            { "value": "b", "text": "They are skipped" },
+            { "value": "c", "text": "They cause an error" },
+            { "value": "d", "text": "They are converted to comments" }
+          ],
+          "correct": "b"
+        },
+        "question3": {
+          "text": "What does the else statement do in Python?",
+          "options": [
+            { "value": "a", "text": "Repeats the previous block" },
+            { "value": "b", "text": "Executes when the if condition is True" },
+            { "value": "c", "text": "Executes when the if condition is False" },
+            { "value": "d", "text": "Ends the program" }
+          ],
+          "correct": "c"
+        }
+      }
+    },
+    {
+      "id": 2,
+      "title": "Part 2 - Boolean Logic",
+      "videoTitle": "Boolean Logic",
+      "description": "In this video you will learn about checking multiple conditions in branching using elif and boolean logic.",
+      "videoSrc": "videos/lesson04-part02.mp4",
+      "keyConcepts": [
+        "Testing Multiple conditions",
+        "Boolean Logic",
+        "Logical Operators"
+      ],
+      "quiz": {
+        "question1": {
+          "text": "In a single if / elif / else branching structure in Python:",
+          "options": [
+            { "value": "a", "text": "You can have many if, many elif, and many else statements" },
+            { "value": "b", "text": "You can have exactly one if, multiple elif (optional), and at most one else (optional)" },
+            { "value": "c", "text": "You must have exactly one of each: one if, one elif, and one else" },
+            { "value": "d", "text": "You can only use if without elif or else" }
+          ],
+          "correct": "b"
+        },
+        "question2": {
+          "text": "If the first if condition is True, what happens next?",
+          "options": [
+            { "value": "a", "text": "Python still checks the elif and else parts" },
+            { "value": "b", "text": "Python stops checking other conditions and exits the whole chain" },
+            { "value": "c", "text": "Python skips the if block and runs else" },
+            { "value": "d", "text": "Python gives an error" }
+          ],
+          "correct": "b"
+        },
+        "question3": {
+          "text": "In Python, how do the logical operators and and or work?",
+          "options": [
+            { "value": "a", "text": "and is True if either condition is True; or is True only if both are True" },
+            { "value": "b", "text": "and is True only if both conditions are True; or is True if at least one condition is True" },
+            { "value": "c", "text": "Both and and or always make the condition False" },
+            { "value": "d", "text": "and reverses the condition; or checks for equality" }
+          ],
+          "correct": "b"
+        }
+      }
+    },
+    {
+      "id": 3,
+      "title": "Part 3 - Coding Practice",
+      "videoTitle": "Coding Practice",
+      "description": "In this video you will practice branching and boolean logic with code examples.",
+      "videoSrc": "videos/lesson04-part03.mp4",
+      "keyConcepts": [
+        "Branching with strings",
+        "Using Logical operators"
+      ],
+      "quiz": {
+        "question1": {
+          "text": "In Python, == is comparison and = is assignment:",
+          "options": [
+            { "value": "a", "text": "True" },
+            { "value": "b", "text": "False" }
+          ],
+          "correct": "a"
+        },
+        "question2": {
+          "text": "What is printed when password = \"welcome123\" for the following code:\nif password == \"Welcome123\":\n            print(\"Log In\")",
+          "options": [
+            { "value": "a", "text": "Log In" },
+            { "value": "b", "text": "Python gives an Error" },
+            { "value": "c", "text": "Nothing is printed, but no error" },
+            { "value": "d", "text": "Welcome123" }
+          ],
+          "correct": "c"
+        },
+        "question3": {
+          "text": "Which of the following expressions means the same thing as:\ncolor != \"red\" and color != \"blue\"",
+          "options": [
+            { "value": "a", "text": "color == \"red\" and color == \"blue\"" },
+            { "value": "b", "text": "not (color == \"red\" and color == \"blue\")" },
+            { "value": "c", "text": "not (color == \"red\" or color == \"blue\")" },
+            { "value": "d", "text": "color != \"red\" or color != \"blue\"" }
+          ],
+          "correct": "c"
+        }
+      }
+    }
+  ]
+}

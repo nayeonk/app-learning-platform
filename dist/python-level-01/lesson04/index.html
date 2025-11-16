@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Afghan Pathways Program - Python Level 1 - Lesson 4</title>
+
+    <!-- Local Tailwind CSS -->
+    <link rel="stylesheet" href="css/tailwind.css">
+
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#7f1d1d">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Afghan Pathways">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📚</text></svg>">
+</head>
+<body class="bg-gray-50 min-h-screen" x-data="videoApp()">
+
+    <!-- Header -->
+    <header class="bg-red-900 text-white shadow-lg">
+        <div class="max-w-4xl mx-auto px-4 py-6">
+            <h1 class="text-xl md:text-2xl font-bold text-center">
+                Afghan Pathways Program
+            </h1>
+            <p class="text-red-100 text-center mt-2 text-sm md:text-base">
+                Python Level 1 - Lesson 4
+            </p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-4xl mx-auto px-4 py-6">
+
+        <!-- Loading State -->
+        <div x-show="!contentLoaded" class="bg-white rounded-lg shadow-md p-4 md:p-6 mb-6">
+            <div class="text-center">
+                <div class="flex items-center justify-center mb-3">
+                    <div class="animate-spin rounded-full h-6 w-6 border-b-2 border-red-900 mr-3"></div>
+                    <span class="text-gray-600">Loading lesson content...</span>
+                </div>
+                <div class="text-xs text-gray-500">
+                    <p>📡 Trying to load from JSON file...</p>
+                    <p>🔄 If this takes too long, fallback content will load automatically</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Lesson Progress Bar -->
+        <div x-show="contentLoaded" class="bg-white rounded-lg shadow-md p-4 md:p-6 mb-6">
+            <div class="flex items-center justify-between mb-4">
+                <h2 class="text-lg font-semibold text-gray-800" x-text="currentPart ? currentPart.title : ''"></h2>
+                <span class="text-sm text-gray-500" x-text="`Part ${currentPartIndex + 1} of ${lessonParts.length}`"></span>
+            </div>
+
+            <!-- Progress Steps -->
+            <div class="flex items-center space-x-2 mb-4">
+                <template x-for="(part, index) in lessonParts" :key="index">
+                    <div class="flex items-center">
+                        <button
+                            @click="navigateToPart(index)"
+                            class="flex items-center justify-center w-8 h-8 rounded-full text-sm font-medium transition-colors"
+                            :class="index === currentPartIndex
+                                ? 'bg-red-900 text-white'
+                                : isQuizPassedCorrectly(index)
+                                    ? 'bg-green-600 text-white cursor-pointer hover:bg-green-700'
+                                    : canNavigateToPart(index)
+                                        ? 'bg-blue-600 text-white cursor-pointer hover:bg-blue-700'
+                                        : 'bg-gray-300 text-gray-500 cursor-not-allowed'"
+                            :disabled="!canNavigateToPart(index)"
+                            :title="canNavigateToPart(index)
+                                ? (isQuizPassedCorrectly(index) ? 'Completed' : 'Available')
+                                : 'Complete previous part first'"
+                        >
+                            <span x-show="isQuizPassedCorrectly(index)">✓</span>
+                            <span x-show="!isQuizPassedCorrectly(index)" x-text="index + 1"></span>
+                        </button>
+                        <div x-show="index < lessonParts.length - 1" class="w-8 h-0.5 mx-1"
+                             :class="isQuizPassedCorrectly(index) ? 'bg-green-600' : 'bg-gray-200'">
+                        </div>
+                    </div>
+                </template>
+            </div>
+
+            <!-- Navigation Buttons -->
+            <div class="flex justify-between">
+                <button
+                    @click="navigateToPart(currentPartIndex - 1)"
+                    :disabled="currentPartIndex === 0"
+                    class="px-4 py-2 text-sm font-medium rounded-lg transition-colors"
+                    :class="currentPartIndex === 0
+                        ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
+                        : 'bg-gray-200 text-gray-700 hover:bg-gray-300'"
+                >
+                    ← Previous
+                </button>
+                <button
+                    @click="navigateToPart(currentPartIndex + 1)"
+                    :disabled="currentPartIndex === lessonParts.length - 1 || !canNavigateToPart(currentPartIndex + 1)"
+                    class="px-4 py-2 text-sm font-medium rounded-lg transition-colors"
+                    :class="currentPartIndex === lessonParts.length - 1 || !canNavigateToPart(currentPartIndex + 1)
+                        ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
+                        : 'bg-red-900 text-white hover:bg-red-800'"
+                >
+                    Next →
+                </button>
+            </div>
+        </div>
+
+        <!-- Video Section -->
+        <div x-show="contentLoaded" class="bg-white rounded-lg shadow-md overflow-hidden mb-6">
+            <div class="aspect-video bg-black relative">
+                <video
+                    x-ref="videoPlayer"
+                    class="w-full h-full"
+                    controls
+                    preload="metadata"
+                    :src="currentPart ? currentPart.videoSrc : 'videos/lesson04-part01.mp4'"
+                    @loadedmetadata="onVideoLoaded()"
+                    @timeupdate="onTimeUpdate()"
+                    @ended="onVideoEnded()"
+                    poster="app-logo.jpg"
+                >
+                    <p class="text-center text-gray-600 p-8">
+                        Your browser doesn't support video playback. Please update your browser or try a different device.
+                    </p>
+                </video>
+
+                <!-- Loading Overlay -->
+                <div x-show="loading" class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+                    <div class="text-white text-center">
+                        <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-white mx-auto mb-2"></div>
+                        <p>Loading video...</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Video Info -->
+            <div class="p-4 md:p-6">
+                <h2 class="text-lg md:text-xl font-semibold text-gray-800 mb-2" x-text="`Lesson 4 | ${currentPart.title}`">
+                </h2>
+                <p class="text-gray-600 text-sm md:text-base mb-4" x-text="currentPart.description">
+                </p>
+
+                <!-- Key Concepts -->
+                <div class="mb-6 pt-4 border-t border-gray-200">
+                    <h3 class="text-base font-semibold text-gray-800 mb-3">Key Concepts</h3>
+                    <ul class="space-y-2 text-gray-700">
+                        <template x-for="concept in currentPart.keyConcepts" :key="concept">
+                            <li class="flex items-start">
+                                <span class="text-red-900 mr-2 mt-1 text-sm">•</span>
+                                <span class="text-xs md:text-sm" x-text="concept"></span>
+                            </li>
+                        </template>
+                    </ul>
+                </div>
+
+                <!-- Course Materials -->
+                <div class="mb-6 pt-4 border-t border-gray-200">
+                    <h3 class="text-base font-semibold text-gray-800 mb-3">📚 Course Materials</h3>
+                    <div class="text-sm">
+                        <a href="lesson04-slides.pdf" target="_blank" class="text-blue-700 hover:text-blue-900 hover:underline">
+                            📄 Lesson 4 Slides (PDF)
+                        </a>
+                        <span class="mx-2 text-gray-400">|</span>
+                        <a href="assignment03.pdf" target="_blank" class="text-blue-700 hover:text-blue-900 hover:underline">
+                            📝 Assignment 3 (PDF)
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Video Stats -->
+                <div class="flex justify-between text-xs md:text-sm text-gray-500">
+                    <span x-text="currentTimeFormatted + ' / ' + durationFormatted"></span>
+                    <span x-show="videoLoaded" class="text-green-600">✓ Video loaded</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Completion Screen -->
+        <div x-show="contentLoaded && allPartsCompleted()" class="bg-gradient-to-br from-green-50 to-blue-50 rounded-lg shadow-lg p-6 md:p-8 mb-6 text-center border-2 border-green-200">
+            <div class="mb-6">
+                <div class="text-6xl md:text-7xl mb-4">🎉</div>
+                <h2 class="text-2xl md:text-3xl font-bold text-green-800 mb-2">
+                    Congratulations!
+                </h2>
+                <p class="text-lg md:text-xl text-green-700 mb-4">
+                    You've successfully completed all parts of Lesson 4!
+                </p>
+                <div class="bg-white rounded-lg p-4 mb-6 inline-block shadow-md">
+                    <div class="flex items-center justify-center space-x-4 text-green-600">
+                        <div class="text-center">
+                            <div class="text-2xl font-bold" x-text="lessonParts.length"></div>
+                            <div class="text-xs">Parts</div>
+                        </div>
+                        <div class="text-2xl">✓</div>
+                        <div class="text-center">
+                            <div class="text-2xl font-bold" x-text="Object.keys(progressData.quizzesCompleted).length"></div>
+                            <div class="text-xs">Quizzes</div>
+                        </div>
+                        <div class="text-2xl">✓</div>
+                        <div class="text-center">
+                            <div class="text-2xl font-bold">100%</div>
+                            <div class="text-xs">Complete</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="space-y-4">
+                <div class="bg-white rounded-lg p-4 shadow-md">
+                    <h3 class="font-semibold text-gray-800 mb-2">🏆 What You've Mastered</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-sm">
+                        <template x-for="(topic, index) in lessonInfo.masteryTopics" :key="index">
+                            <div class="flex items-center justify-center p-2 rounded-lg"
+                                 :class="{
+                                     'bg-green-100': index === 0,
+                                     'bg-blue-100': index === 1,
+                                     'bg-purple-100': index === 2
+                                 }">
+                                <span :class="{
+                                          'text-green-700': index === 0,
+                                          'text-blue-700': index === 1,
+                                          'text-purple-700': index === 2
+                                      }"
+                                      x-text="`✓ ${topic}`"></span>
+                            </div>
+                        </template>
+                    </div>
+                </div>
+
+                <div class="flex flex-col sm:flex-row gap-3 justify-center">
+                    <button
+                        @click="restartLesson()"
+                        class="px-6 py-3 bg-red-900 text-white rounded-lg hover:bg-red-800 transition-colors font-medium">
+                        🔄 Start Over
+                    </button>
+                    <a
+                        href="assignment03.pdf"
+                        target="_blank"
+                        class="px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-medium inline-block text-center">
+                        📚 Open Assignment 3
+                    </a>
+                </div>
+
+                <p class="text-sm text-gray-600 mt-4">
+                    Use the navigation above to review any part of this lesson
+                </p>
+            </div>
+        </div>
+
+        <!-- Quiz Section -->
+        <div x-show="contentLoaded && showQuiz" x-transition class="bg-white rounded-lg shadow-md p-4 md:p-6 mt-6">
+            <h3 class="text-lg font-semibold text-gray-800 mb-4">📝 Knowledge Check</h3>
+            <p class="text-gray-600 text-sm mb-6">Test your understanding of the concepts covered in this lesson.</p>
+
+            <form @submit.prevent="checkAnswers()">
+                <!-- Dynamic Questions -->
+                <template x-for="(question, questionKey) in currentPart.quiz" :key="questionKey">
+                    <div class="mb-6">
+                        <h4 class="font-medium text-gray-800 mb-3" x-text="`${Object.keys(currentPart.quiz).indexOf(questionKey) + 1}. ${question.text}`"></h4>
+                        <div class="space-y-2">
+                            <template x-for="option in question.options" :key="option.value">
+                                <label class="flex items-start cursor-pointer"
+                                       :class="questionResults[questionKey] === 'correct' && answers[questionKey] === option.value && option.value === question.correct
+                                            ? 'text-green-600 font-medium'
+                                            : questionResults[questionKey] === 'wrong' && answers[questionKey] === option.value
+                                                ? 'text-red-600' : ''">
+                                    <input type="radio" :name="questionKey" :value="option.value" x-model="answers[questionKey]" class="mt-1 mr-3 text-red-900 focus:ring-red-900">
+                                    <span class="text-sm">
+                                        <code x-show="option.text.includes('<')" class="bg-gray-100 px-1 rounded" x-text="option.text"></code>
+                                        <span x-show="!option.text.includes('<')" x-text="option.text"></span>
+                                    </span>
+                                </label>
+                            </template>
+                        </div>
+                        <div x-show="questionResults[questionKey]" class="mt-2">
+                            <span x-show="questionResults[questionKey] === 'correct'" class="text-green-600 text-sm font-medium">✓ Correct!</span>
+                            <span x-show="questionResults[questionKey] === 'wrong'" class="text-red-600 text-sm font-medium">✗ Incorrect. Try again!</span>
+                        </div>
+                    </div>
+                </template>
+
+                <!-- Submit Button -->
+                <div class="flex justify-between items-center">
+                    <button type="submit" class="bg-red-900 text-white px-6 py-2 rounded-lg hover:bg-red-800 transition-colors text-sm font-medium">
+                        Check Answers
+                    </button>
+                    <div x-show="quizCompleted && allCorrect" class="text-green-600 text-sm font-medium">
+                        <span x-text="`🎉 Great job! You got all ${Object.keys(currentPart.quiz).length} questions right!`"></span>
+                    </div>
+                </div>
+            </form>
+
+            <!-- Next Lesson Button -->
+            <div x-show="quizCompleted && allCorrect" x-transition class="mt-6 p-4 bg-green-50 border border-green-200 rounded-lg">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h4 class="font-medium text-green-800 mb-1">Ready for the next part!</h4>
+                        <p class="text-green-600 text-sm" x-text="`You've mastered the basics. Continue to Part ${currentPartIndex + 2}.`"></p>
+                    </div>
+                    <button @click="goToNextLesson()" class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors text-sm font-medium" x-text="`Next: Part ${currentPartIndex + 2} →`">
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Online Status -->
+        <div x-show="contentLoaded" class="mt-4 bg-white rounded-lg shadow-md p-4 md:p-6">
+
+            <!-- Offline Status -->
+            <div class="p-3 rounded-lg" :class="isOnline ? 'bg-green-50 border border-green-200' : 'bg-yellow-50 border border-yellow-200'">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <span x-show="isOnline" class="text-green-600">🟢</span>
+                        <span x-show="!isOnline" class="text-yellow-600">🟡</span>
+                    </div>
+                    <div class="ml-3">
+                        <p class="text-sm font-medium" :class="isOnline ? 'text-green-800' : 'text-yellow-800'">
+                            <span x-show="isOnline">Online</span>
+                            <span x-show="!isOnline">Offline Mode</span>
+                        </p>
+                        <p class="text-xs" :class="isOnline ? 'text-green-600' : 'text-yellow-600'">
+                            <span x-show="isOnline">Content is cached for offline use</span>
+                            <span x-show="!isOnline">You can continue learning without internet</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white mt-12">
+        <div class="max-w-4xl mx-auto px-4 py-6 text-center">
+            <p class="text-sm text-gray-300">
+                © 2025 Afghan Pathways Program - Empowering through Education
+            </p>
+            <p class="text-xs text-gray-400 mt-1">
+                This application works offline to support learning anywhere
+            </p>
+        </div>
+    </footer>
+
+    <!-- Local Alpine.js -->
+    <script src="js/alpine.min.js" defer></script>
+
+    <script>
+        // Alpine.js component
+        function videoApp() {
+            return {
+                loading: true,
+                videoLoaded: false,
+                progress: 0,
+                currentTime: 0,
+                duration: 0,
+                isOnline: navigator.onLine,
+
+                // Content loaded from JSON
+                lessonInfo: null,
+                lessonParts: [],
+                currentPartIndex: 0,
+                contentLoaded: false,
+
+                // Progress tracking
+                progressData: {
+                    videosWatched: {}, // { partIndex: true/false }
+                    quizzesCompleted: {}, // { partIndex: { completed: true, answers: {...}, results: {...} } }
+                },
+
+                // Quiz functionality
+                showQuiz: false,
+                quizCompleted: false,
+                allCorrect: false,
+                answers: {},
+                questionResults: {},
+
+                // Computed property for current part
+                get currentPart() {
+                    return this.lessonParts[this.currentPartIndex] || null;
+                },
+
+                get currentTimeFormatted() {
+                    return this.formatTime(this.currentTime);
+                },
+
+                get durationFormatted() {
+                    return this.formatTime(this.duration);
+                },
+
+                formatTime(seconds) {
+                    const mins = Math.floor(seconds / 60);
+                    const secs = Math.floor(seconds % 60);
+                    return `${mins}:${secs.toString().padStart(2, '0')}`;
+                },
+
+                onVideoLoaded() {
+                    this.loading = false;
+                    this.videoLoaded = true;
+                    this.duration = this.$refs.videoPlayer.duration || 0;
+                },
+
+                onTimeUpdate() {
+                    const video = this.$refs.videoPlayer;
+                    this.currentTime = video.currentTime;
+                    if (this.duration > 0) {
+                        this.progress = (this.currentTime / this.duration) * 100;
+                    }
+
+                    // Mark video as watched when user reaches 80% or more
+                    if (this.progress >= 80 && !this.isVideoWatched(this.currentPartIndex)) {
+                        this.markVideoWatched(this.currentPartIndex);
+                    }
+                },
+
+                onVideoEnded() {
+                    this.progress = 100;
+                    // Mark video as watched and show quiz
+                    this.markVideoWatched(this.currentPartIndex);
+                },
+
+                // Content loading
+                async loadLessonContent() {
+                    try {
+                        const response = await fetch('./lesson-content.json');
+
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! status: ${response.status}`);
+                        }
+
+                        const data = await response.json();
+
+                        this.lessonInfo = data.lessonInfo;
+                        this.lessonParts = data.parts;
+                        this.contentLoaded = true;
+
+                        // Initialize video after content is loaded
+                        this.$nextTick(() => {
+                            this.loading = false;
+                        });
+                    } catch (error) {
+                        console.error('Failed to load lesson content:', error);
+                        console.log('Loading fallback content...');
+
+                        // Fallback to embedded content for file:// protocol
+                        this.loadFallbackContent();
+                    }
+                },
+
+                // Fallback content when JSON loading fails (e.g., file:// protocol)
+                loadFallbackContent() {
+                    this.lessonInfo = {
+                        "title": "Python Programming Level 1 - Lesson 4",
+                        "totalParts": 3,
+                        "description": "Branching and Boolean Logic",
+                        "masteryTopics": [
+                            "Flow of Control",
+                            "Boolean Logic",
+                            "Conditional Statements"
+                        ]
+                    };
+
+                    this.lessonParts = [
+                        {
+                            "id": 1,
+                            "title": "Part 1 - Branching",
+                            "videoTitle": "Branching",
+                            "description": "In this video you will learn about flow of control and branching which is a fundamental concept in programming",
+                            "videoSrc": "videos/lesson04-part01.mp4",
+                            "keyConcepts": [
+                                "Flow of Control",
+                                "Branching with conditions",
+                                "Python syntax for branching"
+                            ],
+                            "quiz": {
+                                "question1": {
+                                    "text": "What does branching in programming allow us to do?",
+                                    "options": [
+                                        { "value": "a", "text": "Repeat a block of code multiple times" },
+                                        { "value": "b", "text": "Store data in variables" },
+                                        { "value": "c", "text": "Choose between multiple paths of code execution" },
+                                        { "value": "d", "text": "Print text to the screen" }
+                                    ],
+                                    "correct": "c"
+                                },
+                                "question2": {
+                                    "text": "What happens to the indented lines under an if statement if the condition is False?",
+                                    "options": [
+                                        { "value": "a", "text": "They are executed anyway" },
+                                        { "value": "b", "text": "They are skipped" },
+                                        { "value": "c", "text": "They cause an error" },
+                                        { "value": "d", "text": "They are converted to comments" }
+                                    ],
+                                    "correct": "b"
+                                },
+                                "question3": {
+                                    "text": "What does the else statement do in Python?",
+                                    "options": [
+                                        { "value": "a", "text": "Repeats the previous block" },
+                                        { "value": "b", "text": "Executes when the if condition is True" },
+                                        { "value": "c", "text": "Executes when the if condition is False" },
+                                        { "value": "d", "text": "Ends the program" }
+                                    ],
+                                    "correct": "c"
+                                }
+                            }
+                        },
+                        {
+                            "id": 2,
+                            "title": "Part 2 - Boolean Logic",
+                            "videoTitle": "Boolean Logic",
+                            "description": "In this video you will learn about checking multiple conditions in branching using elif and boolean logic.",
+                            "videoSrc": "videos/lesson04-part02.mp4",
+                            "keyConcepts": [
+                                "Testing Multiple conditions",
+                                "Boolean Logic",
+                                "Logical Operators"
+                            ],
+                            "quiz": {
+                                "question1": {
+                                    "text": "In a single if / elif / else branching structure in Python:",
+                                    "options": [
+                                        { "value": "a", "text": "You can have many if, many elif, and many else statements" },
+                                        { "value": "b", "text": "You can have exactly one if, multiple elif (optional), and at most one else (optional)" },
+                                        { "value": "c", "text": "You must have exactly one of each: one if, one elif, and one else" },
+                                        { "value": "d", "text": "You can only use if without elif or else" }
+                                    ],
+                                    "correct": "b"
+                                },
+                                "question2": {
+                                    "text": "If the first if condition is True, what happens next?",
+                                    "options": [
+                                        { "value": "a", "text": "Python still checks the elif and else parts" },
+                                        { "value": "b", "text": "Python stops checking other conditions and exits the whole chain" },
+                                        { "value": "c", "text": "Python skips the if block and runs else" },
+                                        { "value": "d", "text": "Python gives an error" }
+                                    ],
+                                    "correct": "b"
+                                },
+                                "question3": {
+                                    "text": "In Python, how do the logical operators and and or work?",
+                                    "options": [
+                                        { "value": "a", "text": "and is True if either condition is True; or is True only if both are True" },
+                                        { "value": "b", "text": "and is True only if both conditions are True; or is True if at least one condition is True" },
+                                        { "value": "c", "text": "Both and and or always make the condition False" },
+                                        { "value": "d", "text": "and reverses the condition; or checks for equality" }
+                                    ],
+                                    "correct": "b"
+                                }
+                            }
+                        },
+                        {
+                            "id": 3,
+                            "title": "Part 3 - Coding Practice",
+                            "videoTitle": "Coding Practice",
+                            "description": "In this video you will practice branching and boolean logic with code examples.",
+                            "videoSrc": "videos/lesson04-part03.mp4",
+                            "keyConcepts": [
+                                "Branching with strings",
+                                "Using Logical operators"
+                            ],
+                            "quiz": {
+                                "question1": {
+                                    "text": "In Python, == is comparison and = is assignment:",
+                                    "options": [
+                                        { "value": "a", "text": "True" },
+                                        { "value": "b", "text": "False" }
+                                    ],
+                                    "correct": "a"
+                                },
+                                "question2": {
+                                    "text": "What is printed when password = \"welcome123\" for the following code:
+if password == \"Welcome123\":
+            print(\"Log In\")",
+                                    "options": [
+                                        { "value": "a", "text": "Log In" },
+                                        { "value": "b", "text": "Python gives an Error" },
+                                        { "value": "c", "text": "Nothing is printed, but no error" },
+                                        { "value": "d", "text": "Welcome123" }
+                                    ],
+                                    "correct": "c"
+                                },
+                                "question3": {
+                                    "text": "Which of the following expressions means the same thing as:
+color != \"red\" and color != \"blue\"",
+                                    "options": [
+                                        { "value": "a", "text": "color == \"red\" and color == \"blue\"" },
+                                        { "value": "b", "text": "not (color == \"red\" and color == \"blue\")" },
+                                        { "value": "c", "text": "not (color == \"red\" or color == \"blue\")" },
+                                        { "value": "d", "text": "color != \"red\" or color != \"blue\"" }
+                                    ],
+                                    "correct": "c"
+                                }
+                            }
+                        }
+                    ];
+
+                    this.contentLoaded = true;
+
+                    // Initialize video after content is loaded
+                    this.$nextTick(() => {
+                        this.loading = false;
+                    });
+
+                    console.log('Fallback content loaded successfully');
+                },
+
+                // Local Storage Management
+                saveProgressData() {
+                    try {
+                        localStorage.setItem('afghan-pathways-progress-python-level-01-lesson04', JSON.stringify(this.progressData));
+                        console.log('Progress saved:', this.progressData);
+                    } catch (error) {
+                        console.error('Failed to save progress:', error);
+                    }
+                },
+
+                loadProgressData() {
+                    try {
+                        const saved = localStorage.getItem('afghan-pathways-progress-python-level-01-lesson04');
+                        if (saved) {
+                            this.progressData = JSON.parse(saved);
+                            console.log('Progress loaded:', this.progressData);
+                        }
+                    } catch (error) {
+                        console.error('Failed to load progress:', error);
+                        // Reset to default if corrupted
+                        this.progressData = {
+                            videosWatched: {},
+                            quizzesCompleted: {}
+                        };
+                    }
+                },
+
+                // Progress tracking methods
+                markVideoWatched(partIndex) {
+                    this.progressData.videosWatched[partIndex] = true;
+                    this.saveProgressData();
+
+                    // Show quiz if video has been watched
+                    if (partIndex === this.currentPartIndex) {
+                        this.showQuiz = true;
+                    }
+                },
+
+                isVideoWatched(partIndex) {
+                    return this.progressData.videosWatched[partIndex] === true;
+                },
+
+                markQuizCompleted(partIndex, answers, results, allCorrect) {
+                    this.progressData.quizzesCompleted[partIndex] = {
+                        completed: true,
+                        allCorrect: allCorrect,
+                        answers: { ...answers },
+                        results: { ...results },
+                        completedAt: new Date().toISOString()
+                    };
+                    this.saveProgressData();
+                },
+
+                isQuizCompleted(partIndex) {
+                    return this.progressData.quizzesCompleted[partIndex]?.completed === true;
+                },
+
+                isQuizPassedCorrectly(partIndex) {
+                    return this.progressData.quizzesCompleted[partIndex]?.allCorrect === true;
+                },
+
+                getQuizResults(partIndex) {
+                    return this.progressData.quizzesCompleted[partIndex];
+                },
+
+                // Find the next incomplete part
+                getNextIncompletePart() {
+                    for (let i = 0; i < this.lessonParts.length; i++) {
+                        if (!this.isQuizCompleted(i)) {
+                            return i;
+                        }
+                    }
+                    return 0; // If all completed, return first part
+                },
+
+                // Check if user can navigate to a specific part
+                canNavigateToPart(partIndex) {
+                    // Can always go to part 0
+                    if (partIndex === 0) return true;
+
+                    // Can navigate to part if previous part's quiz is completed
+                    return this.isQuizPassedCorrectly(partIndex - 1);
+                },
+
+                // Completion methods
+                allPartsCompleted() {
+                    if (!this.contentLoaded || this.lessonParts.length === 0) {
+                        return false;
+                    }
+
+                    // Check if all parts have completed quizzes
+                    for (let i = 0; i < this.lessonParts.length; i++) {
+                        if (!this.isQuizPassedCorrectly(i)) {
+                            return false;
+                        }
+                    }
+                    return true;
+                },
+
+                restartLesson() {
+                    // Confirm restart
+                    if (confirm('Are you sure you want to restart the lesson? This will reset all your progress.')) {
+                        // Clear all progress data
+                        this.progressData = {
+                            videosWatched: {},
+                            quizzesCompleted: {}
+                        };
+
+                        // Save cleared progress
+                        this.saveProgressData();
+
+                        // Reset to first part
+                        this.navigateToPart(0);
+
+                        console.log('Lesson restarted - all progress cleared');
+                    }
+                },
+
+                // Quiz methods
+                checkAnswers() {
+                    if (!this.currentPart || !this.currentPart.quiz) return;
+
+                    const currentQuiz = this.currentPart.quiz;
+                    let allAnswersCorrect = true;
+
+                    // Check all questions dynamically
+                    Object.keys(currentQuiz).forEach(questionKey => {
+                        const question = currentQuiz[questionKey];
+                        const isCorrect = this.answers[questionKey] === question.correct;
+                        this.questionResults[questionKey] = isCorrect ? 'correct' : 'wrong';
+
+                        if (!isCorrect) {
+                            allAnswersCorrect = false;
+                        }
+                    });
+
+                    // Mark quiz as completed
+                    this.quizCompleted = true;
+
+                    // Check if all answers are correct
+                    this.allCorrect = allAnswersCorrect;
+
+                    // Save quiz results to local storage
+                    this.markQuizCompleted(
+                        this.currentPartIndex,
+                        this.answers,
+                        this.questionResults,
+                        this.allCorrect
+                    );
+                },
+
+                // Load previous quiz state for current part
+                loadQuizState() {
+                    const quizResults = this.getQuizResults(this.currentPartIndex);
+
+                    if (quizResults) {
+                        // Restore previous quiz state
+                        this.answers = { ...quizResults.answers };
+                        this.questionResults = { ...quizResults.results };
+                        this.quizCompleted = quizResults.completed;
+                        this.allCorrect = quizResults.allCorrect;
+                    } else {
+                        // Reset quiz state - initialize answers for all questions
+                        this.answers = {};
+                        this.questionResults = {};
+                        if (this.currentPart && this.currentPart.quiz) {
+                            Object.keys(this.currentPart.quiz).forEach(questionKey => {
+                                this.answers[questionKey] = '';
+                                this.questionResults[questionKey] = null;
+                            });
+                        }
+                        this.quizCompleted = false;
+                        this.allCorrect = false;
+                    }
+
+                    // Show quiz if video was watched or quiz was already completed
+                    this.showQuiz = this.isVideoWatched(this.currentPartIndex) || this.isQuizCompleted(this.currentPartIndex);
+                },
+
+                // Navigation methods
+                navigateToPart(partIndex) {
+                    if (!this.contentLoaded || partIndex < 0 || partIndex >= this.lessonParts.length) {
+                        return;
+                    }
+
+                    // Check if user can navigate to this part
+                    if (!this.canNavigateToPart(partIndex)) {
+                        alert(`Complete the quiz in Part ${partIndex === 0 ? 1 : partIndex} first to unlock this part.`);
+                        return;
+                    }
+
+                    // Reset video state
+                    this.currentPartIndex = partIndex;
+                    this.progress = 0;
+                    this.currentTime = 0;
+                    this.loading = true;
+                    this.videoLoaded = false;
+
+                    // Load quiz state for this part (includes showing quiz if appropriate)
+                    this.loadQuizState();
+
+                    // Force video to reload with new source
+                    this.$nextTick(() => {
+                        if (this.$refs.videoPlayer) {
+                            this.$refs.videoPlayer.load();
+                        }
+                    });
+                },
+
+                goToNextLesson() {
+                    if (this.currentPartIndex < this.lessonParts.length - 1) {
+                        this.navigateToPart(this.currentPartIndex + 1);
+                    } else {
+                        alert('Congratulations! You\'ve completed all parts of Lesson 4. You\'re ready for the next lesson!');
+                    }
+                },
+
+                async init() {
+                    // Load lesson content first
+                    await this.loadLessonContent();
+
+                    // Load progress data from local storage
+                    this.loadProgressData();
+
+                    // Navigate to the next incomplete part
+                    this.currentPartIndex = this.getNextIncompletePart();
+
+                    // Load quiz state for the current part
+                    this.loadQuizState();
+
+                    console.log(`Starting at part ${this.currentPartIndex + 1}`);
+
+                    // Listen for online/offline events
+                    window.addEventListener('online', () => {
+                        this.isOnline = true;
+                    });
+
+                    window.addEventListener('offline', () => {
+                        this.isOnline = false;
+                    });
+                }
+            }
+        }
+    </script>
+</body>
+</html>
