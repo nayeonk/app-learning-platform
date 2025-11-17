@@ -1,0 +1,199 @@
+{
+  "lessonInfo": {
+    "title": "Web Development Level 1 - Lesson 4",
+    "totalParts": 4,
+    "description": "Advanced CSS Styling and Layout",
+    "masteryTopics": [
+      "CSS Text Alignment",
+      "Colors and Gradients",
+      "Margin and Padding"
+    ]
+  },
+  "parts": [
+    {
+      "id": 1,
+      "title": "Part 1 - CSS Review and Text Alignment",
+      "videoTitle": "CSS Review and Text Alignment",
+      "description": "Review CSS syntax and learn about text alignment properties. Understand how to align text left, right, center, and use start/end values for different languages and text directions.",
+      "videoSrc": "videos/lesson04-part01.mp4",
+      "keyConcepts": [
+        "CSS rules and cascading effects",
+        "Text alignment properties (left, right, center, start, end)",
+        "LTR and RTL text direction",
+        "Applying text-align to sections and images"
+      ],
+      "quiz": {
+        "question1": {
+          "text": "What does CSS stand for?",
+          "options": [
+            { "value": "a", "text": "Computer Style Sheets" },
+            { "value": "b", "text": "Cascading Style Sheets" },
+            { "value": "c", "text": "Creative Style System" },
+            { "value": "d", "text": "Colorful Style Sheets" }
+          ],
+          "correct": "b"
+        },
+        "question2": {
+          "text": "Which CSS property is used to center text?",
+          "options": [
+            { "value": "a", "text": "align: center" },
+            { "value": "b", "text": "text-center: true" },
+            { "value": "c", "text": "text-align: center" },
+            { "value": "d", "text": "center-text: yes" }
+          ],
+          "correct": "c"
+        },
+        "question3": {
+          "text": "What is the purpose of using 'text-align: start' instead of 'text-align: left'?",
+          "options": [
+            { "value": "a", "text": "It's faster" },
+            { "value": "b", "text": "It adapts to the text direction (LTR or RTL)" },
+            { "value": "c", "text": "It centers the text" },
+            { "value": "d", "text": "There is no difference" }
+          ],
+          "correct": "b"
+        }
+      }
+    },
+    {
+      "id": 2,
+      "title": "Part 2 - Colors in CSS",
+      "videoTitle": "Working with Colors in CSS",
+      "description": "Learn different ways to define colors in CSS including named colors, RGB values, hex codes, opacity, and gradients. Understand color models and how to create beautiful color schemes.",
+      "videoSrc": "videos/lesson04-part02.mp4",
+      "keyConcepts": [
+        "Named colors (140+ color names)",
+        "RGB values (0-255 for red, green, blue)",
+        "Hex color codes (#000000 to #FFFFFF)",
+        "RGBA for transparency and opacity",
+        "Linear gradients for blending colors"
+      ],
+      "quiz": {
+        "question1": {
+          "text": "Which of the following is a valid way to specify color in CSS?",
+          "options": [
+            { "value": "a", "text": "color: red" },
+            { "value": "b", "text": "color: rgb(255, 0, 0)" },
+            { "value": "c", "text": "color: #FF0000" },
+            { "value": "d", "text": "All of the above" }
+          ],
+          "correct": "d"
+        },
+        "question2": {
+          "text": "What does the 'A' in RGBA stand for?",
+          "options": [
+            { "value": "a", "text": "Automatic" },
+            { "value": "b", "text": "Alpha (transparency)" },
+            { "value": "c", "text": "Alignment" },
+            { "value": "d", "text": "Advanced" }
+          ],
+          "correct": "b"
+        },
+        "question3": {
+          "text": "What color does rgb(255, 255, 255) represent?",
+          "options": [
+            { "value": "a", "text": "Black" },
+            { "value": "b", "text": "Red" },
+            { "value": "c", "text": "White" },
+            { "value": "d", "text": "Gray" }
+          ],
+          "correct": "c"
+        }
+      }
+    },
+    {
+      "id": 3,
+      "title": "Part 3 - Spacing with Margin and Padding",
+      "videoTitle": "Understanding Margin and Padding",
+      "description": "Master spacing in CSS by learning the difference between margin and padding. Understand user agent stylesheets, CSS resets, and how to center elements horizontally using margin auto.",
+      "videoSrc": "videos/lesson04-part03.mp4",
+      "keyConcepts": [
+        "Margin creates space outside an element",
+        "Padding creates space inside an element",
+        "Browser developer tools for debugging",
+        "CSS reset to remove default browser styles",
+        "Centering elements with margin: auto",
+        "Width property and avoiding height"
+      ],
+      "quiz": {
+        "question1": {
+          "text": "What is the difference between margin and padding?",
+          "options": [
+            { "value": "a", "text": "Margin is inside, padding is outside" },
+            { "value": "b", "text": "Margin is outside, padding is inside" },
+            { "value": "c", "text": "They are the same thing" },
+            { "value": "d", "text": "Margin is for text, padding is for images" }
+          ],
+          "correct": "b"
+        },
+        "question2": {
+          "text": "How do you center an element horizontally using margin?",
+          "options": [
+            { "value": "a", "text": "margin: center" },
+            { "value": "b", "text": "margin-left: auto; margin-right: auto" },
+            { "value": "c", "text": "margin: 0" },
+            { "value": "d", "text": "margin-center: true" }
+          ],
+          "correct": "b"
+        },
+        "question3": {
+          "text": "What does the CSS reset (* { margin: 0; padding: 0; }) do?",
+          "options": [
+            { "value": "a", "text": "Deletes all content" },
+            { "value": "b", "text": "Removes default browser spacing from all elements" },
+            { "value": "c", "text": "Centers everything" },
+            { "value": "d", "text": "Hides all elements" }
+          ],
+          "correct": "b"
+        }
+      }
+    },
+    {
+      "id": 4,
+      "title": "Part 4 - IDs and Classes",
+      "videoTitle": "Using IDs and Classes for Styling",
+      "description": "Learn how to target specific elements using IDs and classes. Understand when to use IDs versus classes, naming conventions, and how to create more specific CSS selectors for better control.",
+      "videoSrc": "videos/lesson04-part04.mp4",
+      "keyConcepts": [
+        "ID attribute for unique elements (# selector)",
+        "Class attribute for multiple elements (. selector)",
+        "Naming rules for IDs and classes",
+        "Compound selectors for specificity",
+        "Div tags for creating containers",
+        "Planning webpage structure"
+      ],
+      "quiz": {
+        "question1": {
+          "text": "How do you select an element with id='header' in CSS?",
+          "options": [
+            { "value": "a", "text": ".header" },
+            { "value": "b", "text": "#header" },
+            { "value": "c", "text": "header" },
+            { "value": "d", "text": "*header" }
+          ],
+          "correct": "b"
+        },
+        "question2": {
+          "text": "What is the main difference between IDs and classes?",
+          "options": [
+            { "value": "a", "text": "IDs can only be used once per page, classes can be used multiple times" },
+            { "value": "b", "text": "Classes can only be used once, IDs can be used multiple times" },
+            { "value": "c", "text": "There is no difference" },
+            { "value": "d", "text": "IDs are for images, classes are for text" }
+          ],
+          "correct": "a"
+        },
+        "question3": {
+          "text": "How do you select elements with class='highlight' in CSS?",
+          "options": [
+            { "value": "a", "text": "#highlight" },
+            { "value": "b", "text": "*highlight" },
+            { "value": "c", "text": ".highlight" },
+            { "value": "d", "text": "highlight" }
+          ],
+          "correct": "c"
+        }
+      }
+    }
+  ]
+}
