@@ -50,7 +50,7 @@
             { "value": "c", "text": "The loop will skip its statements" },
             { "value": "d", "text": "The program will run forever (infinite loop)" }
           ],
-          "correct": "c"
+          "correct": "d"
         }
       }
     },
@@ -95,7 +95,7 @@
             { "value": "c", "text": "Runs forever (Infinite loop)" },
             { "value": "d", "text": "Error" }
           ],
-          "correct": "d"
+          "correct": "c"
         }
       }
     },
