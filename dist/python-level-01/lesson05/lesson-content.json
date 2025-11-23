@@ -1,0 +1,124 @@
+{
+  "lessonInfo": {
+    "title": "Python Programming Level 1 - Lesson 5",
+    "totalParts": 3,
+    "description": "While Loops and Review",
+    "masteryTopics": [
+      "Repeating Code",
+      "While Loops",
+      "Review Till Week 4"
+    ]
+  },
+  "parts": [
+    {
+      "id": 1,
+      "title": "Part 1 - Repeating Code",
+      "videoTitle": "Repeating Code",
+      "description": "In this video you will learn how we can repeat code using loops in Python and focus on while loops.",
+      "videoSrc": "videos/lesson05-part01.mp4",
+      "keyConcepts": [
+        "Repeating Code using loops",
+        "While Loops",
+        "Infinite Loops"
+      ],
+      "quiz": {
+        "question1": {
+          "text": "The statements inside a while loop are executed:",
+          "options": [
+            { "value": "a", "text": "As long as the loop condition is True" },
+            { "value": "b", "text": "Only the first time the condition is checked" },
+            { "value": "c", "text": "After the loop condition becomes False" },
+            { "value": "d", "text": "A fixed number of times" }
+          ],
+          "correct": "a"
+        },
+        "question2": {
+          "text": "What is the basic structure of a while loop in Python?",
+          "options": [
+            { "value": "a", "text": "Create variable inside the loop, test condition after the loop, update variable anywhere" },
+            { "value": "b", "text": "Create variable before the loop, test variable in the condition, update variable inside the loop" },
+            { "value": "c", "text": "Test condition before the loop, update variable before the loop, never change it" },
+            { "value": "d", "text": "Create and update variable only after the loop ends" }
+          ],
+          "correct": "b"
+        },
+        "question3": {
+          "text": "What will happen if the condition of a while loop never becomes False?",
+          "options": [
+            { "value": "a", "text": "The loop will stop automatically" },
+            { "value": "b", "text": "Python will give an error" },
+            { "value": "c", "text": "The loop will skip its statements" },
+            { "value": "d", "text": "The program will run forever (infinite loop)" }
+          ],
+          "correct": "c"
+        }
+      }
+    },
+    {
+      "id": 2,
+      "title": "Part 2 - While Loops",
+      "videoTitle": "While Loops",
+      "description": "In this video you will practice creating while loops in Python for different use cases.",
+      "videoSrc": "videos/lesson05-part02.mp4",
+      "keyConcepts": [
+        "Looping while Invalid input",
+        "Looping until user quits",
+        "Entering the loop at least once"
+      ],
+      "quiz": {
+        "question1": {
+          "text": "What is the main difference between an if statement and a while loop?",
+          "options": [
+            { "value": "a", "text": "Both test the condition only once" },
+            { "value": "b", "text": "if tests the condition once; while tests it many times" },
+            { "value": "c", "text": "while runs only if the condition is False" },
+            { "value": "d", "text": "if keeps repeating until the condition changes" }
+          ],
+          "correct": "b"
+        },
+        "question2": {
+          "text": "Which of the following is NOT part of a correct while loop in Python?",
+          "options": [
+            { "value": "a", "text": "Writing while followed by a Boolean condition" },
+            { "value": "b", "text": "Using a colon (:) after the condition" },
+            { "value": "c", "text": "Indenting the statements that belong inside the loop under the while line" },
+            { "value": "d", "text": "Using parentheses () to enclose the statements inside the loop" }
+          ],
+          "correct": "d"
+        },
+        "question3": {
+          "text": "What will happen when this code runs?",
+          "code": "x = 1\nwhile x < 5\n   print(x)",
+          "options": [
+            { "value": "a", "text": "Prints 1 to 4" },
+            { "value": "b", "text": "Prints 1 and stops" },
+            { "value": "c", "text": "Runs forever (Infinite loop)" },
+            { "value": "d", "text": "Error" }
+          ],
+          "correct": "d"
+        }
+      }
+    },
+    {
+      "id": 3,
+      "title": "Part 3 - Review till Week 4",
+      "videoTitle": "Review till Week 4",
+      "description": "In this video you will review all topics learned till week 4 to prepare for the Quiz this week. The quiz only covers topics till week 4. It is recommended to also review previous assignments and coding practice done through the lessons.",
+      "videoSrc": "videos/lesson05-part03.mp4",
+      "keyConcepts": [
+        "Printing and variables",
+        "Input and Operators",
+        "Branching"
+      ],
+      "quiz": {
+        "question1": {
+          "text": "Please take the Quiz when you're ready!",
+          "options": [
+            { "value": "a", "text": "Ok!" }
+          ],
+          "correct": "a"
+        }
+      }
+    }
+  ]
+}
