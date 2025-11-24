@@ -1,0 +1,196 @@
+{
+  "lessonInfo": {
+    "title": "Web Development Level 1 - Lesson 5",
+    "totalParts": 4,
+    "description": "HTML Forms",
+    "masteryTopics": [
+      "Form Structure",
+      "Input Types and Attributes",
+      "Form Styling with CSS"
+    ]
+  },
+  "parts": [
+    {
+      "id": 1,
+      "title": "Part 1 - Introduction to Forms",
+      "videoTitle": "Introduction to Forms",
+      "description": "Learn the basics of HTML forms and how to create form elements. Discover the HTML skeleton shortcut and understand form structure with labels and inputs.",
+      "videoSrc": "videos/lesson05-part01.mp4",
+      "keyConcepts": [
+        "HTML skeleton shortcut (! + tab)",
+        "Form tag and structure",
+        "Label and Input tags",
+        "Input types: text, email, number",
+        "Form attributes: type, placeholder, name, id, for"
+      ],
+      "quiz": {
+        "question1": {
+          "text": "What is the shortcut to create an HTML skeleton in VS Code?",
+          "options": [
+            { "value": "a", "text": "Type 'html' and press Enter" },
+            { "value": "b", "text": "Type '!' and press Tab" },
+            { "value": "c", "text": "Type 'doc' and press Enter" },
+            { "value": "d", "text": "Ctrl + H" }
+          ],
+          "correct": "b"
+        },
+        "question2": {
+          "text": "Which HTML tag is used to create a form?",
+          "options": [
+            { "value": "a", "text": "<input>" },
+            { "value": "b", "text": "<label>" },
+            { "value": "c", "text": "<form>" },
+            { "value": "d", "text": "<field>" }
+          ],
+          "correct": "c"
+        },
+        "question3": {
+          "text": "What does the 'placeholder' attribute do in an input field?",
+          "options": [
+            { "value": "a", "text": "Sets the final value" },
+            { "value": "b", "text": "Shows example text that disappears when typing" },
+            { "value": "c", "text": "Makes the field required" },
+            { "value": "d", "text": "Changes the input type" }
+          ],
+          "correct": "b"
+        }
+      }
+    },
+    {
+      "id": 2,
+      "title": "Part 2 - Radio Buttons, Checkboxes, Select, and Textarea",
+      "videoTitle": "Radio Buttons, Checkboxes, Select, and Textarea",
+      "description": "Learn how to create radio buttons for multiple choice options in forms. Understand how to group radio buttons and connect labels properly.",
+      "videoSrc": "videos/lesson05-part02.mp4",
+      "keyConcepts": [
+        "Input type='radio' for multiple choice",
+        "Grouping radio buttons with name attribute",
+        "Connecting labels with for and id",
+        "Checkboxes for choosing multiple options",
+        "Select tag for dropdown selection",
+        "Textarea tag for longer text input"
+      ],
+      "quiz": {
+        "question1": {
+          "text": "How do you group radio buttons so only one can be selected?",
+          "options": [
+            { "value": "a", "text": "Put them in the same <div>" },
+            { "value": "b", "text": "Give them the same 'name' attribute" },
+            { "value": "c", "text": "Give them the same 'id' attribute" },
+            { "value": "d", "text": "Put them in a <group> tag" }
+          ],
+          "correct": "b"
+        },
+        "question2": {
+          "text": "What is the difference between radio buttons and checkboxes?",
+          "options": [
+            { "value": "a", "text": "Radio buttons allow multiple selections, checkboxes allow only one" },
+            { "value": "b", "text": "Radio buttons allow only one selection, checkboxes allow multiple" },
+            { "value": "c", "text": "They are the same thing" },
+            { "value": "d", "text": "Radio buttons are for text, checkboxes are for numbers" }
+          ],
+          "correct": "b"
+        },
+        "question3": {
+          "text": "Why do we connect a label to an input using 'for' and 'id'?",
+          "options": [
+            { "value": "a", "text": "To make it look better" },
+            { "value": "b", "text": "So clicking the label selects the input" },
+            { "value": "c", "text": "It's required by HTML" },
+            { "value": "d", "text": "To change the input color" }
+          ],
+          "correct": "b"
+        }
+      }
+    },
+    {
+      "id": 3,
+      "title": "Part 3 - Styling Forms",
+      "videoTitle": "Styling Forms with CSS",
+      "description": "Learn how to style forms using CSS. Understand the difference between inline and block elements, and use div tags to structure form layout.",
+      "videoSrc": "videos/lesson05-part03.mp4",
+      "keyConcepts": [
+        "Using div tags to group form elements",
+        "Inline vs block elements",
+        "Structuring form layout with CSS",
+        "Creating form rows"
+      ],
+      "quiz": {
+        "question1": {
+          "text": "What is the difference between inline and block elements?",
+          "options": [
+            { "value": "a", "text": "Inline goes left-to-right, block takes full width" },
+            { "value": "b", "text": "Block goes left-to-right, inline takes full width" },
+            { "value": "c", "text": "They are the same" },
+            { "value": "d", "text": "Inline is for images only" }
+          ],
+          "correct": "a"
+        },
+        "question2": {
+          "text": "Why do we use <div> tags in forms?",
+          "options": [
+            { "value": "a", "text": "To submit the form" },
+            { "value": "b", "text": "To group elements and create structure" },
+            { "value": "c", "text": "To validate input" },
+            { "value": "d", "text": "To store data" }
+          ],
+          "correct": "b"
+        },
+        "question3": {
+          "text": "Which of these is a block element by default?",
+          "options": [
+            { "value": "a", "text": "<input>" },
+            { "value": "b", "text": "<label>" },
+            { "value": "c", "text": "<div>" },
+            { "value": "d", "text": "<a>" }
+          ],
+          "correct": "c"
+        }
+      }
+    },
+    {
+      "id": 4,
+      "title": "Part 4 - Background Images and External Stylesheet",
+      "videoTitle": "Background Images and External Stylesheet",
+      "description": "Learn how to add background images to your forms using CSS and how to organize your styles in external CSS files. Discover free image resources and the background-image property.",
+      "videoSrc": "videos/lesson05-part04.mp4",
+      "keyConcepts": [
+        "Finding free images on Unsplash.com",
+        "CSS background-image property",
+        "Using external stylesheets for shared CSS"
+      ],
+      "quiz": {
+        "question1": {
+          "text": "What CSS property is used to add a background image?",
+          "options": [
+            { "value": "a", "text": "image: url()" },
+            { "value": "b", "text": "background-image: url()" },
+            { "value": "c", "text": "bg-image: url()" },
+            { "value": "d", "text": "src: url()" }
+          ],
+          "correct": "b"
+        },
+        "question2": {
+          "text": "How do you specify the path to a background image in the 'images' folder?",
+          "options": [
+            { "value": "a", "text": "url(images/photo.jpg)" },
+            { "value": "b", "text": "url(photo.jpg)" },
+            { "value": "c", "text": "url(/photo.jpg)" },
+            { "value": "d", "text": "url(../photo.jpg)" }
+          ],
+          "correct": "a"
+        },
+        "question3": {
+          "text": "How do you link an external CSS file in HTML?",
+          "options": [
+            { "value": "a", "text": "<style src='style.css'></style>" },
+            { "value": "b", "text": "<link rel='stylesheet' href='style.css'>" },
+            { "value": "c", "text": "<css href='style.css'>" },
+            { "value": "d", "text": "<import css='style.css'>" }
+          ],
+          "correct": "b"
+        }
+      }
+    }
+  ]
+}
