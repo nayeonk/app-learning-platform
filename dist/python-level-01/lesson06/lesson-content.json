@@ -1,0 +1,143 @@
+{
+  "lessonInfo": {
+    "title": "Python Programming Level 1 - Lesson 6",
+    "totalParts": 3,
+    "description": "For Loops and Modules",
+    "masteryTopics": [
+      "For Loops",
+      "Sequences and Strings",
+      "Modules"
+    ]
+  },
+  "parts": [
+    {
+      "id": 1,
+      "title": "Part 1 - For Loops",
+      "videoTitle": "For Loops",
+      "description": "In this video you will learn about looping based on sequences using For loops and range() function.",
+      "videoSrc": "videos/lesson06-part01.mp4",
+      "keyConcepts": [
+        "For loops",
+        "Intro to sequences",
+        "range() function"
+      ],
+      "quiz": {
+        "question1": {
+          "text": "What does a for loop repeat over?",
+          "options": [
+            { "value": "a", "text": "A function" },
+            { "value": "b", "text": "A condition" },
+            { "value": "c", "text": "A sequence" },
+            { "value": "d", "text": "Only numbers" }
+          ],
+          "correct": "c"
+        },
+        "question2": {
+          "text": "Which of these does NOT represent sequences in Python?",
+          "options": [
+            { "value": "a", "text": "\"Hello\"" },
+            { "value": "b", "text": "range(5)" },
+            { "value": "c", "text": "10" }
+          ],
+          "correct": "c"
+        },
+        "question3": {
+          "text": "What is the last value in the sequence returned by range(15)?",
+          "options": [
+            { "value": "a", "text": "14" },
+            { "value": "b", "text": "15" },
+            { "value": "c", "text": "16" }
+          ],
+          "correct": "a"
+        }
+      }
+    },
+    {
+      "id": 2,
+      "title": "Part 2 - For Loops with Strings",
+      "videoTitle": "For Loops with Strings",
+      "description": "In this video you will practice creating for loops with different range() sequences and learn about using for loops with strings as sequences.",
+      "videoSrc": "videos/lesson06-part02.mp4",
+      "keyConcepts": [
+        "Input options for range() function",
+        "Strings as sequences",
+        "Nested Loops"
+      ],
+      "quiz": {
+        "question1": {
+          "text": "What does a for loop do when used with a string?",
+          "options": [
+            { "value": "a", "text": "Repeats forever" },
+            { "value": "b", "text": "Loops through each character in the string" },
+            { "value": "c", "text": "Converts the string to a number" },
+            { "value": "d", "text": "Skips all characters" }
+          ],
+          "correct": "b"
+        },
+        "question2": {
+          "text": "What will this expression return in Python?\n\"a\" in \"cat\"",
+          "options": [
+            { "value": "a", "text": "0" },
+            { "value": "b", "text": "Error" },
+            { "value": "c", "text": "True" },
+            { "value": "d", "text": "False" }
+          ],
+          "correct": "c"
+        },
+        "question3": {
+          "text": "What does the len() function return when used on a string?",
+          "options": [
+            { "value": "a", "text": "A list of characters" },
+            { "value": "b", "text": "The number of characters in the string" },
+            { "value": "c", "text": "A Boolean value" },
+            { "value": "d", "text": "The last character" }
+          ],
+          "correct": "b"
+        }
+      }
+    },
+    {
+      "id": 3,
+      "title": "Part 3 - Modules",
+      "videoTitle": "Modules",
+      "description": "In this video you will learn about python modules, how to use them in code and about the random module.",
+      "videoSrc": "videos/lesson06-part03.mp4",
+      "keyConcepts": [
+        "Modules and importing them",
+        "Random modules",
+        "Using functions from modules"
+      ],
+      "quiz": {
+        "question1": {
+          "text": "Which statement is FALSE about modules?",
+          "options": [
+            { "value": "a", "text": "Modules contain functions written by other people" },
+            { "value": "b", "text": "You can access a module function directly without importing the module" },
+            { "value": "c", "text": "import is a reserved word used for modules" }
+          ],
+          "correct": "b"
+        },
+        "question2": {
+          "text": "What is the correct way to call a function from a module?",
+          "options": [
+            { "value": "a", "text": "functionName.moduleName()" },
+            { "value": "b", "text": "moduleName.functionName()" },
+            { "value": "c", "text": "moduleName > functionName" },
+            { "value": "d", "text": "import.functionName moduleName()" }
+          ],
+          "correct": "b"
+        },
+        "question3": {
+          "text": "What does random.randint(5, 10) return?",
+          "options": [
+            { "value": "a", "text": "A sequence of numbers between the range starting from 5 and up to but not including 10" },
+            { "value": "b", "text": "A random number between the range starting from 5 and up to but not including 10" },
+            { "value": "c", "text": "A random number between the range starting from 5 and up to & including 10" },
+            { "value": "d", "text": "Only even numbers" }
+          ],
+          "correct": "c"
+        }
+      }
+    }
+  ]
+}
