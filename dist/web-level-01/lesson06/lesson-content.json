@@ -1,0 +1,177 @@
+{
+  "lessonInfo": {
+    "title": "Web Development Level 1 - Lesson 6",
+    "totalParts": 4,
+    "description": "Fonts, More CSS Selectors, and CSS Specificity",
+    "masteryTopics": [
+      "CSS Fonts and Typography",
+      "Advanced CSS Selectors",
+      "CSS Specificity"
+    ]
+  },
+  "parts": [
+    {
+      "id": 1,
+      "title": "Part 1 - Introduction to Fonts",
+      "videoTitle": "Introduction to Fonts",
+      "description": "Learn about fonts and typography in CSS. Discover font families, Google Fonts, and how to use custom fonts with @font-face.",
+      "videoSrc": "videos/lesson06-part01.mp4",
+      "keyConcepts": [
+        "Font families: serif, sans-serif, monospace, cursive, fantasy",
+        "Google Fonts and how to use them",
+        "@font-face rule for custom fonts",
+        "font-family property in CSS",
+        "Downloading and using custom fonts"
+      ],
+      "quiz": {
+        "question1": {
+          "text": "What are the five generic font families in CSS?",
+          "options": [
+            { "value": "a", "text": "Arial, Times, Courier, Comic Sans, Impact" },
+            { "value": "b", "text": "serif, sans-serif, monospace, cursive, fantasy" },
+            { "value": "c", "text": "bold, italic, normal, light, heavy" },
+            { "value": "d", "text": "small, medium, large, huge, tiny" }
+          ],
+          "correct": "b"
+        },
+        "question2": {
+          "text": "What is Google Fonts?",
+          "options": [
+            { "value": "a", "text": "A paid font store" },
+            { "value": "b", "text": "A free library of fonts you can use in your website" },
+            { "value": "c", "text": "A font editing software" },
+            { "value": "d", "text": "A Chrome extension" }
+          ],
+          "correct": "b"
+        },
+        "question3": {
+          "text": "What CSS rule do you use to define a custom font?",
+          "options": [
+            { "value": "a", "text": "@import font" },
+            { "value": "b", "text": "@custom-font" },
+            { "value": "c", "text": "@font-face" },
+            { "value": "d", "text": "@define-font" }
+          ],
+          "correct": "c"
+        }
+      }
+    },
+    {
+      "id": 2,
+      "title": "Part 2 - Advanced CSS Selectors",
+      "videoTitle": "Advanced CSS Selectors",
+      "description": "Learn about the DOM (Document Object Model) and advanced CSS selectors including combinator selectors, pseudo selectors, and attribute selectors.",
+      "videoSrc": "videos/lesson06-part02.mp4",
+      "keyConcepts": [
+        "DOM (Document Object Model) and parent-child relationships",
+        "Descendant selector (space)",
+        "Child selector (>)",
+        "Adjacent sibling selector (+)",
+        "Pseudo selectors: :hover, :first-child, :nth-child",
+        "Attribute selectors with []"
+      ],
+      "quiz": {
+        "question1": {
+          "text": "What does the '>' selector do in CSS?",
+          "options": [
+            { "value": "a", "text": "Selects all descendants" },
+            { "value": "b", "text": "Selects only direct children" },
+            { "value": "c", "text": "Selects siblings" },
+            { "value": "d", "text": "Makes text bigger" }
+          ],
+          "correct": "b"
+        },
+        "question2": {
+          "text": "What does the :hover pseudo selector do?",
+          "options": [
+            { "value": "a", "text": "Makes elements fly" },
+            { "value": "b", "text": "Selects the first element" },
+            { "value": "c", "text": "Applies styles when you move your mouse over an element" },
+            { "value": "d", "text": "Hides the element" }
+          ],
+          "correct": "c"
+        },
+        "question3": {
+          "text": "How do you select an element with a specific attribute in CSS?",
+          "options": [
+            { "value": "a", "text": "element.attribute" },
+            { "value": "b", "text": "element#attribute" },
+            { "value": "c", "text": "element[attribute]" },
+            { "value": "d", "text": "element@attribute" }
+          ],
+          "correct": "c"
+        }
+      }
+    },
+    {
+      "id": 3,
+      "title": "Part 3 - CSS Specificity",
+      "videoTitle": "CSS Specificity",
+      "description": "Understand how CSS determines which styles to apply when there are conflicts. Learn the specificity hierarchy and when order matters.",
+      "videoSrc": "videos/lesson06-part03.mp4",
+      "keyConcepts": [
+        "CSS specificity hierarchy",
+        "Inline styles have highest priority",
+        "IDs are more specific than classes",
+        "Classes are more specific than type selectors",
+        "When specificity is equal, order matters (last one wins)"
+      ],
+      "quiz": {
+        "question1": {
+          "text": "Which CSS selector has the HIGHEST specificity?",
+          "options": [
+            { "value": "a", "text": "Type selector (p)" },
+            { "value": "b", "text": "Class selector (.class)" },
+            { "value": "c", "text": "ID selector (#id)" },
+            { "value": "d", "text": "Inline style" }
+          ],
+          "correct": "d"
+        },
+        "question2": {
+          "text": "If two CSS rules have the same specificity, which one wins?",
+          "options": [
+            { "value": "a", "text": "The first one in the code" },
+            { "value": "b", "text": "The last one in the code" },
+            { "value": "c", "text": "Neither - they both apply" },
+            { "value": "d", "text": "The shortest one" }
+          ],
+          "correct": "b"
+        },
+        "question3": {
+          "text": "What is more specific: a class selector or an ID selector?",
+          "options": [
+            { "value": "a", "text": "Class selector" },
+            { "value": "b", "text": "ID selector" },
+            { "value": "c", "text": "They are equal" },
+            { "value": "d", "text": "It depends on the element" }
+          ],
+          "correct": "b"
+        }
+      }
+    },
+    {
+      "id": 4,
+      "title": "Part 4 - Review of Lessons 1-6",
+      "videoTitle": "Review of Lessons 1-6",
+      "description": "Review all the concepts covered in Lessons 1 through 6, including HTML basics, CSS styling, forms, and advanced selectors.",
+      "videoSrc": "videos/lesson06-part04.mp4",
+      "keyConcepts": [
+        "HTML tags and attributes",
+        "IDs vs classes",
+        "Margin and padding",
+        "Block vs inline elements",
+        "Centering elements",
+        "Forms and input types"
+      ],
+      "quiz": {
+        "question1": {
+          "text": "Please take the Quiz when you're ready!",
+          "options": [
+            { "value": "a", "text": "Ok!" }
+          ],
+          "correct": "a"
+        }
+      }
+    }
+  ]
+}
