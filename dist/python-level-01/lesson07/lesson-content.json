@@ -1,0 +1,145 @@
+{
+  "lessonInfo": {
+    "title": "Python Programming Level 1 - Lesson 7",
+    "totalParts": 3,
+    "description": "Sequences, Strings, and Lists",
+    "masteryTopics": [
+      "Sequences and Indexing",
+      "String Methods",
+      "Lists and List Methods"
+    ]
+  },
+  "parts": [
+    {
+      "id": 1,
+      "title": "Part 1 - Sequences",
+      "videoTitle": "Sequences",
+      "description": "In this video you will learn about sequences in python and strings as sequences.",
+      "videoSrc": "videos/lesson07-part01.mp4",
+      "keyConcepts": [
+        "Indexing in sequences",
+        "Slicing a sequence"
+      ],
+      "quiz": {
+        "question1": {
+          "text": "In Python, which of the following is TRUE about sequence indices?",
+          "options": [
+            { "value": "a", "text": "They can be decimals" },
+            { "value": "b", "text": "They start at 1" },
+            { "value": "c", "text": "They must be integers" },
+            { "value": "d", "text": "They start at –1" }
+          ],
+          "correct": "c"
+        },
+        "question2": {
+          "text": "What is the index of the character \"n\" in the string \"python\"?",
+          "options": [
+            { "value": "a", "text": "5" },
+            { "value": "b", "text": "4" },
+            { "value": "c", "text": "6" },
+            { "value": "d", "text": "0" }
+          ],
+          "correct": "a"
+        },
+        "question3": {
+          "text": "If you slice a string like this: strVar[ :5], what is the default start index?",
+          "options": [
+            { "value": "a", "text": "1" },
+            { "value": "b", "text": "0" },
+            { "value": "c", "text": "5" },
+            { "value": "d", "text": "-1" }
+          ],
+          "correct": "b"
+        }
+      }
+    },
+    {
+      "id": 2,
+      "title": "Part 2 - String Methods & Lists",
+      "videoTitle": "String Methods & Lists",
+      "description": "In this video you will learn about string methods and get an introduction to a new variable \"List\" in python which is another type of sequence.",
+      "videoSrc": "videos/lesson07-part02.mp4",
+      "keyConcepts": [
+        "String Methods",
+        "List Variable Type",
+        "List as a Sequence"
+      ],
+      "quiz": {
+        "question1": {
+          "text": "What does the string method isdigit() return?",
+          "options": [
+            { "value": "a", "text": "The digits in the string" },
+            { "value": "b", "text": "True if all characters are digits (numbers)" },
+            { "value": "c", "text": "The number of digits in the string" },
+            { "value": "d", "text": "False only if the string is empty" }
+          ],
+          "correct": "b"
+        },
+        "question2": {
+          "text": "What is a list in Python?",
+          "options": [
+            { "value": "a", "text": "A single number" },
+            { "value": "b", "text": "A collection of values" },
+            { "value": "c", "text": "A built-in math function" },
+            { "value": "d", "text": "A type of loop" }
+          ],
+          "correct": "b"
+        },
+        "question3": {
+          "text": "What does the len() function return?",
+          "options": [
+            { "value": "a", "text": "The last index of a sequence" },
+            { "value": "b", "text": "The number of items in a sequence" },
+            { "value": "c", "text": "The data type of a sequence" },
+            { "value": "d", "text": "The sum of all numbers in a list" }
+          ],
+          "correct": "b"
+        }
+      }
+    },
+    {
+      "id": 3,
+      "title": "Part 3 - List Methods",
+      "videoTitle": "List Methods",
+      "description": "In this video you will practice creating lists, indexing and slicing with lists, using list methods to add/remove list elements or find element index in list and looping with lists as a sequence.",
+      "videoSrc": "videos/lesson07-part03.mp4",
+      "keyConcepts": [
+        "Creating, Indexing and Slicing Lists",
+        "List Methods",
+        "Looping with Lists"
+      ],
+      "quiz": {
+        "question1": {
+          "text": "What does slicing a list always return?",
+          "options": [
+            { "value": "a", "text": "A number" },
+            { "value": "b", "text": "A string" },
+            { "value": "c", "text": "A list" },
+            { "value": "d", "text": "A tuple" }
+          ],
+          "correct": "c"
+        },
+        "question2": {
+          "text": "What happens when you call myList.remove(value) and value is NOT in the list?",
+          "options": [
+            { "value": "a", "text": "It returns -1" },
+            { "value": "b", "text": "It does nothing" },
+            { "value": "c", "text": "It adds the value to the list" },
+            { "value": "d", "text": "It crashes with an error" }
+          ],
+          "correct": "d"
+        },
+        "question3": {
+          "text": "If you have a list numList = [45, 4, 12, 33], which of the following lines of code will NOT give an error?",
+          "options": [
+            { "value": "a", "text": "favNum = numList[4]" },
+            { "value": "b", "text": "numList.index(4)" },
+            { "value": "c", "text": "numList.append(7, 14)" },
+            { "value": "d", "text": "numList.remove(11)" }
+          ],
+          "correct": "b"
+        }
+      }
+    }
+  ]
+}
