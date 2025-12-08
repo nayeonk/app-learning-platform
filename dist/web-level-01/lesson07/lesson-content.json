@@ -1,0 +1,176 @@
+{
+  "lessonInfo": {
+    "title": "Web Development Level 1 - Lesson 7",
+    "totalParts": 4,
+    "description": "Box Model, CSS Grid, and Layouts",
+    "masteryTopics": [
+      "CSS Box Model",
+      "CSS Grid",
+      "Navigation Bars with CSS Flexbox"
+    ]
+  },
+  "parts": [
+    {
+      "id": 1,
+      "title": "Part 1 - The Box Model",
+      "videoTitle": "The Box Model",
+      "description": "Learn about the CSS box model and how padding, border, and margin affect element sizing. Understand box-sizing: border-box for better layout control.",
+      "videoSrc": "videos/lesson07-part01.mp4",
+      "keyConcepts": [
+        "Every HTML element is a box",
+        "Padding creates space inside a box",
+        "Border creates space around the box",
+        "Margin creates space outside the box",
+        "box-sizing: border-box prevents boxes from growing"
+      ],
+      "quiz": {
+        "question1": {
+          "text": "If a div has width: 100px, padding: 10px, and border: 1px, what is its total width by default?",
+          "options": [
+            { "value": "a", "text": "100px" },
+            { "value": "b", "text": "110px" },
+            { "value": "c", "text": "120px" },
+            { "value": "d", "text": "122px" }
+          ],
+          "correct": "d"
+        },
+        "question2": {
+          "text": "What does 'box-sizing: border-box' do?",
+          "options": [
+            { "value": "a", "text": "Makes the box bigger" },
+            { "value": "b", "text": "Keeps the box at its set width, including padding and border" },
+            { "value": "c", "text": "Removes all padding" },
+            { "value": "d", "text": "Only affects margin" }
+          ],
+          "correct": "b"
+        },
+        "question3": {
+          "text": "Which CSS property does NOT affect the total size of a box by default?",
+          "options": [
+            { "value": "a", "text": "padding" },
+            { "value": "b", "text": "border" },
+            { "value": "c", "text": "margin" },
+            { "value": "d", "text": "width" }
+          ],
+          "correct": "c"
+        }
+      }
+    },
+    {
+      "id": 2,
+      "title": "Part 2 - CSS Grid",
+      "videoTitle": "CSS Grid",
+      "description": "Learn how to create modern webpage layouts using CSS Grid. Understand rows, columns, and how to structure content for professional-looking websites.",
+      "videoSrc": "videos/lesson07-part02.mp4",
+      "keyConcepts": [
+        "CSS Grid creates rows and columns",
+        "display: grid enables grid layout",
+        "grid-template-columns defines column structure",
+        "grid-template-rows defines row structure",
+        "Grid is perfect for creating structured layouts"
+      ],
+      "quiz": {
+        "question1": {
+          "text": "What CSS property do you use to enable grid layout?",
+          "options": [
+            { "value": "a", "text": "layout: grid" },
+            { "value": "b", "text": "display: grid" },
+            { "value": "c", "text": "grid: true" },
+            { "value": "d", "text": "enable-grid: yes" }
+          ],
+          "correct": "b"
+        },
+        "question2": {
+          "text": "What is the difference between rows and columns?",
+          "options": [
+            { "value": "a", "text": "Rows go left to right, columns go top to bottom" },
+            { "value": "b", "text": "Rows go top to bottom, columns go left to right" },
+            { "value": "c", "text": "They are the same thing" },
+            { "value": "d", "text": "Rows are for text, columns are for images" }
+          ],
+          "correct": "a"
+        },
+        "question3": {
+          "text": "Which property defines the column structure in CSS Grid?",
+          "options": [
+            { "value": "a", "text": "grid-columns" },
+            { "value": "b", "text": "columns-template" },
+            { "value": "c", "text": "grid-template-columns" },
+            { "value": "d", "text": "grid-col-size" }
+          ],
+          "correct": "c"
+        }
+      }
+    },
+    {
+      "id": 3,
+      "title": "Part 3 - Styling with Grid",
+      "videoTitle": "Styling with Grid",
+      "description": "Continue building a real webpage layout using CSS Grid. Practice creating structured sections and styling them to look professional.",
+      "videoSrc": "videos/lesson07-part03.mp4",
+      "keyConcepts": [
+        "Creating grid-based article layouts",
+        "Combining grid with padding and margin",
+        "Styling grid items for visual appeal",
+        "Building structured page sections"
+      ],
+      "quiz": {
+        "question1": {
+          "text": "When styling a grid layout, what should you consider?",
+          "options": [
+            { "value": "a", "text": "Only the grid structure" },
+            { "value": "b", "text": "Grid structure, spacing, and visual styling" },
+            { "value": "c", "text": "Only the colors" },
+            { "value": "d", "text": "Grid doesn't need styling" }
+          ],
+          "correct": "b"
+        },
+        "question2": {
+          "text": "What makes a webpage layout look professional?",
+          "options": [
+            { "value": "a", "text": "Using lots of colors" },
+            { "value": "b", "text": "Good structure, spacing, and alignment" },
+            { "value": "c", "text": "Making everything very large" },
+            { "value": "d", "text": "Using only one font" }
+          ],
+          "correct": "b"
+        }
+      }
+    },
+    {
+      "id": 4,
+      "title": "Part 4 - Navigation Bars",
+      "videoTitle": "Navigation Bars",
+      "description": "Learn how to create navigation bars that help users move around your website. Finish your webpage with professional navigation and final touches.",
+      "videoSrc": "videos/lesson07-part04.mp4",
+      "keyConcepts": [
+        "Navigation bars help users navigate websites",
+        "Navigation should be consistent across pages",
+        "CSS Flexbox",
+        "Final project preparation"
+      ],
+      "quiz": {
+        "question1": {
+          "text": "Why is navigation important on a website?",
+          "options": [
+            { "value": "a", "text": "It makes the site look prettier" },
+            { "value": "b", "text": "It helps users move between different pages" },
+            { "value": "c", "text": "It's required by law" },
+            { "value": "d", "text": "It makes the site load faster" }
+          ],
+          "correct": "b"
+        },
+        "question2": {
+          "text": "What is a good CSS layout algorithm to use for Navigation menus?",
+          "options": [
+            { "value": "a", "text": "CSS Flexbox" },
+            { "value": "b", "text": "CSS Grid" },
+            { "value": "c", "text": "Table Layout" },
+            { "value": "d", "text": "None of the above" }
+          ],
+          "correct": "a"
+        }
+      }
+    }
+  ]
+}
